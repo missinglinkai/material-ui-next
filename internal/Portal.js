@@ -8,6 +8,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
+var _propTypes = require('prop_types');
+
 var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = require('react-dom');
@@ -109,9 +111,9 @@ Portal.propTypes = {
   /**
    * The content of the component.
    */
-  children: _react.PropTypes.node,
-  container: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.func]),
-  open: _react.PropTypes.bool
+  children: _propTypes.node,
+  container: _propTypes.oneOfType([_propTypes.string, _propTypes.func]),
+  open: _propTypes.bool
 };
 Portal.defaultProps = {
   open: false

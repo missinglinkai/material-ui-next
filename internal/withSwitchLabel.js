@@ -13,6 +13,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
+var _propTypes = require('prop_types');
+
 var _react2 = _interopRequireDefault(_react);
 
 var _jssThemeReactor = require('jss-theme-reactor');
@@ -126,17 +128,17 @@ function withSwitchLabel(SwitchComponent) {
     /**
      * If `true`, the control will be disabled.
      */
-    disabled: _react.PropTypes.bool,
+    disabled: _propTypes.bool,
     /**
      * The text to be used in an enclosing label element.
      */
-    label: _react.PropTypes.node,
+    label: _propTypes.node,
     /**
      * The className to be used in an enclosing label element.
      */
-    labelClassName: _react.PropTypes.string
+    labelClassName: _propTypes.string
   }, _class.contextTypes = {
-    styleManager: _react.PropTypes.object.isRequired
+    styleManager: _propTypes.object.isRequired
   }, _temp2;
 }
 

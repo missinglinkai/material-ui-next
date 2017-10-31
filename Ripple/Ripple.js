@@ -9,6 +9,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
+var _propTypes = require('prop_types');
+
 var _react2 = _interopRequireDefault(_react);
 
 var _jssThemeReactor = require('jss-theme-reactor');
@@ -197,16 +199,16 @@ Ripple.propTypes = {
   /**
    * The CSS class name of the root element.
    */
-  className: _react.PropTypes.string,
-  pulsate: _react.PropTypes.bool,
-  rippleSize: _react.PropTypes.number,
-  rippleX: _react.PropTypes.number,
-  rippleY: _react.PropTypes.number
+  className: _propTypes.string,
+  pulsate: _propTypes.bool,
+  rippleSize: _propTypes.number,
+  rippleX: _propTypes.number,
+  rippleY: _propTypes.number
 };
 Ripple.defaultProps = {
   pulsate: false
 };
 Ripple.contextTypes = {
-  styleManager: _react.PropTypes.object.isRequired
+  styleManager: _propTypes.object.isRequired
 };
 exports.default = Ripple;

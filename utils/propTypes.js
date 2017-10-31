@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _react = require('react');
 
-var _propTypes = require('prop_types');
+var _propTypes = require('prop-types');
 
 var horizontal = _propTypes.oneOfType([_propTypes.oneOf(['left', 'center', 'right']), _propTypes.number]); //  weak
 

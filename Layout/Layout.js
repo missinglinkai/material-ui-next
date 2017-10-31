@@ -11,7 +11,7 @@ var _assign = require('object-assign');
 
 var _react = require('react');
 
-var _propTypes = require('prop_types');
+var _propTypes = require('prop-types');
 
 var _react2 = _interopRequireDefault(_react);
 

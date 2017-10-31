@@ -13,8 +13,6 @@ exports.default = TableSortLabel;
 
 var _react = require('react');
 
-var _propTypes = require('prop_types');
-
 var _react2 = _interopRequireDefault(_react);
 
 var _jssThemeReactor = require('jss-theme-reactor');
@@ -107,19 +105,19 @@ TableSortLabel.propTypes = {
   /**
    * If set to true, will have the active styling (should be true for the sorted column).
    */
-  active: _propTypes.bool,
+  active: _react.PropTypes.bool,
   /**
    * Label contents, the arrow will be appended automatically and aligned using flexbox.
    */
-  children: _propTypes.node,
+  children: _react.PropTypes.node,
   /**
    * The CSS class name of the root element.
    */
-  className: _propTypes.string,
+  className: _react.PropTypes.string,
   /**
    * The current sort direction.
    */
-  direction: _propTypes.oneOf(['asc', 'desc'])
+  direction: _react.PropTypes.oneOf(['asc', 'desc'])
 };
 
 TableSortLabel.defaultProps = {
@@ -128,5 +126,5 @@ TableSortLabel.defaultProps = {
 };
 
 TableSortLabel.contextTypes = {
-  styleManager: _propTypes.object.isRequired
+  styleManager: _react.PropTypes.object.isRequired
 };

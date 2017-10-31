@@ -13,8 +13,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
-var _propTypes = require('prop_types');
-
 var _react2 = _interopRequireDefault(_react);
 
 var _jssThemeReactor = require('jss-theme-reactor');
@@ -98,15 +96,15 @@ TableHead.propTypes = {
   /**
    * Should be valid `<thead>` children such as `TableRow`.
    */
-  children: _propTypes.node,
+  children: _react.PropTypes.node,
   /**
    * The CSS class name of the root element.
    */
-  className: _propTypes.string
+  className: _react.PropTypes.string
 };
 TableHead.contextTypes = {
-  table: _propTypes.object,
-  styleManager: _propTypes.object.isRequired
+  table: _react.PropTypes.object,
+  styleManager: _react.PropTypes.object.isRequired
 };
-TableHead.childContextTypes = { table: _propTypes.object };
+TableHead.childContextTypes = { table: _react.PropTypes.object };
 exports.default = TableHead;

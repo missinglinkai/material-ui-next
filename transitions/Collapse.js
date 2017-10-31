@@ -13,8 +13,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
-var _propTypes = require('prop_types');
-
 var _react2 = _interopRequireDefault(_react);
 
 var _jssThemeReactor = require('jss-theme-reactor');
@@ -181,50 +179,50 @@ Collapse.propTypes = {
   /**
    * The content node to be collapsed.
    */
-  children: _propTypes.node,
+  children: _react.PropTypes.node,
   /**
    * Class name passed to the wrapping container
    * required for holding+measuring the expanding content.
    */
-  containerClassName: _propTypes.string,
+  containerClassName: _react.PropTypes.string,
   /**
    * Set to true to transition in.
    */
-  in: _propTypes.bool,
+  in: _react.PropTypes.bool,
   /**
    * Callback fired before the component is entering.
    */
-  onEnter: _propTypes.func,
+  onEnter: _react.PropTypes.func,
   /**
    * Callback fired when the component is entering.
    */
-  onEntering: _propTypes.func,
+  onEntering: _react.PropTypes.func,
   /**
    * Callback fired when the component has entered.
    */
-  onEntered: _propTypes.func, // eslint-disable-line react/sort-prop-types
+  onEntered: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired before the component is exiting.
    */
-  onExit: _propTypes.func,
+  onExit: _react.PropTypes.func,
   /**
    * Callback fired when the component is exiting.
    */
-  onExiting: _propTypes.func,
+  onExiting: _react.PropTypes.func,
   /**
    * Callback fired when the component has exited.
    */
-  onExited: _propTypes.func, // eslint-disable-line react/sort-prop-types
+  onExited: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
   /**
    * Set to 'auto' to automatically calculate transition time based on height.
    */
-  transitionDuration: _propTypes.oneOfType([_propTypes.number, _propTypes.string])
+  transitionDuration: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string])
 };
 Collapse.defaultProps = {
   in: false,
   transitionDuration: 300
 };
 Collapse.contextTypes = {
-  styleManager: _propTypes.object.isRequired
+  styleManager: _react.PropTypes.object.isRequired
 };
 exports.default = Collapse;

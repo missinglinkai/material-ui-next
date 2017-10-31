@@ -13,8 +13,6 @@ exports.default = TableRow;
 
 var _react = require('react');
 
-var _propTypes = require('prop_types');
-
 var _react2 = _interopRequireDefault(_react);
 
 var _jssThemeReactor = require('jss-theme-reactor');
@@ -94,19 +92,19 @@ TableRow.propTypes = {
   /**
    * Should be valid `<tr>` children such as `TableCell`.
    */
-  children: _propTypes.node,
+  children: _react.PropTypes.node,
   /**
    * The CSS class name of the root element.
    */
-  className: _propTypes.string,
+  className: _react.PropTypes.string,
   /**
    * If set to true, the table row will shade on hover.
    */
-  hover: _propTypes.bool,
+  hover: _react.PropTypes.bool,
   /**
    * If set to true, the table row will have the selected shading.
    */
-  selected: _propTypes.bool
+  selected: _react.PropTypes.bool
 };
 
 TableRow.defaultProps = {
@@ -115,6 +113,6 @@ TableRow.defaultProps = {
 };
 
 TableRow.contextTypes = {
-  table: _propTypes.object,
-  styleManager: _propTypes.object.isRequired
+  table: _react.PropTypes.object,
+  styleManager: _react.PropTypes.object.isRequired
 };

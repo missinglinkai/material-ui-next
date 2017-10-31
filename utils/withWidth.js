@@ -13,8 +13,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
-var _propTypes = require('prop_types');
-
 var _react2 = _interopRequireDefault(_react);
 
 var _reactEventListener = require('react-event-listener');
@@ -156,7 +154,7 @@ function withWidth() {
 
       return WithWidth;
     }(_react.Component), _class.contextTypes = {
-      theme: _propTypes.object.isRequired
+      theme: _react.PropTypes.object.isRequired
     }, _temp2;
   };
 }

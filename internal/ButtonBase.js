@@ -13,8 +13,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
-var _propTypes = require('prop_types');
-
 var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = require('react-dom');
@@ -261,47 +259,47 @@ var ButtonBase = function (_Component) {
 }(_react.Component);
 
 ButtonBase.propTypes = {
-  centerRipple: _propTypes.bool,
+  centerRipple: _react.PropTypes.bool,
   /**
    * The content of the component.
    */
-  children: _propTypes.node,
+  children: _react.PropTypes.node,
   /**
    * The CSS class name of the root element.
    */
-  className: _propTypes.string,
+  className: _react.PropTypes.string,
   /**
    * The element or component used for the root node.
    */
-  component: _propTypes.oneOfType([_propTypes.string, _propTypes.func]),
+  component: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.func]),
   /**
    * If `true`, the base button will be disabled.
    */
-  disabled: _propTypes.bool,
+  disabled: _react.PropTypes.bool,
   /**
    * If `true`, the base button will have a keyboard focus ripple.
    * `ripple` must also be true.
    */
-  focusRipple: _propTypes.bool,
-  keyboardFocusedClassName: _propTypes.string,
-  onBlur: _propTypes.func,
-  onClick: _propTypes.func,
-  onFocus: _propTypes.func,
-  onKeyboardFocus: _propTypes.func,
-  onKeyDown: _propTypes.func,
-  onKeyUp: _propTypes.func,
-  onMouseDown: _propTypes.func,
-  onMouseLeave: _propTypes.func,
-  onMouseUp: _propTypes.func,
-  onTouchEnd: _propTypes.func,
-  onTouchStart: _propTypes.func,
+  focusRipple: _react.PropTypes.bool,
+  keyboardFocusedClassName: _react.PropTypes.string,
+  onBlur: _react.PropTypes.func,
+  onClick: _react.PropTypes.func,
+  onFocus: _react.PropTypes.func,
+  onKeyboardFocus: _react.PropTypes.func,
+  onKeyDown: _react.PropTypes.func,
+  onKeyUp: _react.PropTypes.func,
+  onMouseDown: _react.PropTypes.func,
+  onMouseLeave: _react.PropTypes.func,
+  onMouseUp: _react.PropTypes.func,
+  onTouchEnd: _react.PropTypes.func,
+  onTouchStart: _react.PropTypes.func,
   /**
    * If `true`, the base button will have a ripple.
    */
-  ripple: _propTypes.oneOfType([_propTypes.bool, _propTypes.func]),
-  role: _propTypes.string,
-  tabIndex: _propTypes.string,
-  type: _propTypes.string
+  ripple: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.func]),
+  role: _react.PropTypes.string,
+  tabIndex: _react.PropTypes.string,
+  type: _react.PropTypes.string
 };
 ButtonBase.defaultProps = {
   centerRipple: false,
@@ -312,6 +310,6 @@ ButtonBase.defaultProps = {
   type: 'button'
 };
 ButtonBase.contextTypes = {
-  styleManager: _propTypes.object.isRequired
+  styleManager: _react.PropTypes.object.isRequired
 };
 exports.default = ButtonBase;

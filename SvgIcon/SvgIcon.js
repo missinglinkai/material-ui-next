@@ -13,8 +13,6 @@ exports.default = SvgIcon;
 
 var _react = require('react');
 
-var _propTypes = require('prop_types');
-
 var _react2 = _interopRequireDefault(_react);
 
 var _jssThemeReactor = require('jss-theme-reactor');
@@ -68,18 +66,18 @@ SvgIcon.propTypes = {
   /**
    * Elements passed into the SVG Icon.
    */
-  children: _propTypes.node,
+  children: _react.PropTypes.node,
   /**
    * The css class name of the root element.
    */
-  className: _propTypes.string,
+  className: _react.PropTypes.string,
   /**
    * Allows you to redefine what the coordinates without units mean inside an svg element.
    * For example, if the SVG element is 500 (width) by 200 (height), and you pass viewBox="0 0 50 20",
    * this means that the coordinates inside the svg will go from the top left corner (0,0)
    * to bottom right (50,20) and each unit will be worth 10px.
    */
-  viewBox: _propTypes.string
+  viewBox: _react.PropTypes.string
 };
 
 SvgIcon.defaultProps = {
@@ -87,5 +85,5 @@ SvgIcon.defaultProps = {
 };
 
 SvgIcon.contextTypes = {
-  styleManager: _propTypes.object.isRequired
+  styleManager: _react.PropTypes.object.isRequired
 };

@@ -3,68 +3,39 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.ListSubheader = exports.ListItemSecondaryAction = exports.ListItemIcon = exports.ListItemText = exports.ListItem = exports.List = exports.default = undefined;
 
-var _List = require('./List');
+var _List2 = require('./List');
 
-Object.defineProperty(exports, 'default', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_List).default;
-  }
-});
+var _List3 = _interopRequireDefault(_List2);
 
-var _ListItem = require('./ListItem');
+var _ListItem2 = require('./ListItem');
 
-Object.defineProperty(exports, 'ListItem', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_ListItem).default;
-  }
-});
+var _ListItem3 = _interopRequireDefault(_ListItem2);
 
-var _ListItemAvatar = require('./ListItemAvatar');
+var _ListItemText2 = require('./ListItemText');
 
-Object.defineProperty(exports, 'ListItemAvatar', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_ListItemAvatar).default;
-  }
-});
+var _ListItemText3 = _interopRequireDefault(_ListItemText2);
 
-var _ListItemText = require('./ListItemText');
+var _ListItemIcon2 = require('./ListItemIcon');
 
-Object.defineProperty(exports, 'ListItemText', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_ListItemText).default;
-  }
-});
+var _ListItemIcon3 = _interopRequireDefault(_ListItemIcon2);
 
-var _ListItemIcon = require('./ListItemIcon');
+var _ListItemSecondaryAction2 = require('./ListItemSecondaryAction');
 
-Object.defineProperty(exports, 'ListItemIcon', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_ListItemIcon).default;
-  }
-});
+var _ListItemSecondaryAction3 = _interopRequireDefault(_ListItemSecondaryAction2);
 
-var _ListItemSecondaryAction = require('./ListItemSecondaryAction');
+var _ListSubheader2 = require('./ListSubheader');
 
-Object.defineProperty(exports, 'ListItemSecondaryAction', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_ListItemSecondaryAction).default;
-  }
-});
-
-var _ListSubheader = require('./ListSubheader');
-
-Object.defineProperty(exports, 'ListSubheader', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_ListSubheader).default;
-  }
-});
+var _ListSubheader3 = _interopRequireDefault(_ListSubheader2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _List3.default; /* eslint-disable flowtype/require-valid-file-annotation */
+
+exports.List = _List3.default;
+exports.ListItem = _ListItem3.default;
+exports.ListItemText = _ListItemText3.default;
+exports.ListItemIcon = _ListItemIcon3.default;
+exports.ListItemSecondaryAction = _ListItemSecondaryAction3.default;
+exports.ListSubheader = _ListSubheader3.default;

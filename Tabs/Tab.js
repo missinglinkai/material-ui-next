@@ -3,104 +3,58 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _keys = require('babel-runtime/core-js/object/keys');
+var _assign = require('object-assign');
 
-var _keys2 = _interopRequireDefault(_keys);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _extends3 = require('babel-runtime/helpers/extends');
-
-var _extends4 = _interopRequireDefault(_extends3);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //  weak
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
-var _ButtonBase = require('../ButtonBase');
+var _ButtonBase = require('../internal/ButtonBase');
 
 var _ButtonBase2 = _interopRequireDefault(_ButtonBase);
 
-var _helpers = require('../utils/helpers');
-
-var _Icon = require('../Icon');
-
-var _Icon2 = _interopRequireDefault(_Icon);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Element = require('react').babelPluginFlowReactPropTypes_proptype_Element || require('prop-types').any;
-// @inheritedComponent ButtonBase
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-var styles = exports.styles = function styles(theme) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Tab', function (theme) {
+  var _extends2;
+
   return {
-    root: (0, _extends4.default)({}, theme.typography.button, (0, _defineProperty3.default)({
+    root: _extends({}, theme.typography.button, (_extends2 = {
       maxWidth: 264,
-      position: 'relative',
-      minWidth: 72,
-      padding: 0,
-      height: 48,
-      flex: 'none',
-      overflow: 'hidden'
-    }, theme.breakpoints.up('md'), {
+      minWidth: 72
+    }, _defineProperty(_extends2, theme.breakpoints.up('md'), {
       minWidth: 160
-    })),
+    }), _defineProperty(_extends2, 'background', 'none'), _defineProperty(_extends2, 'padding', 0), _defineProperty(_extends2, 'minHeight', 48), _extends2)),
     rootLabelIcon: {
-      height: 72
+      minHeight: 72
     },
     rootAccent: {
       color: theme.palette.text.secondary
     },
     rootAccentSelected: {
-      color: theme.palette.secondary.A200
-    },
-    rootAccentDisabled: {
-      color: theme.palette.text.disabled
-    },
-    rootPrimary: {
-      color: theme.palette.text.secondary
-    },
-    rootPrimarySelected: {
-      color: theme.palette.primary[500]
-    },
-    rootPrimaryDisabled: {
-      color: theme.palette.text.disabled
+      color: theme.palette.accent[500]
     },
     rootInherit: {
       color: 'inherit',
@@ -109,194 +63,78 @@ var styles = exports.styles = function styles(theme) {
     rootInheritSelected: {
       opacity: 1
     },
-    rootInheritDisabled: {
-      opacity: 0.4
-    },
-    fullWidth: {
-      flexGrow: 1
-    },
-    wrapper: {
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      flexDirection: 'column'
-    },
-    labelContainer: (0, _defineProperty3.default)({
+    label: _defineProperty({
+      fontSize: theme.typography.fontSize,
+      fontWeight: theme.typography.fontWeightMedium,
+      fontFamily: theme.typography.fontFamily,
+      textTransform: 'uppercase',
+      paddingLeft: 12,
+      paddingRight: 12,
       paddingTop: 6,
       paddingBottom: 6,
-      paddingLeft: 12,
-      paddingRight: 12
-    }, theme.breakpoints.up('md'), {
-      paddingLeft: theme.spacing.unit * 3,
-      paddingRight: theme.spacing.unit * 3
-    }),
-    label: (0, _defineProperty3.default)({
-      fontSize: theme.typography.fontSize,
-      whiteSpace: 'normal'
-    }, theme.breakpoints.up('md'), {
+      display: 'block'
+    }, theme.breakpoints.up('sm'), {
+      paddingLeft: 24,
+      paddingRight: 24,
       fontSize: theme.typography.fontSize - 1
-    }),
-    labelWrapped: (0, _defineProperty3.default)({}, theme.breakpoints.down('md'), {
-      fontSize: theme.typography.fontSize - 2
     })
   };
-};
+});
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
-
-  /**
-   * If `true`, the tab will be disabled.
-   */
-  disabled: require('prop-types').bool,
-
-  /**
-   * @ignore
-   */
-  fullWidth: require('prop-types').bool,
-
-  /**
-   * The icon element. If a string is provided, it will be used as a font ligature.
-   */
-  icon: require('prop-types').oneOfType([require('prop-types').string, typeof babelPluginFlowReactPropTypes_proptype_Element === 'function' ? babelPluginFlowReactPropTypes_proptype_Element : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Element)]),
-
-  /**
-   * @ignore
-   * For server side rendering consideration, we let the selected tab
-   * render the indicator.
-   */
-  indicator: require('prop-types').oneOfType([require('prop-types').string, typeof babelPluginFlowReactPropTypes_proptype_Element === 'function' ? babelPluginFlowReactPropTypes_proptype_Element : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Element)]),
-
-  /**
-   * The label element.
-   */
-  label: require('prop-types').oneOfType([require('prop-types').string, typeof babelPluginFlowReactPropTypes_proptype_Element === 'function' ? babelPluginFlowReactPropTypes_proptype_Element : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Element)]),
-
-  /**
-   * @ignore
-   */
-  onChange: require('prop-types').func,
-
-  /**
-   * @ignore
-   */
-  onClick: require('prop-types').func,
-
-  /**
-   * @ignore
-   */
-  selected: require('prop-types').bool,
-
-  /**
-   * @ignore
-   */
-  style: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  textColor: require('prop-types').oneOfType([require('prop-types').oneOf(['accent']), require('prop-types').oneOf(['primary']), require('prop-types').oneOf(['inherit']), require('prop-types').string]),
-
-  /**
-   * You can provide your own value. Otherwise, we fallback to the child position index.
-   */
-  value: require('prop-types').any
-};
-
-var Tab = function (_React$Component) {
-  (0, _inherits3.default)(Tab, _React$Component);
+var Tab = function (_Component) {
+  _inherits(Tab, _Component);
 
   function Tab() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    (0, _classCallCheck3.default)(this, Tab);
+    _classCallCheck(this, Tab);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Tab.__proto__ || (0, _getPrototypeOf2.default)(Tab)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      wrappedText: false
-    }, _this.handleChange = function (event) {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Tab.__proto__ || Object.getPrototypeOf(Tab)).call.apply(_ref, [this].concat(args))), _this), _this.handleChange = function (event) {
       var _this$props = _this.props,
           onChange = _this$props.onChange,
-          value = _this$props.value,
+          index = _this$props.index,
           onClick = _this$props.onClick;
 
 
-      if (onChange) {
-        onChange(event, value);
-      }
+      onChange(event, index);
 
       if (onClick) {
         onClick(event);
       }
-    }, _this.label = undefined, _this.checkTextWrap = function () {
-      if (_this.label) {
-        var _wrappedText = _this.label.getClientRects().length > 1;
-        if (_this.state.wrappedText !== _wrappedText) {
-          _this.setState({ wrappedText: _wrappedText });
-        }
-      }
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  (0, _createClass3.default)(Tab, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      this.checkTextWrap();
-    }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate(prevProps, prevState) {
-      if (this.state.wrappedText === prevState.wrappedText) {
-        /**
-         * At certain text and tab lengths, a larger font size may wrap to two lines while the smaller
-         * font size still only requires one line.  This check will prevent an infinite render loop
-         * fron occurring in that scenario.
-         */
-        this.checkTextWrap();
-      }
-    }
-  }, {
+  _createClass(Tab, [{
     key: 'render',
     value: function render() {
-      var _this2 = this,
-          _classNames2;
+      var _classNames;
 
       var _props = this.props,
-          classes = _props.classes,
           classNameProp = _props.className,
-          disabled = _props.disabled,
           fullWidth = _props.fullWidth,
           iconProp = _props.icon,
-          indicator = _props.indicator,
+          index = _props.index,
           labelProp = _props.label,
           onChange = _props.onChange,
           selected = _props.selected,
           styleProp = _props.style,
           textColor = _props.textColor,
-          value = _props.value,
-          other = (0, _objectWithoutProperties3.default)(_props, ['classes', 'className', 'disabled', 'fullWidth', 'icon', 'indicator', 'label', 'onChange', 'selected', 'style', 'textColor', 'value']);
+          other = _objectWithoutProperties(_props, ['className', 'fullWidth', 'icon', 'index', 'label', 'onChange', 'selected', 'style', 'textColor']);
 
+      var classes = this.context.styleManager.render(styleSheet);
 
       var icon = void 0;
 
       if (iconProp !== undefined) {
-        icon = _react2.default.isValidElement(iconProp) ? iconProp : _react2.default.createElement(
-          _Icon2.default,
-          null,
+        icon = (0, _react.isValidElement)(iconProp) ? iconProp : _react2.default.createElement(
+          'span',
+          { className: 'material-icons' },
           iconProp
         );
       }
@@ -305,57 +143,89 @@ var Tab = function (_React$Component) {
 
       if (labelProp !== undefined) {
         label = _react2.default.createElement(
-          'div',
-          { className: classes.labelContainer },
-          _react2.default.createElement(
-            'span',
-            {
-              className: (0, _classnames2.default)(classes.label, (0, _defineProperty3.default)({}, classes.labelWrapped, this.state.wrappedText)),
-              ref: function ref(node) {
-                _this2.label = node;
-              }
-            },
-            labelProp
-          )
+          'span',
+          { className: classes.label },
+          labelProp
         );
       }
 
-      var className = (0, _classnames2.default)(classes.root, (_classNames2 = {}, (0, _defineProperty3.default)(_classNames2, classes['root' + (0, _helpers.capitalizeFirstLetter)(textColor)], true), (0, _defineProperty3.default)(_classNames2, classes['root' + (0, _helpers.capitalizeFirstLetter)(textColor) + 'Disabled'], disabled), (0, _defineProperty3.default)(_classNames2, classes['root' + (0, _helpers.capitalizeFirstLetter)(textColor) + 'Selected'], selected), (0, _defineProperty3.default)(_classNames2, classes.rootLabelIcon, icon && label), (0, _defineProperty3.default)(_classNames2, classes.fullWidth, fullWidth), _classNames2), classNameProp);
+      var className = (0, _classnames2.default)(classes.root, (_classNames = {}, _defineProperty(_classNames, classes.rootAccent, textColor === 'accent'), _defineProperty(_classNames, classes.rootAccentSelected, selected && textColor === 'accent'), _defineProperty(_classNames, classes.rootInherit, textColor === 'inherit'), _defineProperty(_classNames, classes.rootInheritSelected, selected && textColor === 'inherit'), _defineProperty(_classNames, classes.rootLabelIcon, icon && label), _classNames), classNameProp);
 
       var style = {};
+
+      if (fullWidth) {
+        style.width = '100%';
+      }
 
       if (textColor !== 'accent' && textColor !== 'inherit') {
         style.color = textColor;
       }
 
-      style = (0, _keys2.default)(style).length > 0 ? (0, _extends4.default)({}, style, styleProp) : styleProp;
+      style = Object.keys(style).length > 0 ? _extends({}, style, styleProp) : styleProp;
 
       return _react2.default.createElement(
         _ButtonBase2.default,
-        (0, _extends4.default)({
+        _extends({
           focusRipple: true,
           className: className,
           style: style,
           role: 'tab',
-          'aria-selected': selected,
-          disabled: disabled
+          'aria-selected': selected
         }, other, {
           onClick: this.handleChange
         }),
-        _react2.default.createElement(
-          'span',
-          { className: classes.wrapper },
-          icon,
-          label
-        ),
-        indicator
+        icon,
+        label
       );
     }
   }]);
-  return Tab;
-}(_react2.default.Component);
 
-Tab.defaultProps = {
-  disabled: false
+  return Tab;
+}(_react.Component);
+
+Tab.propTypes = {
+  /**
+   * The CSS class name of the root element.
+   */
+  className: _react.PropTypes.string,
+  /**
+   * @ignore
+   */
+  fullWidth: _react.PropTypes.bool,
+  /**
+   * The icon element. If a string is passed, it will be used as a material icon font ligature.
+   */
+  icon: _react.PropTypes.node,
+  /**
+   * @ignore
+   */
+  index: _react.PropTypes.number,
+  /**
+   * The label element.
+   */
+  label: _react.PropTypes.node,
+  /**
+   * @ignore
+   */
+  onChange: _react.PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: _react.PropTypes.func,
+  /**
+   * @ignore
+   */
+  selected: _react.PropTypes.bool,
+  /**
+   * @ignore
+   */
+  style: _react.PropTypes.object,
+  /**
+   * @ignore
+   */
+  textColor: _react.PropTypes.oneOfType([_react.PropTypes.oneOf(['accent', 'inherit']), _react.PropTypes.string])
 };
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiTab' })(Tab);
+Tab.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};
+exports.default = Tab;

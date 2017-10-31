@@ -4,40 +4,31 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _typeof2 = require('babel-runtime/helpers/typeof');
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-var _keys = require('babel-runtime/core-js/object/keys');
-
-var _keys2 = _interopRequireDefault(_keys);
-
-exports.capitalizeFirstLetter = capitalizeFirstLetter;
+exports.transform = transform;
 exports.contains = contains;
 exports.findIndex = findIndex;
 exports.find = find;
+exports.throttle = throttle;
 exports.createChainedFunction = createChainedFunction;
+//  weak
 
-var _warning = require('warning');
-
-var _warning2 = _interopRequireDefault(_warning);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function capitalizeFirstLetter(string) {
-  process.env.NODE_ENV !== "production" ? (0, _warning2.default)(typeof string === 'string', 'Material-UI: capitalizeFirstLetter(string) expects a string argument.') : void 0;
-
-  return string.charAt(0).toUpperCase() + string.slice(1);
-} //  weak
+function transform(obj, cb, accumulator) {
+  Object.keys(obj).forEach(function (key) {
+    cb(accumulator, obj[key], key);
+  });
+  return accumulator;
+}
 
 function contains(obj, pred) {
-  return (0, _keys2.default)(pred).every(function (key) {
+  return Object.keys(pred).every(function (key) {
     return obj.hasOwnProperty(key) && obj[key] === pred[key];
   });
 }
 
 function findIndex(arr, pred) {
-  var predType = typeof pred === 'undefined' ? 'undefined' : (0, _typeof3.default)(pred);
+  var predType = typeof pred === 'undefined' ? 'undefined' : _typeof(pred);
   for (var i = 0; i < arr.length; i += 1) {
     if (predType === 'function' && !!pred(arr[i], i, arr) === true) {
       return i;
@@ -57,6 +48,20 @@ function find(arr, pred) {
   return index > -1 ? arr[index] : undefined;
 }
 
+function throttle(fn, limit) {
+  var wait = false;
+  return function throttledFn() {
+    if (!wait) {
+      fn.call();
+      wait = true;
+      return setTimeout(function () {
+        wait = false;
+      }, limit);
+    }
+    return null;
+  };
+}
+
 /**
  * Safe chained function
  *
@@ -71,10 +76,16 @@ function createChainedFunction() {
     funcs[_key] = arguments[_key];
   }
 
-  return funcs.filter(function (func) {
-    return func != null;
-  }).reduce(function (acc, func) {
-    process.env.NODE_ENV !== "production" ? (0, _warning2.default)(typeof func === 'function', 'Material-UI: invalid Argument Type, must only provide functions, undefined, or null.') : void 0;
+  return funcs.filter(function (f) {
+    return f != null;
+  }).reduce(function (acc, f) {
+    if (typeof f !== 'function') {
+      throw new Error('Invalid Argument Type, must only provide functions, undefined, or null.');
+    }
+
+    if (acc === null) {
+      return f;
+    }
 
     return function chainedFunction() {
       for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
@@ -82,7 +93,7 @@ function createChainedFunction() {
       }
 
       acc.apply(this, args);
-      func.apply(this, args);
+      f.apply(this, args);
     };
-  }, function () {});
+  }, null);
 }

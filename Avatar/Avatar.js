@@ -3,61 +3,51 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _assign = require('object-assign');
 
-var _extends3 = _interopRequireDefault(_extends2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _ref;
+exports.default = Avatar;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
-
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
 
 var _colorManipulator = require('../styles/colorManipulator');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Element = require('react').babelPluginFlowReactPropTypes_proptype_Element || require('prop-types').any;
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var babelPluginFlowReactPropTypes_proptype_ElementType = require('react').babelPluginFlowReactPropTypes_proptype_ElementType || require('prop-types').any;
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
 
-var styles = exports.styles = function styles(theme) {
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Avatar', function (theme) {
+  var palette = theme.palette;
+
   return {
     root: {
       position: 'relative',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      flexShrink: 0,
       width: 40,
       height: 40,
-      fontFamily: theme.typography.fontFamily,
       fontSize: 20,
       borderRadius: '50%',
       overflow: 'hidden',
       userSelect: 'none'
     },
-    colorDefault: {
-      color: theme.palette.background.default,
-      backgroundColor: (0, _colorManipulator.emphasize)(theme.palette.background.default, 0.26)
+    defaultColor: {
+      color: palette.background.default,
+      backgroundColor: (0, _colorManipulator.emphasize)(palette.background.default, 0.26)
     },
     img: {
       maxWidth: '100%',
@@ -65,15 +55,54 @@ var styles = exports.styles = function styles(theme) {
       height: 'auto'
     }
   };
-};
+});
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
+function Avatar(props, context) {
+  var alt = props.alt,
+      classNameProp = props.className,
+      childrenProp = props.children,
+      childrenClassNameProp = props.childrenClassName,
+      component = props.component,
+      sizes = props.sizes,
+      src = props.src,
+      srcSet = props.srcSet,
+      other = _objectWithoutProperties(props, ['alt', 'className', 'children', 'childrenClassName', 'component', 'sizes', 'src', 'srcSet']);
+
+  var classes = context.styleManager.render(styleSheet);
+  var className = (0, _classnames2.default)(classes.root, _defineProperty({}, classes.defaultColor, childrenProp && !src && !srcSet), classNameProp);
+  var containerProps = _extends({
+    className: className
+  }, other);
+
+  var children = null;
+
+  if (childrenProp) {
+    if (childrenClassNameProp && _react2.default.isValidElement(childrenProp)) {
+      var childrenClassName = (0, _classnames2.default)(childrenClassNameProp, childrenProp.props.className);
+      children = _react2.default.cloneElement(childrenProp, { className: childrenClassName });
+    } else {
+      children = childrenProp;
+    }
+  } else if (src || srcSet) {
+    var imgProps = {
+      alt: alt,
+      src: src,
+      srcSet: srcSet,
+      sizes: sizes,
+      className: classes.img
+    };
+    children = _react2.default.createElement('img', imgProps);
+  }
+
+  return _react2.default.createElement(component, containerProps, children);
+}
+
+Avatar.propTypes = {
   /**
    * Used in combination with `src` or `srcSet` to
    * provide an alt attribute for the rendered `img` element.
    */
-  alt: require('prop-types').string,
-
+  alt: _react.PropTypes.string,
   /**
    * Used to render icon or text elements inside the Avatar.
    * `src` and `alt` props will not be used and no `img` will
@@ -81,104 +110,40 @@ var babelPluginFlowReactPropTypes_proptype_Props = {
    *
    * This can be an element, or just a string.
    */
-  children: require('prop-types').oneOfType([require('prop-types').string, typeof babelPluginFlowReactPropTypes_proptype_Element === 'function' ? babelPluginFlowReactPropTypes_proptype_Element : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Element)]),
-
+  children: _react.PropTypes.node,
   /**
    * @ignore
    * The className of the child element.
-   * Used by Chip and ListItemIcon to style the Avatar icon.
+   * Used by Chip to style the Avatar icon.
    */
-  childrenClassName: require('prop-types').string,
-
+  childrenClassName: _react.PropTypes.string,
   /**
-   * Useful to extend the style applied to components.
+   * The CSS class name of the root element.
    */
-  classes: require('prop-types').object,
-
+  className: _react.PropTypes.string,
   /**
-   * @ignore
+   * The component type of the root element.
    */
-  className: require('prop-types').string,
-
+  component: _react.PropTypes.string,
   /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * sizes desc
    */
-  component: typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType),
-
+  sizes: _react.PropTypes.string,
   /**
-   * Properties applied to the `img` element when the component
-   * is used to display an image.
+   * src desc
    */
-  imgProps: require('prop-types').object,
-
+  src: _react.PropTypes.string,
   /**
-   * The `sizes` attribute for the `img` element.
+   * srcSet desc
    */
-  sizes: require('prop-types').string,
-
-  /**
-   * The `src` attribute for the `img` element.
-   */
-  src: require('prop-types').string,
-
-  /**
-   * The `srcSet` attribute for the `img` element.
-   */
-  srcSet: require('prop-types').string
+  srcSet: _react.PropTypes.string
 };
 
-
-function Avatar(props) {
-  var alt = props.alt,
-      classes = props.classes,
-      classNameProp = props.className,
-      childrenProp = props.children,
-      childrenClassNameProp = props.childrenClassName,
-      ComponentProp = props.component,
-      imgProps = props.imgProps,
-      sizes = props.sizes,
-      src = props.src,
-      srcSet = props.srcSet,
-      other = (0, _objectWithoutProperties3.default)(props, ['alt', 'classes', 'className', 'children', 'childrenClassName', 'component', 'imgProps', 'sizes', 'src', 'srcSet']);
-
-
-  var className = (0, _classnames2.default)(classes.root, (0, _defineProperty3.default)({}, classes.colorDefault, childrenProp && !src && !srcSet), classNameProp);
-  var children = null;
-
-  if (childrenProp) {
-    if (childrenClassNameProp && typeof childrenProp !== 'string' && _react2.default.isValidElement(childrenProp)) {
-      var _childrenClassName = (0, _classnames2.default)(childrenClassNameProp, childrenProp.props.className);
-      children = _react2.default.cloneElement(childrenProp, { className: _childrenClassName });
-    } else {
-      children = childrenProp;
-    }
-  } else if (src || srcSet) {
-    children = _react2.default.createElement('img', (0, _extends3.default)({
-      alt: alt,
-      src: src,
-      srcSet: srcSet,
-      sizes: sizes,
-      className: classes.img
-    }, imgProps));
-  }
-
-  return _react2.default.createElement(
-    ComponentProp,
-    (0, _extends3.default)({ className: className }, other),
-    children
-  );
-}
-
-Avatar.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
-  classes: require('prop-types').object.isRequired,
-  component: typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType.isRequired ? babelPluginFlowReactPropTypes_proptype_ElementType.isRequired : babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType).isRequired,
-  alt: require('prop-types').string,
-  children: require('prop-types').oneOfType([require('prop-types').string, typeof babelPluginFlowReactPropTypes_proptype_Element === 'function' ? babelPluginFlowReactPropTypes_proptype_Element : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Element)]),
-  childrenClassName: require('prop-types').string
-}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'component', typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType)), (0, _defineProperty3.default)(_ref, 'imgProps', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'sizes', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'src', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'srcSet', require('prop-types').string), _ref) : {};
 Avatar.defaultProps = {
+  alt: '',
   component: 'div'
 };
 
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiAvatar' })(Avatar);
+Avatar.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};

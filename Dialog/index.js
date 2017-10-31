@@ -3,59 +3,34 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.DialogContentText = exports.DialogContent = exports.DialogTitle = exports.DialogActions = exports.Dialog = exports.default = undefined;
 
-var _Dialog = require('./Dialog');
+var _Dialog2 = require('./Dialog');
 
-Object.defineProperty(exports, 'default', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_Dialog).default;
-  }
-});
+var _Dialog3 = _interopRequireDefault(_Dialog2);
 
-var _DialogActions = require('./DialogActions');
+var _DialogActions2 = require('./DialogActions');
 
-Object.defineProperty(exports, 'DialogActions', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_DialogActions).default;
-  }
-});
+var _DialogActions3 = _interopRequireDefault(_DialogActions2);
 
-var _DialogTitle = require('./DialogTitle');
+var _DialogTitle2 = require('./DialogTitle');
 
-Object.defineProperty(exports, 'DialogTitle', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_DialogTitle).default;
-  }
-});
+var _DialogTitle3 = _interopRequireDefault(_DialogTitle2);
 
-var _DialogContent = require('./DialogContent');
+var _DialogContent2 = require('./DialogContent');
 
-Object.defineProperty(exports, 'DialogContent', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_DialogContent).default;
-  }
-});
+var _DialogContent3 = _interopRequireDefault(_DialogContent2);
 
-var _DialogContentText = require('./DialogContentText');
+var _DialogContentText2 = require('./DialogContentText');
 
-Object.defineProperty(exports, 'DialogContentText', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_DialogContentText).default;
-  }
-});
-
-var _withResponsiveFullScreen = require('./withResponsiveFullScreen');
-
-Object.defineProperty(exports, 'withResponsiveFullScreen', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_withResponsiveFullScreen).default;
-  }
-});
+var _DialogContentText3 = _interopRequireDefault(_DialogContentText2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Dialog3.default; /* eslint-disable flowtype/require-valid-file-annotation */
+
+exports.Dialog = _Dialog3.default;
+exports.DialogActions = _DialogActions3.default;
+exports.DialogTitle = _DialogTitle3.default;
+exports.DialogContent = _DialogContent3.default;
+exports.DialogContentText = _DialogContentText3.default;

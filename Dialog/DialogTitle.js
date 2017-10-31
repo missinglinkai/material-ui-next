@@ -3,101 +3,72 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+var _assign = require('object-assign');
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _ref;
+exports.default = DialogTitle;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _withStyles = require('../styles/withStyles');
+var _Text = require('../Text');
 
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
-var _Typography = require('../Typography');
-
-var _Typography2 = _interopRequireDefault(_Typography);
+var _Text2 = _interopRequireDefault(_Text);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
 
-var styles = exports.styles = function styles(theme) {
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('DialogTitle', function () {
+  var gutter = 24;
   return {
     root: {
       margin: 0,
-      padding: theme.spacing.unit * 3 + 'px ' + theme.spacing.unit * 3 + 'px       20px ' + theme.spacing.unit * 3 + 'px',
+      padding: gutter + 'px ' + gutter + 'px 20px ' + gutter + 'px',
       flex: '0 0 auto'
     }
   };
-};
+});
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * The content of the component.
-   */
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
-
-  /**
-   * If `true`, the children won't be wrapped by a typography component.
-   * For instance, that can be useful to can render an h4 instead of a
-   */
-  disableTypography: require('prop-types').bool
-};
-
-
-function DialogTitle(props) {
+function DialogTitle(props, context) {
   var children = props.children,
-      classes = props.classes,
       className = props.className,
-      disableTypography = props.disableTypography,
-      other = (0, _objectWithoutProperties3.default)(props, ['children', 'classes', 'className', 'disableTypography']);
+      other = _objectWithoutProperties(props, ['children', 'className']);
 
+  var classes = context.styleManager.render(styleSheet);
 
   return _react2.default.createElement(
     'div',
-    (0, _extends3.default)({ className: (0, _classnames2.default)(classes.root, className) }, other),
-    disableTypography ? children : _react2.default.createElement(
-      _Typography2.default,
+    _extends({
+      'data-mui-test': 'DialogTitle',
+      className: (0, _classnames2.default)(classes.root, className)
+    }, other),
+    typeof children === 'string' ? _react2.default.createElement(
+      _Text2.default,
       { type: 'title' },
       children
-    )
+    ) : children
   );
 }
 
-DialogTitle.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
-  classes: require('prop-types').object.isRequired,
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)
-}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'disableTypography', require('prop-types').bool), _ref) : {};
-DialogTitle.defaultProps = {
-  disableTypography: false
+DialogTitle.propTypes = {
+  children: _react.PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
+  className: _react.PropTypes.string
 };
 
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiDialogTitle' })(DialogTitle);
+DialogTitle.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};

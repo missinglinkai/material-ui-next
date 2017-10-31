@@ -3,77 +3,39 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.TableSortLabel = exports.TableCell = exports.TableRow = exports.TableBody = exports.TableHead = exports.Table = exports.default = undefined;
 
-var _Table = require('./Table');
+var _Table2 = require('./Table');
 
-Object.defineProperty(exports, 'default', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_Table).default;
-  }
-});
+var _Table3 = _interopRequireDefault(_Table2);
 
-var _TableBody = require('./TableBody');
+var _TableHead2 = require('./TableHead');
 
-Object.defineProperty(exports, 'TableBody', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_TableBody).default;
-  }
-});
+var _TableHead3 = _interopRequireDefault(_TableHead2);
 
-var _TableCell = require('./TableCell');
+var _TableBody2 = require('./TableBody');
 
-Object.defineProperty(exports, 'TableCell', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_TableCell).default;
-  }
-});
+var _TableBody3 = _interopRequireDefault(_TableBody2);
 
-var _TableFooter = require('./TableFooter');
+var _TableRow2 = require('./TableRow');
 
-Object.defineProperty(exports, 'TableFooter', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_TableFooter).default;
-  }
-});
+var _TableRow3 = _interopRequireDefault(_TableRow2);
 
-var _TableHead = require('./TableHead');
+var _TableCell2 = require('./TableCell');
 
-Object.defineProperty(exports, 'TableHead', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_TableHead).default;
-  }
-});
+var _TableCell3 = _interopRequireDefault(_TableCell2);
 
-var _TablePagination = require('./TablePagination');
+var _TableSortLabel2 = require('./TableSortLabel');
 
-Object.defineProperty(exports, 'TablePagination', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_TablePagination).default;
-  }
-});
-
-var _TableRow = require('./TableRow');
-
-Object.defineProperty(exports, 'TableRow', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_TableRow).default;
-  }
-});
-
-var _TableSortLabel = require('./TableSortLabel');
-
-Object.defineProperty(exports, 'TableSortLabel', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_TableSortLabel).default;
-  }
-});
+var _TableSortLabel3 = _interopRequireDefault(_TableSortLabel2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Table3.default; /* eslint-disable flowtype/require-valid-file-annotation */
+
+exports.Table = _Table3.default;
+exports.TableHead = _TableHead3.default;
+exports.TableBody = _TableBody3.default;
+exports.TableRow = _TableRow3.default;
+exports.TableCell = _TableCell3.default;
+exports.TableSortLabel = _TableSortLabel3.default;

@@ -3,47 +3,35 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _assign = require('object-assign');
 
-var _extends3 = _interopRequireDefault(_extends2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _ref; //  weak
+exports.default = ListItemText;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
+var _jssThemeReactor = require('jss-theme-reactor');
 
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _withStyles = require('../styles/withStyles');
+var _Text = require('../Text');
 
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
-var _Typography = require('../Typography');
-
-var _Typography2 = _interopRequireDefault(_Typography);
+var _Text2 = _interopRequireDefault(_Text);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var styles = exports.styles = function styles(theme) {
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
+
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('ListItemText', function () {
   return {
     root: {
       flex: '1 1 auto',
@@ -54,95 +42,57 @@ var styles = exports.styles = function styles(theme) {
     },
     inset: {
       '&:first-child': {
-        paddingLeft: theme.spacing.unit * 7
+        paddingLeft: 56
       }
-    },
-    dense: {
-      fontSize: 13
-    },
-    text: {}, // Present to allow external customization
-    textDense: {
-      fontSize: 'inherit'
     }
   };
-};
-
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
-
-  /**
-   * If `true`, the children won't be wrapped by a typography component.
-   * For instance, that can be useful to can render an h4 instead of a
-   */
-  disableTypography: require('prop-types').bool,
-
-  /**
-   * If `true`, the children will be indented.
-   * This should be used if there is no left avatar or left icon.
-   */
-  inset: require('prop-types').bool,
-  primary: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-  secondary: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)
-};
-
+});
 
 function ListItemText(props, context) {
-  var _classNames;
-
-  var classes = props.classes,
-      classNameProp = props.className,
-      disableTypography = props.disableTypography,
+  var classNameProp = props.className,
       primary = props.primary,
       secondary = props.secondary,
       inset = props.inset,
-      other = (0, _objectWithoutProperties3.default)(props, ['classes', 'className', 'disableTypography', 'primary', 'secondary', 'inset']);
-  var dense = context.dense;
+      other = _objectWithoutProperties(props, ['className', 'primary', 'secondary', 'inset']);
 
-  var className = (0, _classnames2.default)(classes.root, (_classNames = {}, (0, _defineProperty3.default)(_classNames, classes.dense, dense), (0, _defineProperty3.default)(_classNames, classes.inset, inset), _classNames), classNameProp);
+  var classes = context.styleManager.render(styleSheet);
+  var className = (0, _classnames2.default)(classes.root, _defineProperty({}, classes.inset, inset), classNameProp);
 
   return _react2.default.createElement(
     'div',
-    (0, _extends3.default)({ className: className }, other),
-    primary && (disableTypography ? primary : _react2.default.createElement(
-      _Typography2.default,
-      {
-        type: 'subheading',
-        className: (0, _classnames2.default)(classes.text, (0, _defineProperty3.default)({}, classes.textDense, dense))
-      },
+    _extends({ className: className }, other),
+    primary && (typeof primary === 'string' ? _react2.default.createElement(
+      _Text2.default,
+      { type: 'subheading' },
       primary
-    )),
-    secondary && (disableTypography ? secondary : _react2.default.createElement(
-      _Typography2.default,
-      {
-        color: 'secondary',
-        type: 'body1',
-        className: (0, _classnames2.default)(classes.text, (0, _defineProperty3.default)({}, classes.textDense, dense))
-      },
+    ) : primary),
+    secondary && (typeof secondary === 'string' ? _react2.default.createElement(
+      _Text2.default,
+      { secondary: true, type: 'body1' },
       secondary
-    ))
+    ) : secondary)
   );
 }
 
-ListItemText.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
-  classes: require('prop-types').object.isRequired
-}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'disableTypography', require('prop-types').bool), (0, _defineProperty3.default)(_ref, 'inset', require('prop-types').bool), (0, _defineProperty3.default)(_ref, 'primary', typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)), (0, _defineProperty3.default)(_ref, 'secondary', typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)), _ref) : {};
+ListItemText.propTypes = {
+  /**
+   * The CSS class name of the root element.
+   */
+  className: _react.PropTypes.string,
+  /**
+   * If true, the children will be indented by 72px. This is useful if there is no left avatar or left icon.
+   */
+  inset: _react.PropTypes.bool,
+  primary: _react.PropTypes.node,
+  secondary: _react.PropTypes.node
+};
+
 ListItemText.defaultProps = {
-  disableTypography: false,
   primary: false,
   secondary: false,
   inset: false
 };
 
 ListItemText.contextTypes = {
-  dense: _propTypes2.default.bool
+  styleManager: _react.PropTypes.object.isRequired
 };
-
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiListItemText' })(ListItemText);

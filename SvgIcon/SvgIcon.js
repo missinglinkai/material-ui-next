@@ -3,121 +3,87 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+var _assign = require('object-assign');
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _ref;
+exports.default = SvgIcon;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var styles = exports.styles = function styles(theme) {
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
+
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('SvgIcon', function (theme) {
   return {
-    root: {
+    svgIcon: {
       display: 'inline-block',
       fill: 'currentColor',
       height: 24,
       width: 24,
       userSelect: 'none',
-      flexShrink: 0,
-      transition: theme.transitions.create('fill', {
-        duration: theme.transitions.duration.shorter
-      })
+      transition: theme.transitions.create('fill', '200ms')
     }
   };
-};
+});
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * Elements passed into the SVG Icon.
-   */
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node.isRequired ? babelPluginFlowReactPropTypes_proptype_Node.isRequired : babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node).isRequired,
-
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
-
-  /**
-   * Provides a human-readable title for the element that contains it.
-   * https://www.w3.org/TR/SVG-access/#Equivalent
-   */
-  titleAccess: require('prop-types').string,
-
-  /**
-   * Allows you to redefine what the coordinates without units mean inside an svg element.
-   * For example, if the SVG element is 500 (width) by 200 (height),
-   * and you pass viewBox="0 0 50 20",
-   * this means that the coordinates inside the svg will go from the top left corner (0,0)
-   * to bottom right (50,20) and each unit will be worth 10px.
-   */
-  viewBox: require('prop-types').string
-};
-
-
-function SvgIcon(props) {
+function SvgIcon(props, context) {
   var children = props.children,
-      classes = props.classes,
-      className = props.className,
-      titleAccess = props.titleAccess,
+      classNameProp = props.className,
       viewBox = props.viewBox,
-      other = (0, _objectWithoutProperties3.default)(props, ['children', 'classes', 'className', 'titleAccess', 'viewBox']);
+      other = _objectWithoutProperties(props, ['children', 'className', 'viewBox']);
 
+  var classes = context.styleManager.render(styleSheet);
+
+  var className = (0, _classnames2.default)(_defineProperty({}, classes.svgIcon, true), classNameProp);
 
   return _react2.default.createElement(
     'svg',
-    (0, _extends3.default)({
-      className: (0, _classnames2.default)(classes.root, className),
-      focusable: 'false',
-      viewBox: viewBox,
-      'aria-hidden': titleAccess ? 'false' : 'true'
+    _extends({
+      className: className,
+      viewBox: viewBox
     }, other),
-    titleAccess ? _react2.default.createElement(
-      'title',
-      null,
-      titleAccess
-    ) : null,
     children
   );
 }
 
-SvgIcon.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
-  classes: require('prop-types').object.isRequired,
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node.isRequired ? babelPluginFlowReactPropTypes_proptype_Node.isRequired : babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node).isRequired
-}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'titleAccess', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'viewBox', require('prop-types').string), _ref) : {};
+SvgIcon.muiName = 'SvgIcon';
+
+SvgIcon.propTypes = {
+  /**
+   * Elements passed into the SVG Icon.
+   */
+  children: _react.PropTypes.node,
+  /**
+   * The css class name of the root element.
+   */
+  className: _react.PropTypes.string,
+  /**
+   * Allows you to redefine what the coordinates without units mean inside an svg element.
+   * For example, if the SVG element is 500 (width) by 200 (height), and you pass viewBox="0 0 50 20",
+   * this means that the coordinates inside the svg will go from the top left corner (0,0)
+   * to bottom right (50,20) and each unit will be worth 10px.
+   */
+  viewBox: _react.PropTypes.string
+};
+
 SvgIcon.defaultProps = {
   viewBox: '0 0 24 24'
 };
 
-SvgIcon.muiName = 'SvgIcon';
-
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiSvgIcon' })(SvgIcon);
+SvgIcon.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};

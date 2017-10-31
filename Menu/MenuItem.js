@@ -3,34 +3,23 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+var _assign = require('object-assign');
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _ref;
-// @inheritedComponent ListItem
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //  weak
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
-
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
 
 var _ListItem = require('../List/ListItem');
 
@@ -38,95 +27,99 @@ var _ListItem2 = _interopRequireDefault(_ListItem);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var babelPluginFlowReactPropTypes_proptype_ElementType = require('react').babelPluginFlowReactPropTypes_proptype_ElementType || require('prop-types').any;
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-var styles = exports.styles = function styles(theme) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('MenuItem', function (theme) {
+  var palette = theme.palette,
+      typography = theme.typography,
+      transitions = theme.transitions;
+
   return {
-    root: (0, _extends3.default)({}, theme.typography.subheading, {
-      height: 24,
-      boxSizing: 'content-box',
+    root: _extends({}, typography.subheading, {
+      height: 48,
       background: 'none',
+      transition: transitions.create('background-color', '250ms'),
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
       '&:focus': {
-        background: theme.palette.text.divider
+        background: palette.text.divider
       },
       '&:hover': {
-        backgroundColor: theme.palette.text.divider
+        backgroundColor: palette.text.divider
       }
     }),
     selected: {
-      backgroundColor: theme.palette.text.divider
+      backgroundColor: palette.text.divider
     }
   };
-};
+});
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
+var MenuItem = function (_Component) {
+  _inherits(MenuItem, _Component);
+
+  function MenuItem() {
+    _classCallCheck(this, MenuItem);
+
+    return _possibleConstructorReturn(this, (MenuItem.__proto__ || Object.getPrototypeOf(MenuItem)).apply(this, arguments));
+  }
+
+  _createClass(MenuItem, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          classNameProp = _props.className,
+          selected = _props.selected,
+          role = _props.role,
+          other = _objectWithoutProperties(_props, ['className', 'selected', 'role']);
+
+      var classes = this.context.styleManager.render(styleSheet);
+      var className = (0, _classnames2.default)(classes.root, _defineProperty({}, classes.selected, selected), classNameProp);
+
+      return _react2.default.createElement(_ListItem2.default, _extends({
+        button: true,
+        role: role,
+        tabIndex: '-1',
+        className: className,
+        ripple: false
+      }, other));
+    }
+  }]);
+
+  return MenuItem;
+}(_react.Component);
+
+MenuItem.propTypes = {
   /**
    * Menu item contents.
    */
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-
+  children: _react.PropTypes.node,
   /**
-   * Useful to extend the style applied to components.
+   * The CSS class name of the root element.
    */
-  classes: require('prop-types').object,
-
+  className: _react.PropTypes.string,
   /**
    * @ignore
    */
-  className: require('prop-types').string,
-
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType),
-
-  /**
-   * @ignore
-   */
-  role: require('prop-types').string,
-
+  role: _react.PropTypes.string,
   /**
    * Use to apply selected styling.
    */
-  selected: require('prop-types').bool
+  selected: _react.PropTypes.bool
 };
-
-
-function MenuItem(props) {
-  var classes = props.classes,
-      classNameProp = props.className,
-      component = props.component,
-      selected = props.selected,
-      role = props.role,
-      other = (0, _objectWithoutProperties3.default)(props, ['classes', 'className', 'component', 'selected', 'role']);
-
-
-  var className = (0, _classnames2.default)(classes.root, (0, _defineProperty3.default)({}, classes.selected, selected), classNameProp);
-
-  return _react2.default.createElement(_ListItem2.default, (0, _extends3.default)({
-    button: true,
-    role: role,
-    tabIndex: -1,
-    className: className,
-    component: component
-  }, other));
-}
-
-MenuItem.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
-  classes: require('prop-types').object.isRequired,
-  role: require('prop-types').string.isRequired,
-  selected: require('prop-types').bool.isRequired,
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)
-}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'component', typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType)), (0, _defineProperty3.default)(_ref, 'role', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'selected', require('prop-types').bool), _ref) : {};
 MenuItem.defaultProps = {
   role: 'menuitem',
   selected: false
 };
-
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiMenuItem' })(MenuItem);
+MenuItem.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};
+exports.default = MenuItem;

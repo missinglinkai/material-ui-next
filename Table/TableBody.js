@@ -3,99 +3,63 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _assign = require('object-assign');
 
-var _extends3 = _interopRequireDefault(_extends2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
+var _jssThemeReactor = require('jss-theme-reactor');
 
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-var babelPluginFlowReactPropTypes_proptype_ElementType = require('react').babelPluginFlowReactPropTypes_proptype_ElementType || require('prop-types').any;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var styles = exports.styles = function styles(theme) {
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
+
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('TableBody', function (theme) {
   return {
     root: {
       fontSize: 13,
       color: theme.palette.text.primary
     }
   };
-};
+});
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * The content of the component, normally `TableRow`.
-   */
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
+/**
+ * A material table body.
+ *
+ * ```jsx
+ * <TableBody>
+ *   <TableRow>....</TableRow>
+ * </TableBody>
+ * ```
+ */
 
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
-
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType)
-};
-
-var TableBody = function (_React$Component) {
-  (0, _inherits3.default)(TableBody, _React$Component);
+var TableBody = function (_Component) {
+  _inherits(TableBody, _Component);
 
   function TableBody() {
-    (0, _classCallCheck3.default)(this, TableBody);
-    return (0, _possibleConstructorReturn3.default)(this, (TableBody.__proto__ || (0, _getPrototypeOf2.default)(TableBody)).apply(this, arguments));
+    _classCallCheck(this, TableBody);
+
+    return _possibleConstructorReturn(this, (TableBody.__proto__ || Object.getPrototypeOf(TableBody)).apply(this, arguments));
   }
 
-  (0, _createClass3.default)(TableBody, [{
+  _createClass(TableBody, [{
     key: 'getChildContext',
     value: function getChildContext() {
       // eslint-disable-line class-methods-use-this
@@ -109,31 +73,37 @@ var TableBody = function (_React$Component) {
     key: 'render',
     value: function render() {
       var _props = this.props,
-          classes = _props.classes,
           classNameProp = _props.className,
           children = _props.children,
-          ComponentProp = _props.component,
-          other = (0, _objectWithoutProperties3.default)(_props, ['classes', 'className', 'children', 'component']);
+          other = _objectWithoutProperties(_props, ['className', 'children']);
 
+      var classes = this.context.styleManager.render(styleSheet);
       var className = (0, _classnames2.default)(classes.root, classNameProp);
 
       return _react2.default.createElement(
-        ComponentProp,
-        (0, _extends3.default)({ className: className }, other),
+        'tbody',
+        _extends({ className: className }, other),
         children
       );
     }
   }]);
+
   return TableBody;
-}(_react2.default.Component);
+}(_react.Component);
 
-TableBody.defaultProps = {
-  component: 'tbody'
+TableBody.propTypes = {
+  /**
+   * Should be valid `<tbody>` children such as `TableRow`.
+   */
+  children: _react.PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
+  className: _react.PropTypes.string
 };
-
-
-TableBody.childContextTypes = {
-  table: _propTypes2.default.object
+TableBody.contextTypes = {
+  table: _react.PropTypes.object,
+  styleManager: _react.PropTypes.object.isRequired
 };
-
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiTableBody' })(TableBody);
+TableBody.childContextTypes = { table: _react.PropTypes.object };
+exports.default = TableBody;

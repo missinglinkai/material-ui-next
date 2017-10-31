@@ -13,7 +13,7 @@ exports.fade = fade;
 exports.darken = darken;
 exports.lighten = lighten;
 //  weak
-/* eslint-disable no-use-before-define */
+/* eslint-disable */
 
 /**
  * Returns a number whose value is limited to the given range.
@@ -48,8 +48,8 @@ function convertColorToString(color) {
 
   if (type.indexOf('rgb') > -1) {
     // Only convert the first 3 values to int (i.e. not alpha)
-    for (var i = 0; i < 3; i += 1) {
-      values[i] = parseInt(values[i], 10);
+    for (var i = 0; i < 3; i++) {
+      values[i] = parseInt(values[i]);
     }
   }
 
@@ -79,7 +79,7 @@ function convertColorToString(color) {
 function convertHexToRGB(color) {
   if (color.length === 4) {
     var extendedColor = '#';
-    for (var i = 1; i < color.length; i += 1) {
+    for (var i = 1; i < color.length; i++) {
       extendedColor += color.charAt(i) + color.charAt(i);
     }
     color = extendedColor;
@@ -144,20 +144,17 @@ function getContrastRatio(foreground, background) {
  * @returns {number} The relative brightness of the color in the range 0 - 1
  */
 function getLuminance(color) {
-  var decomposedColor = decomposeColor(color);
+  color = decomposeColor(color);
 
-  if (decomposedColor.type.indexOf('rgb') > -1) {
-    var rgb = decomposedColor.values.map(function (val) {
+  if (color.type.indexOf('rgb') > -1) {
+    var rgb = color.values.map(function (val) {
       val /= 255; // normalized
       return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
     });
-    // Truncate at 3 digits
-    return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3));
-  } else if (decomposedColor.type.indexOf('hsl') > -1) {
-    return decomposedColor.values[2] / 100;
+    return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3)); // Truncate at 3 digits
+  } else if (color.type.indexOf('hsl') > -1) {
+    return color.values[2] / 100;
   }
-
-  throw new Error('Material-UI: unsupported `' + color + '` color.');
 }
 
 /**
@@ -208,7 +205,7 @@ function darken(color, coefficient) {
   if (color.type.indexOf('hsl') > -1) {
     color.values[2] *= 1 - coefficient;
   } else if (color.type.indexOf('rgb') > -1) {
-    for (var i = 0; i < 3; i += 1) {
+    for (var i = 0; i < 3; i++) {
       color.values[i] *= 1 - coefficient;
     }
   }
@@ -229,7 +226,7 @@ function lighten(color, coefficient) {
   if (color.type.indexOf('hsl') > -1) {
     color.values[2] += (100 - color.values[2]) * coefficient;
   } else if (color.type.indexOf('rgb') > -1) {
-    for (var i = 0; i < 3; i += 1) {
+    for (var i = 0; i < 3; i++) {
       color.values[i] += (255 - color.values[i]) * coefficient;
     }
   }

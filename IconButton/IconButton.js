@@ -3,193 +3,163 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _assign = require('object-assign');
 
-var _extends3 = _interopRequireDefault(_extends2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _ref; //  weak
-// @inheritedComponent ButtonBase
+exports.default = IconButton;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
-var _ButtonBase = require('../ButtonBase');
+var _ButtonBase = require('../internal/ButtonBase');
 
 var _ButtonBase2 = _interopRequireDefault(_ButtonBase);
 
-var _helpers = require('../utils/helpers');
-
-var _Icon = require('../Icon');
-
-var _Icon2 = _interopRequireDefault(_Icon);
-
-require('../SvgIcon');
-
-var _reactHelpers = require('../utils/reactHelpers');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any; // Ensure CSS specificity
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
+
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('IconButton', function (theme) {
+  var palette = theme.palette,
+      transitions = theme.transitions;
 
 
-var styles = exports.styles = function styles(theme) {
   return {
-    root: {
+    iconButton: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       textAlign: 'center',
       flex: '0 0 auto',
       fontSize: 24,
-      width: theme.spacing.unit * 6,
-      height: theme.spacing.unit * 6,
+      width: 48,
+      height: 48,
       padding: 0,
       borderRadius: '50%',
-      color: theme.palette.action.active,
-      transition: theme.transitions.create('background-color', {
-        duration: theme.transitions.duration.shortest
-      })
-    },
-    colorAccent: {
-      color: theme.palette.secondary.A200
-    },
-    colorContrast: {
-      color: theme.palette.getContrastText(theme.palette.primary[500])
-    },
-    colorPrimary: {
-      color: theme.palette.primary[500]
-    },
-    colorInherit: {
-      color: 'inherit'
+      backgroundColor: 'transparent',
+      color: palette.action.active,
+      zIndex: 1,
+      transition: transitions.create('background-color', '150ms')
     },
     disabled: {
-      color: theme.palette.action.disabled
+      color: palette.action.disabled
+    },
+    accent: {
+      color: palette.accent.A200
+    },
+    contrast: {
+      color: palette.getContrastText(palette.primary[500])
     },
     label: {
       width: '100%',
       display: 'flex',
       alignItems: 'inherit',
-      justifyContent: 'inherit'
-    },
-    icon: {
-      width: '1em',
-      height: '1em'
+      justifyContent: 'inherit',
+      '& .material-icons': {
+        width: '1em',
+        height: '1em'
+      }
     },
     keyboardFocused: {
-      backgroundColor: theme.palette.text.divider
+      backgroundColor: palette.text.divider
     }
   };
-};
-
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * The icon element.
-   * If a string is provided, it will be used as an icon font ligature.
-   */
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
-
-  /**
-   * The color of the component. It's using the theme palette when that makes sense.
-   */
-  color: require('prop-types').oneOf(['default', 'inherit', 'primary', 'contrast', 'accent']),
-
-  /**
-   * If `true`, the button will be disabled.
-   */
-  disabled: require('prop-types').bool,
-
-  /**
-   * If `true`, the ripple will be disabled.
-   */
-  disableRipple: require('prop-types').bool,
-
-  /**
-   * Use that property to pass a ref callback to the root component.
-   */
-  rootRef: require('prop-types').func
-};
-
+});
 
 /**
- * Refer to the [Icons](/style/icons) section of the documentation
- * regarding the available icon options.
+ * @see https://material.google.com/components/buttons.html
+ *
+ * ```js
+ * import IconButton from 'material-ui/IconButton';
+ *
+ * const Component = () => <IconButton>delete</IconButton>;
+ * ```
  */
-function IconButton(props) {
+function IconButton(props, context) {
   var _classNames;
 
-  var children = props.children,
-      classes = props.classes,
+  var accent = props.accent,
+      buttonRef = props.buttonRef,
+      children = props.children,
       className = props.className,
-      color = props.color,
+      contrast = props.contrast,
       disabled = props.disabled,
-      rootRef = props.rootRef,
-      other = (0, _objectWithoutProperties3.default)(props, ['children', 'classes', 'className', 'color', 'disabled', 'rootRef']);
+      other = _objectWithoutProperties(props, ['accent', 'buttonRef', 'children', 'className', 'contrast', 'disabled']);
 
+  var classes = context.styleManager.render(styleSheet);
 
   return _react2.default.createElement(
     _ButtonBase2.default,
-    (0, _extends3.default)({
-      className: (0, _classnames2.default)(classes.root, (_classNames = {}, (0, _defineProperty3.default)(_classNames, classes['color' + (0, _helpers.capitalizeFirstLetter)(color)], color !== 'default'), (0, _defineProperty3.default)(_classNames, classes.disabled, disabled), _classNames), className),
+    _extends({
+      className: (0, _classnames2.default)(classes.iconButton, (_classNames = {}, _defineProperty(_classNames, classes.accent, accent), _defineProperty(_classNames, classes.contrast, contrast), _defineProperty(_classNames, classes.disabled, disabled), _classNames), className),
       centerRipple: true,
       keyboardFocusedClassName: classes.keyboardFocused,
-      disabled: disabled
-    }, other, {
-      ref: rootRef
-    }),
+      disabled: disabled,
+      ref: buttonRef
+    }, other),
     _react2.default.createElement(
       'span',
-      { className: classes.label },
+      { className: (0, _classnames2.default)(classes.label) },
       typeof children === 'string' ? _react2.default.createElement(
-        _Icon2.default,
-        { className: classes.icon },
+        'span',
+        { className: 'material-icons' },
         children
-      ) : _react2.default.Children.map(children, function (child) {
-        if ((0, _reactHelpers.isMuiElement)(child, ['Icon', 'SvgIcon'])) {
-          return _react2.default.cloneElement(child, {
-            className: (0, _classnames2.default)(classes.icon, child.props.className)
-          });
-        }
-
-        return child;
-      })
+      ) : children
     )
   );
 }
 
-IconButton.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
-  classes: require('prop-types').object.isRequired,
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)
-}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'color', require('prop-types').oneOf(['default', 'inherit', 'primary', 'contrast', 'accent'])), (0, _defineProperty3.default)(_ref, 'disabled', require('prop-types').bool), (0, _defineProperty3.default)(_ref, 'disableRipple', require('prop-types').bool), (0, _defineProperty3.default)(_ref, 'rootRef', require('prop-types').func), _ref) : {};
-IconButton.defaultProps = {
-  color: 'default',
-  disabled: false,
-  disableRipple: false
+IconButton.propTypes = {
+  /**
+   * If true, will use the theme's accent color.
+   */
+  accent: _react.PropTypes.bool,
+  /**
+   * @ignore
+   */
+  buttonRef: _react.PropTypes.func,
+  /**
+   * The icon element. If a string is passed,
+   * it will be used as a material icon font ligature.
+   */
+  children: _react.PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
+  className: _react.PropTypes.string,
+  /**
+   * If true, will use the theme's contrast color.
+   */
+  contrast: _react.PropTypes.bool,
+  /**
+   * If `true`, the button will be disabled.
+   */
+  disabled: _react.PropTypes.bool,
+  /**
+   * If false, the ripple effect will be disabled.
+   */
+  ripple: _react.PropTypes.bool
 };
 
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiIconButton' })(IconButton);
+IconButton.defaultProps = {
+  accent: false,
+  contrast: false,
+  disabled: false,
+  ripple: true
+};
+
+IconButton.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};

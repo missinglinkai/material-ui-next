@@ -3,49 +3,59 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.LabelSwitch = exports.styleSheet = undefined;
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+var _assign = require('object-assign');
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _ref; //  weak
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
 var _SwitchBase = require('../internal/SwitchBase');
 
-var _SwitchBase2 = _interopRequireDefault(_SwitchBase);
+var _withSwitchLabel = require('../internal/withSwitchLabel');
+
+var _withSwitchLabel2 = _interopRequireDefault(_withSwitchLabel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
 
-var styles = exports.styles = function styles(theme) {
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Switch', function (theme) {
+  var palette = theme.palette;
+
   return {
     root: {
       display: 'inline-flex',
       width: 62,
-      position: 'relative',
-      flexShrink: 0
+      position: 'relative'
+    },
+    default: {
+      color: palette.type === 'light' ? palette.grey[50] : palette.grey[400],
+      transition: theme.transitions.create('transform', '150ms')
+    },
+    checked: {
+      color: palette.accent[500],
+      transform: 'translateX(14px)',
+      '& + $bar': {
+        backgroundColor: palette.accent[500],
+        opacity: 0.5
+      }
+    },
+    disabled: {
+      color: palette.type === 'light' ? palette.grey[400] : palette.grey[800],
+      '& + $bar': {
+        backgroundColor: palette.type === 'light' ? '#000' : '#fff',
+        opacity: palette.type === 'light' ? 0.12 : 0.1
+      }
     },
     bar: {
       borderRadius: 7,
@@ -57,11 +67,9 @@ var styles = exports.styles = function styles(theme) {
       marginTop: -7,
       left: '50%',
       marginLeft: -17,
-      transition: theme.transitions.create(['opacity', 'background-color'], {
-        duration: theme.transitions.duration.shortest
-      }),
-      backgroundColor: theme.palette.type === 'light' ? '#000' : '#fff',
-      opacity: theme.palette.type === 'light' ? 0.38 : 0.3
+      transition: theme.transitions.multi(['opacity', 'background-color'], '150ms'),
+      backgroundColor: palette.type === 'light' ? '#000' : '#fff',
+      opacity: palette.type === 'light' ? 0.38 : 0.3
     },
     icon: {
       boxShadow: theme.shadows[1],
@@ -69,150 +77,38 @@ var styles = exports.styles = function styles(theme) {
       width: 20,
       height: 20,
       borderRadius: '50%'
-    },
-    // For SwitchBase
-    default: {
-      zIndex: 1,
-      color: theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[400],
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest
-      })
-    },
-    checked: {
-      color: theme.palette.primary[500],
-      transform: 'translateX(14px)',
-      '& + $bar': {
-        backgroundColor: theme.palette.primary[500],
-        opacity: 0.5
-      }
-    },
-    disabled: {
-      color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
-      '& + $bar': {
-        backgroundColor: theme.palette.type === 'light' ? '#000' : '#fff',
-        opacity: theme.palette.type === 'light' ? 0.12 : 0.1
-      }
     }
   };
-};
+});
 
-var SwitchBase = (0, _SwitchBase2.default)();
+var SwitchBase = (0, _SwitchBase.createSwitch)({ styleSheet: styleSheet });
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * If `true`, the component is checked.
-   */
-  checked: require('prop-types').oneOfType([require('prop-types').bool, require('prop-types').string]),
+function Switch(props, context) {
+  var className = props.className,
+      other = _objectWithoutProperties(props, ['className']);
 
-  /**
-   * The CSS class name of the root element when checked.
-   */
-  checkedClassName: require('prop-types').string,
-
-  /**
-   * The icon to display when the component is checked.
-   * If a string is provided, it will be used as a font ligature.
-   */
-  checkedIcon: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
-
-  /**
-   * @ignore
-   */
-  defaultChecked: require('prop-types').bool,
-
-  /**
-   * If `true`, the switch will be disabled.
-   */
-  disabled: require('prop-types').bool,
-
-  /**
-   * The CSS class name of the root element when disabled.
-   */
-  disabledClassName: require('prop-types').string,
-
-  /**
-   * If `true`, the ripple effect will be disabled.
-   */
-  disableRipple: require('prop-types').bool,
-
-  /**
-   * The icon to display when the component is unchecked.
-   * If a string is provided, it will be used as a font ligature.
-   */
-  icon: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-
-  /**
-   * Properties applied to the `input` element.
-   */
-  inputProps: require('prop-types').object,
-
-  /**
-   * Use that property to pass a ref callback to the native input component.
-   */
-  inputRef: require('prop-types').func,
-
-  /*
-   * @ignore
-   */
-  name: require('prop-types').string,
-
-  /**
-   * Callback fired when the state is changed.
-   *
-   * @param {object} event The event source of the callback
-   * @param {boolean} checked The `checked` value of the switch
-   */
-  onChange: require('prop-types').func,
-
-  /**
-   * @ignore
-   */
-  tabIndex: require('prop-types').oneOfType([require('prop-types').number, require('prop-types').string]),
-
-  /**
-   * The value of the component.
-   */
-  value: require('prop-types').string
-};
-
-
-function Switch(props) {
-  var classes = props.classes,
-      className = props.className,
-      other = (0, _objectWithoutProperties3.default)(props, ['classes', 'className']);
-
+  var classes = context.styleManager.render(styleSheet);
   var icon = _react2.default.createElement('div', { className: classes.icon });
 
   return _react2.default.createElement(
     'div',
     { className: (0, _classnames2.default)(classes.root, className) },
-    _react2.default.createElement(SwitchBase, (0, _extends3.default)({
-      icon: icon,
-      classes: {
-        default: classes.default,
-        checked: classes.checked,
-        disabled: classes.disabled
-      },
-      checkedIcon: icon
-    }, other)),
+    _react2.default.createElement(SwitchBase, _extends({ icon: icon, checkedIcon: icon }, other)),
     _react2.default.createElement('div', { className: classes.bar })
   );
 }
 
-Switch.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
-  classes: require('prop-types').object.isRequired,
-  checked: require('prop-types').oneOfType([require('prop-types').bool, require('prop-types').string]),
-  checkedClassName: require('prop-types').string,
-  checkedIcon: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)
-}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'defaultChecked', require('prop-types').bool), (0, _defineProperty3.default)(_ref, 'disabled', require('prop-types').bool), (0, _defineProperty3.default)(_ref, 'disabledClassName', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'disableRipple', require('prop-types').bool), (0, _defineProperty3.default)(_ref, 'icon', typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)), (0, _defineProperty3.default)(_ref, 'inputProps', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'inputRef', require('prop-types').func), (0, _defineProperty3.default)(_ref, 'name', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'onChange', require('prop-types').func), (0, _defineProperty3.default)(_ref, 'tabIndex', require('prop-types').oneOfType([require('prop-types').number, require('prop-types').string])), (0, _defineProperty3.default)(_ref, 'value', require('prop-types').string), _ref) : {};
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiSwitch' })(Switch);
+Switch.propTypes = {
+  className: _react.PropTypes.string
+};
+
+Switch.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};
+
+exports.default = Switch;
+
+
+var LabelSwitch = (0, _withSwitchLabel2.default)(Switch);
+
+exports.LabelSwitch = LabelSwitch;

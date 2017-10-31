@@ -3,67 +3,43 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+var _assign = require('object-assign');
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _Transition = require('react-transition-group/Transition');
+var _Transition = require('../internal/Transition');
 
 var _Transition2 = _interopRequireDefault(_Transition);
 
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
-var _transitions = require('../styles/transitions');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// @inheritedComponent Transition
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var babelPluginFlowReactPropTypes_proptype_TransitionCallback = require('../internal/transition').babelPluginFlowReactPropTypes_proptype_TransitionCallback || require('prop-types').any;
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-var styles = exports.styles = function styles(theme) {
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
+
+var reflow = function reflow(elem) {
+  return elem.offsetHeight;
+};
+
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Collapse', function (theme) {
   return {
     container: {
       height: 0,
@@ -71,257 +47,182 @@ var styles = exports.styles = function styles(theme) {
       transition: theme.transitions.create('height')
     },
     entered: {
-      height: 'auto'
-    },
-    wrapper: {
-      // Hack to get children with a negative margin to not falsify the height computation.
-      display: 'flex'
-    },
-    wrapperInner: {
-      width: '100%'
+      height: 'auto',
+      transitionDuration: '0ms'
     }
   };
-};
+});
 
-var babelPluginFlowReactPropTypes_proptype_TransitionDuration = require('prop-types').oneOfType([require('prop-types').number, require('prop-types').shape({
-  enter: require('prop-types').number,
-  exit: require('prop-types').number
-}), require('prop-types').oneOf(['auto'])]);
-
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * @ignore
-   */
-  appear: require('prop-types').bool,
-
-  /**
-   * The content node to be collapsed.
-   */
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node.isRequired ? babelPluginFlowReactPropTypes_proptype_Node.isRequired : babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node).isRequired,
-
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
-
-  /**
-   * The height of the container when collapsed.
-   */
-  collapsedHeight: require('prop-types').string,
-
-  /**
-   * If `true`, the component will transition in.
-   */
-  in: require('prop-types').bool.isRequired,
-
-  /**
-   * @ignore
-   */
-  onEnter: typeof babelPluginFlowReactPropTypes_proptype_TransitionCallback === 'function' ? babelPluginFlowReactPropTypes_proptype_TransitionCallback : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_TransitionCallback),
-
-  /**
-   * @ignore
-   */
-  onEntering: typeof babelPluginFlowReactPropTypes_proptype_TransitionCallback === 'function' ? babelPluginFlowReactPropTypes_proptype_TransitionCallback : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_TransitionCallback),
-
-  /**
-   * @ignore
-   */
-  onEntered: typeof babelPluginFlowReactPropTypes_proptype_TransitionCallback === 'function' ? babelPluginFlowReactPropTypes_proptype_TransitionCallback : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_TransitionCallback),
-
-  /**
-   * @ignore
-   */
-  onExit: typeof babelPluginFlowReactPropTypes_proptype_TransitionCallback === 'function' ? babelPluginFlowReactPropTypes_proptype_TransitionCallback : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_TransitionCallback),
-
-  /**
-   * @ignore
-   */
-  onExiting: typeof babelPluginFlowReactPropTypes_proptype_TransitionCallback === 'function' ? babelPluginFlowReactPropTypes_proptype_TransitionCallback : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_TransitionCallback),
-
-  /**
-   * @ignore
-   */
-  style: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  theme: require('prop-types').object,
-
-  /**
-   * The duration for the transition, in milliseconds.
-   * You may specify a single timeout for all transitions, or individually with an object.
-   *
-   * Set to 'auto' to automatically calculate transition time based on height.
-   */
-  timeout: require('prop-types').oneOfType([require('prop-types').number, require('prop-types').shape({
-    enter: require('prop-types').number,
-    exit: require('prop-types').number
-  }), require('prop-types').oneOf(['auto'])])
-};
-
-var Collapse = function (_React$Component) {
-  (0, _inherits3.default)(Collapse, _React$Component);
+var Collapse = function (_Component) {
+  _inherits(Collapse, _Component);
 
   function Collapse() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    (0, _classCallCheck3.default)(this, Collapse);
+    _classCallCheck(this, Collapse);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Collapse.__proto__ || (0, _getPrototypeOf2.default)(Collapse)).call.apply(_ref, [this].concat(args))), _this), _this.wrapper = null, _this.autoTransitionDuration = undefined, _this.handleEnter = function (node) {
-      node.style.height = _this.props.collapsedHeight;
-
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Collapse.__proto__ || Object.getPrototypeOf(Collapse)).call.apply(_ref, [this].concat(args))), _this), _this.wrapper = null, _this.handleEnter = function (element) {
+      element.style.height = '0px';
       if (_this.props.onEnter) {
-        _this.props.onEnter(node);
+        _this.props.onEnter(element);
       }
-    }, _this.handleEntering = function (node) {
-      var _this$props = _this.props,
-          timeout = _this$props.timeout,
-          theme = _this$props.theme;
+    }, _this.handleEntering = function (element) {
+      var transitionDuration = _this.props.transitionDuration;
 
       var wrapperHeight = _this.wrapper ? _this.wrapper.clientHeight : 0;
 
-      if (timeout === 'auto') {
-        var duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
-        node.style.transitionDuration = duration2 + 'ms';
-        _this.autoTransitionDuration = duration2;
-      } else if (typeof timeout === 'number') {
-        node.style.transitionDuration = timeout + 'ms';
-      } else if (timeout) {
-        node.style.transitionDuration = timeout.enter + 'ms';
+      if (transitionDuration === 'auto') {
+        var getAutoHeightDuration = _this.context.styleManager.theme.transitions.getAutoHeightDuration;
+
+        element.style.transitionDuration = getAutoHeightDuration(wrapperHeight) + 'ms';
+      } else if (typeof transitionDuration === 'number') {
+        element.style.transitionDuration = transitionDuration + 'ms';
       } else {
-        // The propType will warn in this case.
+        element.style.transitionDuration = transitionDuration;
       }
 
-      node.style.height = wrapperHeight + 'px';
+      element.style.height = wrapperHeight + 'px';
 
       if (_this.props.onEntering) {
-        _this.props.onEntering(node);
+        _this.props.onEntering(element);
       }
-    }, _this.handleEntered = function (node) {
-      node.style.height = 'auto';
-
+    }, _this.handleEntered = function (element) {
+      element.style.transitionDuration = '0ms'; // safari fix
+      element.style.height = 'auto';
+      reflow(element);
       if (_this.props.onEntered) {
-        _this.props.onEntered(node);
+        _this.props.onEntered(element);
       }
-    }, _this.handleExit = function (node) {
+    }, _this.handleExit = function (element) {
       var wrapperHeight = _this.wrapper ? _this.wrapper.clientHeight : 0;
-      node.style.height = wrapperHeight + 'px';
-
+      element.style.height = wrapperHeight + 'px';
       if (_this.props.onExit) {
-        _this.props.onExit(node);
+        _this.props.onExit(element);
       }
-    }, _this.handleExiting = function (node) {
-      var _this$props2 = _this.props,
-          timeout = _this$props2.timeout,
-          theme = _this$props2.theme;
+    }, _this.handleExiting = function (element) {
+      var transitionDuration = _this.props.transitionDuration;
 
       var wrapperHeight = _this.wrapper ? _this.wrapper.clientHeight : 0;
 
-      if (timeout === 'auto') {
-        var duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
-        node.style.transitionDuration = duration2 + 'ms';
-        _this.autoTransitionDuration = duration2;
-      } else if (typeof timeout === 'number') {
-        node.style.transitionDuration = timeout + 'ms';
-      } else if (timeout) {
-        node.style.transitionDuration = timeout.exit + 'ms';
-      } else {
-        // The propType will warn in this case.
+      if (transitionDuration) {
+        if (transitionDuration === 'auto') {
+          var getAutoHeightDuration = _this.context.styleManager.theme.transitions.getAutoHeightDuration;
+
+          element.style.transitionDuration = getAutoHeightDuration(wrapperHeight) + 'ms';
+        } else if (typeof transitionDuration === 'number') {
+          element.style.transitionDuration = transitionDuration + 'ms';
+        } else {
+          element.style.transitionDuration = transitionDuration;
+        }
       }
 
-      node.style.height = _this.props.collapsedHeight;
-
+      element.style.height = '0px';
       if (_this.props.onExiting) {
-        _this.props.onExiting(node);
+        _this.props.onExiting(element);
       }
-    }, _this.addEndListener = function (node, next) {
-      var timeout = void 0;
-
-      if (_this.props.timeout === 'auto') {
-        timeout = _this.autoTransitionDuration || 0;
-      } else {
-        timeout = _this.props.timeout;
-      }
-
-      setTimeout(next, timeout);
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  (0, _createClass3.default)(Collapse, [{
+  _createClass(Collapse, [{
     key: 'render',
     value: function render() {
       var _this2 = this;
 
       var _props = this.props,
-          appear = _props.appear,
           children = _props.children,
-          classes = _props.classes,
-          collapsedHeight = _props.collapsedHeight,
+          containerClassName = _props.containerClassName,
           onEnter = _props.onEnter,
           onEntering = _props.onEntering,
-          onEntered = _props.onEntered,
           onExit = _props.onExit,
           onExiting = _props.onExiting,
-          style = _props.style,
-          timeout = _props.timeout,
-          theme = _props.theme,
-          other = (0, _objectWithoutProperties3.default)(_props, ['appear', 'children', 'classes', 'collapsedHeight', 'onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'style', 'timeout', 'theme']);
+          transitionDuration = _props.transitionDuration,
+          other = _objectWithoutProperties(_props, ['children', 'containerClassName', 'onEnter', 'onEntering', 'onExit', 'onExiting', 'transitionDuration']);
 
+      var classes = this.context.styleManager.render(styleSheet);
+      var containerClasses = (0, _classnames2.default)(classes.container, containerClassName);
 
       return _react2.default.createElement(
         _Transition2.default,
-        (0, _extends3.default)({
-          appear: appear,
+        _extends({
           onEntering: this.handleEntering,
           onEnter: this.handleEnter,
           onEntered: this.handleEntered,
+          enteredClassName: classes.entered,
           onExiting: this.handleExiting,
-          onExit: this.handleExit,
-          addEndListener: this.addEndListener,
-          style: (0, _extends3.default)({ minHeight: collapsedHeight }, style)
+          onExit: this.handleExit
         }, other),
-        function (state) {
-          return _react2.default.createElement(
+        _react2.default.createElement(
+          'div',
+          { className: containerClasses },
+          _react2.default.createElement(
             'div',
-            {
-              className: (0, _classnames2.default)(classes.container, (0, _defineProperty3.default)({}, classes.entered, state === 'entered'))
-            },
-            _react2.default.createElement(
-              'div',
-              {
-                className: classes.wrapper,
-                ref: function ref(node) {
-                  _this2.wrapper = node;
-                }
-              },
-              _react2.default.createElement(
-                'div',
-                { className: classes.wrapperInner },
-                children
-              )
-            )
-          );
-        }
+            { ref: function ref(c) {
+                _this2.wrapper = c;
+              } },
+            children
+          )
+        )
       );
     }
   }]);
-  return Collapse;
-}(_react2.default.Component);
 
-Collapse.defaultProps = {
-  appear: false,
-  collapsedHeight: '0px',
-  timeout: _transitions.duration.standard
+  return Collapse;
+}(_react.Component);
+
+Collapse.propTypes = {
+  /**
+   * The content node to be collapsed.
+   */
+  children: _react.PropTypes.node,
+  /**
+   * Class name passed to the wrapping container
+   * required for holding+measuring the expanding content.
+   */
+  containerClassName: _react.PropTypes.string,
+  /**
+   * Set to true to transition in.
+   */
+  in: _react.PropTypes.bool,
+  /**
+   * Callback fired before the component is entering.
+   */
+  onEnter: _react.PropTypes.func,
+  /**
+   * Callback fired when the component is entering.
+   */
+  onEntering: _react.PropTypes.func,
+  /**
+   * Callback fired when the component has entered.
+   */
+  onEntered: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the component is exiting.
+   */
+  onExit: _react.PropTypes.func,
+  /**
+   * Callback fired when the component is exiting.
+   */
+  onExiting: _react.PropTypes.func,
+  /**
+   * Callback fired when the component has exited.
+   */
+  onExited: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
+  /**
+   * Set to 'auto' to automatically calculate transition time based on height.
+   */
+  transitionDuration: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string])
 };
-exports.default = (0, _withStyles2.default)(styles, {
-  withTheme: true,
-  name: 'MuiCollapse'
-})(Collapse);
+Collapse.defaultProps = {
+  in: false,
+  transitionDuration: 300
+};
+Collapse.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};
+exports.default = Collapse;

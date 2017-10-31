@@ -3,23 +3,18 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.LinearProgress = exports.CircularProgress = undefined;
 
-var _CircularProgress = require('./CircularProgress');
+var _CircularProgress2 = require('./CircularProgress');
 
-Object.defineProperty(exports, 'CircularProgress', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_CircularProgress).default;
-  }
-});
+var _CircularProgress3 = _interopRequireDefault(_CircularProgress2);
 
-var _LinearProgress = require('./LinearProgress');
+var _LinearProgress2 = require('./LinearProgress');
 
-Object.defineProperty(exports, 'LinearProgress', {
-  enumerable: true,
-  get: function get() {
-    return _interopRequireDefault(_LinearProgress).default;
-  }
-});
+var _LinearProgress3 = _interopRequireDefault(_LinearProgress2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.CircularProgress = _CircularProgress3.default; /* eslint-disable flowtype/require-valid-file-annotation */
+
+exports.LinearProgress = _LinearProgress3.default;

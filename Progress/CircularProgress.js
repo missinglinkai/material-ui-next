@@ -3,225 +3,153 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+var _assign = require('object-assign');
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _ref;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
+var _transitions = require('../styles/transitions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SIZE = 50;
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-function getRelativeValue(value, min, max) {
-  var clampedValue = Math.min(Math.max(min, value), max);
-  return (clampedValue - min) / (max - min);
-}
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var styles = exports.styles = function styles(theme) {
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
+
+var THICKNESS = 3.6;
+var PI = 3.1415; // Simple version of Math.PI for the css generated.
+
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('CircularProgress', function (theme) {
   return {
     root: {
-      display: 'inline-block'
-    },
-    primaryColor: {
+      display: 'inline-block',
       color: theme.palette.primary[500]
     },
-    accentColor: {
-      color: theme.palette.secondary.A200
-    },
-    svgIndeterminate: {
-      animation: 'mui-progress-circular-rotate 1.4s linear infinite'
-    },
-    svgDeterminate: {
-      transform: 'rotate(-90deg)'
+    svg: {
+      // The main animation is loop 4 times (4 / 3 * 1300).
+      animation: 'rotate-progress-circle 1733ms linear infinite'
     },
     circle: {
+      strokeDasharray: '1, calc((100% - 3px) * 3.141)',
+      strokeDashoffset: '0%',
       stroke: 'currentColor',
-      strokeLinecap: 'round'
+      strokeLinecap: 'square',
+      transition: theme.transitions.create('all', '1.30s'),
+      animation: 'scale-progress-circle 1300ms ' + _transitions.easing.easeInOut + ' infinite'
     },
-    circleIndeterminate: {
-      animation: 'mui-progress-circular-dash 1.4s ease-in-out infinite',
-      // Some default value that looks fine waiting for the animation to kicks in.
-      strokeDasharray: '80,200',
-      strokeDashoffset: 0
-    },
-    '@keyframes mui-progress-circular-rotate': {
+    '@keyframes rotate-progress-circle': {
+      '0%': {
+        transform: 'rotate(0deg)'
+      },
       '100%': {
         transform: 'rotate(360deg)'
       }
     },
-    '@keyframes mui-progress-circular-dash': {
-      '0%': {
-        strokeDasharray: '1,200',
+    '@keyframes scale-progress-circle': {
+      '8%': {
+        strokeDasharray: '1, calc((100% - ' + THICKNESS + 'px) * ' + PI + ')',
         strokeDashoffset: 0
       },
-      '50%': {
-        strokeDasharray: '100,200',
-        strokeDashoffset: -15
+      '50%, 58%': {
+        strokeDasharray: 'calc((65% - ' + THICKNESS + 'px) * ' + PI + '), calc((100% - ' + THICKNESS + 'px) * ' + PI + ')',
+        strokeDashoffset: 'calc((25% - ' + THICKNESS + 'px) * -' + PI + ')'
       },
       '100%': {
-        strokeDasharray: '100,200',
-        strokeDashoffset: -120
+        strokeDasharray: 'calc((65% - ' + THICKNESS + 'px) * ' + PI + '), calc((100% - ' + THICKNESS + 'px) * ' + PI + ')',
+        strokeDashoffset: 'calc((99% - ' + THICKNESS + 'px) * -' + PI + ')'
       }
     }
   };
-};
+});
 
-var babelPluginFlowReactPropTypes_proptype_Color = require('prop-types').oneOf(['primary', 'accent', 'inherit']);
+var CircularProgress = function (_Component) {
+  _inherits(CircularProgress, _Component);
 
-var babelPluginFlowReactPropTypes_proptype_Mode = require('prop-types').oneOf(['determinate', 'indeterminate']);
+  function CircularProgress() {
+    _classCallCheck(this, CircularProgress);
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
+    return _possibleConstructorReturn(this, (CircularProgress.__proto__ || Object.getPrototypeOf(CircularProgress)).apply(this, arguments));
+  }
+
+  _createClass(CircularProgress, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          className = _props.className,
+          mode = _props.mode,
+          size = _props.size,
+          other = _objectWithoutProperties(_props, ['className', 'mode', 'size']);
+
+      var classes = this.context.styleManager.render(styleSheet);
+      var radius = size / 2;
+
+      return _react2.default.createElement(
+        'div',
+        _extends({
+          className: (0, _classnames2.default)(classes.root, className),
+          style: { width: size, height: size }
+        }, other),
+        _react2.default.createElement(
+          'svg',
+          { className: classes.svg, viewBox: '0 0 ' + size + ' ' + size },
+          _react2.default.createElement('circle', {
+            className: classes.circle,
+            cx: radius,
+            cy: radius,
+            r: radius - THICKNESS / 2,
+            fill: 'none',
+            strokeWidth: THICKNESS,
+            strokeMiterlimit: '20'
+          })
+        )
+      );
+    }
+  }]);
+
+  return CircularProgress;
+}(_react.Component);
+
+CircularProgress.propTypes = {
   /**
-   * Useful to extend the style applied to components.
+   * The CSS class name of the root element.
    */
-  classes: require('prop-types').object,
-
+  className: _react.PropTypes.string,
   /**
-   * @ignore
-   */
-  className: require('prop-types').string,
-
-  /**
-   * The color of the component. It's using the theme palette when that makes sense.
-   */
-  color: require('prop-types').oneOf(['primary', 'accent', 'inherit']),
-
-  /**
-   * The max value of progress in determinate mode.
-   */
-  max: require('prop-types').number,
-
-  /**
-   * The min value of progress in determinate mode.
-   */
-  min: require('prop-types').number,
-
-  /**
-   * The mode of show your progress. Indeterminate
+   * The mode of show your progress, indeterminate
    * for when there is no value for progress.
-   * Determinate for controlled progress value.
    */
-  mode: require('prop-types').oneOf(['determinate', 'indeterminate']),
-
+  mode: _react.PropTypes.oneOf(['determinate', 'indeterminate']),
   /**
    * The size of the circle.
    */
-  size: require('prop-types').number,
-
+  size: _react.PropTypes.number,
   /**
-   * @ignore
+   * The value of progress, only works in determinate mode.
    */
-  style: require('prop-types').object,
-
-  /**
-   * The thickness of the circle.
-   */
-  thickness: require('prop-types').number,
-
-  /**
-   * The value of progress in determinate mode.
-   */
-  value: require('prop-types').number
+  value: _react.PropTypes.number
 };
-
-
-function CircularProgress(props) {
-  var _classNames;
-
-  var classes = props.classes,
-      className = props.className,
-      color = props.color,
-      size = props.size,
-      style = props.style,
-      thickness = props.thickness,
-      mode = props.mode,
-      value = props.value,
-      min = props.min,
-      max = props.max,
-      other = (0, _objectWithoutProperties3.default)(props, ['classes', 'className', 'color', 'size', 'style', 'thickness', 'mode', 'value', 'min', 'max']);
-
-
-  var rootProps = {};
-
-  var circleStyle = {};
-  if (mode === 'determinate') {
-    var relVal = getRelativeValue(value, min, max) * 100;
-    var circumference = 2 * Math.PI * (SIZE / 2 - 5);
-
-    circleStyle.strokeDashoffset = Math.round((100 - relVal) / 100 * circumference * 1000) / 1000 + 'px';
-    circleStyle.strokeDasharray = Math.round(circumference * 1000) / 1000;
-
-    rootProps['aria-valuenow'] = value;
-    rootProps['aria-valuemin'] = min;
-    rootProps['aria-valuemax'] = max;
-  }
-
-  return _react2.default.createElement(
-    'div',
-    (0, _extends3.default)({
-      className: (0, _classnames2.default)(classes.root, color !== 'inherit' && classes[color + 'Color'], className),
-      style: (0, _extends3.default)({ width: size, height: size }, style),
-      role: 'progressbar'
-    }, rootProps, other),
-    _react2.default.createElement(
-      'svg',
-      {
-        className: (0, _classnames2.default)((_classNames = {}, (0, _defineProperty3.default)(_classNames, classes.svgIndeterminate, mode === 'indeterminate'), (0, _defineProperty3.default)(_classNames, classes.svgDeterminate, mode === 'determinate'), _classNames)),
-        viewBox: '0 0 ' + SIZE + ' ' + SIZE
-      },
-      _react2.default.createElement('circle', {
-        className: (0, _classnames2.default)(classes.circle, (0, _defineProperty3.default)({}, classes.circleIndeterminate, mode === 'indeterminate')),
-        style: circleStyle,
-        cx: SIZE / 2,
-        cy: SIZE / 2,
-        r: SIZE / 2 - 5,
-        fill: 'none',
-        strokeWidth: thickness
-      })
-    )
-  );
-}
-
-CircularProgress.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
-  classes: require('prop-types').object.isRequired,
-  color: require('prop-types').oneOf(['primary', 'accent', 'inherit']).isRequired,
-  size: require('prop-types').number.isRequired,
-  mode: require('prop-types').oneOf(['determinate', 'indeterminate']).isRequired,
-  value: require('prop-types').number.isRequired,
-  min: require('prop-types').number.isRequired,
-  max: require('prop-types').number.isRequired
-}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'color', require('prop-types').oneOf(['primary', 'accent', 'inherit'])), (0, _defineProperty3.default)(_ref, 'max', require('prop-types').number), (0, _defineProperty3.default)(_ref, 'min', require('prop-types').number), (0, _defineProperty3.default)(_ref, 'mode', require('prop-types').oneOf(['determinate', 'indeterminate'])), (0, _defineProperty3.default)(_ref, 'size', require('prop-types').number), (0, _defineProperty3.default)(_ref, 'style', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'thickness', require('prop-types').number), (0, _defineProperty3.default)(_ref, 'value', require('prop-types').number), _ref) : {};
 CircularProgress.defaultProps = {
-  color: 'primary',
-  size: 40,
-  thickness: 3.6,
   mode: 'indeterminate',
-  value: 0,
-  min: 0,
-  max: 100
+  size: 40
 };
-
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiCircularProgress' })(CircularProgress);
+CircularProgress.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};
+exports.default = CircularProgress;

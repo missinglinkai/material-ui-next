@@ -3,89 +3,47 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _assign = require('object-assign');
 
-var _extends3 = _interopRequireDefault(_extends2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _ref;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _warning = require('warning');
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TRANSITION_DURATION = 4; // 400ms
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var styles = exports.styles = function styles(theme) {
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
+
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('LinearProgress', function (theme) {
+  var palette = theme.palette;
+
+  var transitionDuration = 4; // 400ms
+
   return {
     root: {
       position: 'relative',
       overflow: 'hidden',
-      height: 5
-    },
-    primaryColor: {
-      backgroundColor: theme.palette.primary[100]
-    },
-    primaryColorBar: {
-      backgroundColor: theme.palette.primary[500]
-    },
-    primaryDashed: {
-      background: 'radial-gradient(' + theme.palette.primary[100] + ' 0%, ' + theme.palette.primary[100] + ' 16%, transparent 42%)',
-      backgroundSize: '10px 10px',
-      backgroundPosition: '0px -23px'
-    },
-    accentColor: {
-      backgroundColor: theme.palette.secondary.A100
-    },
-    accentColorBar: {
-      backgroundColor: theme.palette.secondary.A400
-    },
-    accentDashed: {
-      background: 'radial-gradient(' + theme.palette.secondary.A100 + ' 0%, ' + theme.palette.secondary.A100 + ' 16%, transparent 42%)',
-      backgroundSize: '10px 10px',
-      backgroundPosition: '0px -23px'
-    },
-    bar: {
-      width: '100%',
-      position: 'absolute',
-      left: 0,
-      bottom: 0,
-      top: 0,
-      transition: 'transform 0.2s linear',
-      transformOrigin: 'left'
-    },
-    dashed: {
-      position: 'absolute',
-      marginTop: 0,
-      height: '100%',
-      width: '100%',
-      animation: 'buffer 3s infinite linear'
-    },
-    bufferBar2: {
-      transition: 'transform .' + TRANSITION_DURATION + 's linear'
+      height: 5,
+      backgroundColor: palette.primary[100]
     },
     rootBuffer: {
       backgroundColor: 'transparent'
@@ -93,44 +51,52 @@ var styles = exports.styles = function styles(theme) {
     rootQuery: {
       transform: 'rotate(180deg)'
     },
+    bar: {
+      position: 'absolute',
+      left: 0,
+      bottom: 0,
+      top: 0,
+      transition: 'transform 0.2s linear',
+      backgroundColor: palette.primary[500]
+    },
+    dashed: {
+      position: 'absolute',
+      marginTop: 0,
+      height: '100%',
+      width: '100%',
+      background: 'radial-gradient(' + palette.primary[100] + ' 0%, ' + palette.primary[100] + ' 16%, transparent 42%)',
+      backgroundSize: '10px 10px',
+      backgroundPosition: '0px -23px',
+      animation: 'buffer 3s infinite linear'
+    },
     indeterminateBar1: {
-      width: 'auto',
       willChange: 'left, right',
-      animation: 'mui-indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite'
+      animation: 'indeterminate-1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite'
     },
     indeterminateBar2: {
-      width: 'auto',
       willChange: 'left, right',
-      animation: 'mui-indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
+      animation: 'indeterminate-2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
       animationDelay: '1.15s'
     },
     determinateBar1: {
-      willChange: 'transform',
-      transition: 'transform .' + TRANSITION_DURATION + 's linear'
+      willChange: 'width',
+      transition: 'width .' + transitionDuration + 's linear'
+    },
+    determinateBar2: {
+      display: 'none'
     },
     bufferBar1: {
-      zIndex: 1,
-      transition: 'transform .' + TRANSITION_DURATION + 's linear'
+      transition: 'width .' + transitionDuration + 's linear',
+      backgroundColor: palette.primary[100]
     },
-    bufferBar2Primary: {
-      transition: 'transform .' + TRANSITION_DURATION + 's linear',
-      backgroundColor: theme.palette.primary[100]
+    bufferBar2: {
+      transition: 'width .' + transitionDuration + 's linear'
     },
-    bufferBar2Accent: {
-      transition: 'transform .' + TRANSITION_DURATION + 's linear',
-      backgroundColor: theme.palette.secondary.A100
-    },
-    // Legends:
-    // || represents the viewport
-    // -  represents a light background
-    // x  represents a dark background
-    '@keyframes mui-indeterminate1': {
-      //  |-----|---x-||-----||-----|
+    '@keyframes indeterminate-1': {
       '0%': {
         left: '-35%',
         right: '100%'
       },
-      //  |-----|-----||-----||xxxx-|
       '60%': {
         left: '100%',
         right: '-90%'
@@ -140,13 +106,11 @@ var styles = exports.styles = function styles(theme) {
         right: '-90%'
       }
     },
-    '@keyframes mui-indeterminate2': {
-      //  |xxxxx|xxxxx||-----||-----|
+    '@keyframes indeterminate-2': {
       '0%': {
         left: '-200%',
         right: '100%'
       },
-      //  |-----|-----||-----||-x----|
       '60%': {
         left: '107%',
         right: '-8%'
@@ -169,97 +133,89 @@ var styles = exports.styles = function styles(theme) {
         opacity: 1,
         backgroundPosition: '-200px -23px'
       }
+    },
+    '@keyframes query': {
+      '0%': {
+        opacity: 1,
+        transform: 'translateX(35%) scale(.3, 1)'
+      },
+      '100%': {
+        opacity: 0,
+        transform: 'translateX(-50%) scale(0, 1)'
+      }
     }
   };
-};
+});
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
+var LinearProgress = function (_Component) {
+  _inherits(LinearProgress, _Component);
 
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
+  function LinearProgress() {
+    _classCallCheck(this, LinearProgress);
 
-  /**
-   * The color of the component. It's using the theme palette when that makes sense.
-   */
-  color: require('prop-types').oneOf(['primary', 'accent']),
+    return _possibleConstructorReturn(this, (LinearProgress.__proto__ || Object.getPrototypeOf(LinearProgress)).apply(this, arguments));
+  }
 
+  _createClass(LinearProgress, [{
+    key: 'render',
+    value: function render() {
+      var _classNames, _classNames3, _classNames4;
+
+      var _props = this.props,
+          className = _props.className,
+          mode = _props.mode,
+          value = _props.value,
+          valueBuffer = _props.valueBuffer,
+          other = _objectWithoutProperties(_props, ['className', 'mode', 'value', 'valueBuffer']);
+
+      var classes = this.context.styleManager.render(styleSheet);
+      var rootClasses = (0, _classnames2.default)(classes.root, (_classNames = {}, _defineProperty(_classNames, classes.rootBuffer, mode === 'buffer'), _defineProperty(_classNames, classes.rootQuery, mode === 'query'), _classNames), className);
+      var dashedClasses = (0, _classnames2.default)(_defineProperty({}, classes.dashed, mode === 'buffer'));
+      var bar1Classes = (0, _classnames2.default)(classes.bar, (_classNames3 = {}, _defineProperty(_classNames3, classes.indeterminateBar1, mode === 'indeterminate' || mode === 'query'), _defineProperty(_classNames3, classes.determinateBar1, mode === 'determinate'), _defineProperty(_classNames3, classes.bufferBar1, mode === 'buffer'), _classNames3));
+      var bar2Classes = (0, _classnames2.default)(classes.bar, (_classNames4 = {}, _defineProperty(_classNames4, classes.indeterminateBar2, mode === 'indeterminate' || mode === 'query'), _defineProperty(_classNames4, classes.determinateBar2, mode === 'determinate'), _defineProperty(_classNames4, classes.bufferBar2, mode === 'buffer'), _classNames4));
+      var styles = { bar1: {}, bar2: {} };
+
+      if (mode === 'determinate') {
+        styles.bar1.width = value + '%';
+      } else if (mode === 'buffer') {
+        styles.bar1.width = valueBuffer + '%';
+        styles.bar2.width = value + '%';
+      }
+
+      return _react2.default.createElement(
+        'div',
+        _extends({ className: rootClasses }, other),
+        _react2.default.createElement('div', { className: dashedClasses }),
+        _react2.default.createElement('div', { className: bar1Classes, style: styles.bar1 }),
+        _react2.default.createElement('div', { className: bar2Classes, style: styles.bar2 })
+      );
+    }
+  }]);
+
+  return LinearProgress;
+}(_react.Component);
+
+LinearProgress.propTypes = {
+  className: _react.PropTypes.string,
   /**
    * The mode of show your progress, indeterminate
    * for when there is no value for progress.
    */
-  mode: require('prop-types').oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
-
+  mode: _react.PropTypes.oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
   /**
    * The value of progress, only works in determinate and buffer mode.
-   * Value between 0 and 100.
    */
-  value: require('prop-types').number,
-
+  value: _react.PropTypes.number,
   /**
    * The value of buffer, only works in buffer mode.
-   * Value between 0 and 100.
    */
-  valueBuffer: require('prop-types').number
+  valueBuffer: _react.PropTypes.number
 };
-
-
-function LinearProgress(props) {
-  var _classNames, _classNames2, _classNames3, _classNames4;
-
-  var classes = props.classes,
-      className = props.className,
-      color = props.color,
-      mode = props.mode,
-      value = props.value,
-      valueBuffer = props.valueBuffer,
-      other = (0, _objectWithoutProperties3.default)(props, ['classes', 'className', 'color', 'mode', 'value', 'valueBuffer']);
-
-
-  var dashedClass = (0, _classnames2.default)(classes.dashed, (_classNames = {}, (0, _defineProperty3.default)(_classNames, classes.primaryDashed, color === 'primary'), (0, _defineProperty3.default)(_classNames, classes.accentDashed, color === 'accent'), _classNames));
-
-  var rootClassName = (0, _classnames2.default)(classes.root, (_classNames2 = {}, (0, _defineProperty3.default)(_classNames2, classes.primaryColor, color === 'primary'), (0, _defineProperty3.default)(_classNames2, classes.accentColor, color === 'accent'), (0, _defineProperty3.default)(_classNames2, classes.rootBuffer, mode === 'buffer'), (0, _defineProperty3.default)(_classNames2, classes.rootQuery, mode === 'query'), _classNames2), className);
-  var primaryClassName = (0, _classnames2.default)(classes.bar, (_classNames3 = {}, (0, _defineProperty3.default)(_classNames3, classes.primaryColorBar, color === 'primary'), (0, _defineProperty3.default)(_classNames3, classes.accentColorBar, color === 'accent'), (0, _defineProperty3.default)(_classNames3, classes.indeterminateBar1, mode === 'indeterminate' || mode === 'query'), (0, _defineProperty3.default)(_classNames3, classes.determinateBar1, mode === 'determinate'), (0, _defineProperty3.default)(_classNames3, classes.bufferBar1, mode === 'buffer'), _classNames3));
-  var secondaryClassName = (0, _classnames2.default)(classes.bar, (_classNames4 = {}, (0, _defineProperty3.default)(_classNames4, classes.bufferBar2, mode === 'buffer'), (0, _defineProperty3.default)(_classNames4, classes.primaryColorBar, color === 'primary' && mode !== 'buffer'), (0, _defineProperty3.default)(_classNames4, classes.primaryColor, color === 'primary' && mode === 'buffer'), (0, _defineProperty3.default)(_classNames4, classes.accentColorBar, color === 'accent' && mode !== 'buffer'), (0, _defineProperty3.default)(_classNames4, classes.accentColor, color === 'accent' && mode === 'buffer'), (0, _defineProperty3.default)(_classNames4, classes.indeterminateBar2, mode === 'indeterminate' || mode === 'query'), _classNames4));
-  var inlineStyles = { primary: {}, secondary: {} };
-  var rootProps = {};
-
-  if (mode === 'determinate') {
-    if (value !== undefined) {
-      inlineStyles.primary.transform = 'scaleX(' + value / 100 + ')';
-      rootProps['aria-valuenow'] = Math.round(value);
-    } else {
-      process.env.NODE_ENV !== "production" ? (0, _warning2.default)(false, 'Material-UI: you need to provide a value property ' + 'when LinearProgress is in determinate mode.') : void 0;
-    }
-  } else if (mode === 'buffer') {
-    if (value !== undefined) {
-      inlineStyles.primary.transform = 'scaleX(' + value / 100 + ')';
-      inlineStyles.secondary.transform = 'scaleX(' + (valueBuffer || 0) / 100 + ')';
-    } else {
-      process.env.NODE_ENV !== "production" ? (0, _warning2.default)(false, 'Material-UI: you need to provide a value property when LinearProgress is in buffer mode.') : void 0;
-    }
-  }
-
-  return _react2.default.createElement(
-    'div',
-    (0, _extends3.default)({ className: rootClassName }, rootProps, other),
-    mode === 'buffer' ? _react2.default.createElement('div', { className: dashedClass }) : null,
-    _react2.default.createElement('div', { className: primaryClassName, style: inlineStyles.primary }),
-    mode === 'determinate' ? null : _react2.default.createElement('div', { className: secondaryClassName, style: inlineStyles.secondary })
-  );
-}
-
-LinearProgress.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
-  classes: require('prop-types').object.isRequired
-}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'color', require('prop-types').oneOf(['primary', 'accent'])), (0, _defineProperty3.default)(_ref, 'mode', require('prop-types').oneOf(['determinate', 'indeterminate', 'buffer', 'query'])), (0, _defineProperty3.default)(_ref, 'value', require('prop-types').number), (0, _defineProperty3.default)(_ref, 'valueBuffer', require('prop-types').number), _ref) : {};
 LinearProgress.defaultProps = {
-  color: 'primary',
-  mode: 'indeterminate'
+  mode: 'indeterminate',
+  value: 0
 };
-
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiLinearProgress' })(LinearProgress);
+LinearProgress.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};
+exports.default = LinearProgress;

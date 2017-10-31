@@ -3,111 +3,74 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _assign = require('object-assign');
 
-var _extends3 = _interopRequireDefault(_extends2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _ref; //  weak
+exports.default = TabIndicator;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
-var _helpers = require('../utils/helpers');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var styles = exports.styles = function styles(theme) {
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; } //  weak
+
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('TabIndicator', function (theme) {
   return {
     root: {
       position: 'absolute',
-      height: 2,
       bottom: 0,
-      width: '100%',
+      height: 2,
+      marginTop: -2,
       transition: theme.transitions.create(),
       willChange: 'left, width'
     },
-    colorAccent: {
-      backgroundColor: theme.palette.secondary.A200
-    },
-    colorPrimary: {
-      backgroundColor: theme.palette.primary[500]
+    rootAccent: {
+      backgroundColor: theme.palette.accent[500]
     }
   };
-};
+});
 
-var babelPluginFlowReactPropTypes_proptype_IndicatorStyle = {
-  left: require('prop-types').number.isRequired,
-  width: require('prop-types').number.isRequired
-};
-var babelPluginFlowReactPropTypes_proptype_ProvidedProps = {
-  classes: require('prop-types').object.isRequired
-};
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
-
-  /**
-   * @ignore
-   * The color of the tab indicator.
-   */
-  color: require('prop-types').oneOfType([require('prop-types').oneOf(['accent']), require('prop-types').oneOf(['primary']), require('prop-types').string]).isRequired,
-
-  /**
-   * @ignore
-   * The style of the root element.
-   */
-  style: require('prop-types').shape({
-    left: require('prop-types').number.isRequired,
-    width: require('prop-types').number.isRequired
-  }).isRequired
-};
-
-
-/**
- * @ignore - internal component.
- */
-function TabIndicator(props) {
-  var classes = props.classes,
-      classNameProp = props.className,
-      color = props.color,
+function TabIndicator(props, context) {
+  var classNameProp = props.className,
+      indicatorColor = props.indicatorColor,
       styleProp = props.style;
 
-  var colorPredefined = ['primary', 'accent'].indexOf(color) !== -1;
-  var className = (0, _classnames2.default)(classes.root, (0, _defineProperty3.default)({}, classes['color' + (0, _helpers.capitalizeFirstLetter)(color)], colorPredefined), classNameProp);
+  var classes = context.styleManager.render(styleSheet);
+  var className = (0, _classnames2.default)(classes.root, _defineProperty({}, classes.rootAccent, indicatorColor === 'accent'), classNameProp);
 
-  var style = colorPredefined ? styleProp : (0, _extends3.default)({}, styleProp, {
-    backgroundColor: color
-  });
+  var style = indicatorColor !== 'accent' ? _extends({}, styleProp, {
+    backgroundColor: indicatorColor
+  }) : styleProp;
 
   return _react2.default.createElement('div', { className: className, style: style });
 }
 
-TabIndicator.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
-  classes: require('prop-types').object.isRequired
-}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'color', require('prop-types').oneOfType([require('prop-types').oneOf(['accent']), require('prop-types').oneOf(['primary']), require('prop-types').string]).isRequired), (0, _defineProperty3.default)(_ref, 'style', require('prop-types').shape({
-  left: require('prop-types').number.isRequired,
-  width: require('prop-types').number.isRequired
-}).isRequired), _ref) : {};
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiTabIndicator' })(TabIndicator);
+TabIndicator.propTypes = {
+  /**
+   * The CSS class name of the root element.
+   */
+  className: _react.PropTypes.string,
+  indicatorColor: _react.PropTypes.oneOfType([_react.PropTypes.oneOf(['accent']), _react.PropTypes.string]).isRequired,
+  /**
+   * The style of the root element.
+   */
+  style: _react.PropTypes.shape({
+    left: _react.PropTypes.number,
+    width: _react.PropTypes.number
+  }).isRequired
+};
+
+TabIndicator.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};

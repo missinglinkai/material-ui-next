@@ -3,55 +3,27 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _assign = require('object-assign');
 
-var _extends3 = _interopRequireDefault(_extends2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = require('classnames');
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
 var _reactDom = require('react-dom');
+
+var _jssThemeReactor = require('jss-theme-reactor');
 
 var _scrollbarSize = require('dom-helpers/util/scrollbarSize');
 
 var _scrollbarSize2 = _interopRequireDefault(_scrollbarSize);
 
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
-var _Popover = require('../Popover');
+var _Popover = require('../internal/Popover');
 
 var _Popover2 = _interopRequireDefault(_Popover);
 
@@ -61,175 +33,49 @@ var _MenuList2 = _interopRequireDefault(_MenuList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
-// @inheritedComponent Popover
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-var babelPluginFlowReactPropTypes_proptype_TransitionCallback = require('../internal/transition').babelPluginFlowReactPropTypes_proptype_TransitionCallback || require('prop-types').any;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * The DOM element used to set the position of the menu.
-   */
-  anchorEl: typeof HTMLElement === 'function' ? require('prop-types').instanceOf(HTMLElement) : require('prop-types').any,
-  // match Popover
-  /**
-   * Menu contents, normally `MenuItem`s.
-   */
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
 
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Menu', function () {
+  return {
+    popover: {
+      maxHeight: 250
+    }
+  };
+});
 
-  /**
-   * Properties applied to the `MenuList` element.
-   */
-  MenuListProps: require('prop-types').object,
-
-  /**
-   * Callback fired before the Menu enters.
-   */
-  onEnter: typeof babelPluginFlowReactPropTypes_proptype_TransitionCallback === 'function' ? babelPluginFlowReactPropTypes_proptype_TransitionCallback : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_TransitionCallback),
-
-  /**
-   * Callback fired when the Menu is entering.
-   */
-  onEntering: typeof babelPluginFlowReactPropTypes_proptype_TransitionCallback === 'function' ? babelPluginFlowReactPropTypes_proptype_TransitionCallback : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_TransitionCallback),
-
-  /**
-   * Callback fired when the Menu has entered.
-   */
-  onEntered: typeof babelPluginFlowReactPropTypes_proptype_TransitionCallback === 'function' ? babelPluginFlowReactPropTypes_proptype_TransitionCallback : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_TransitionCallback),
-
-  /**
-   * Callback fired before the Menu exits.
-   */
-  onExit: typeof babelPluginFlowReactPropTypes_proptype_TransitionCallback === 'function' ? babelPluginFlowReactPropTypes_proptype_TransitionCallback : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_TransitionCallback),
-
-  /**
-   * Callback fired when the Menu is exiting.
-   */
-  onExiting: typeof babelPluginFlowReactPropTypes_proptype_TransitionCallback === 'function' ? babelPluginFlowReactPropTypes_proptype_TransitionCallback : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_TransitionCallback),
-
-  /**
-   * Callback fired when the Menu has exited.
-   */
-  onExited: typeof babelPluginFlowReactPropTypes_proptype_TransitionCallback === 'function' ? babelPluginFlowReactPropTypes_proptype_TransitionCallback : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_TransitionCallback),
-
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback
-   */
-  onRequestClose: require('prop-types').func,
-
-  /**
-   * If `true`, the menu is visible.
-   */
-  open: require('prop-types').bool,
-
-  /**
-   * `classes` property applied to the `Popover` element.
-   */
-  PopoverClasses: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  theme: require('prop-types').object,
-
-  /**
-   * The length of the transition in `ms`, or 'auto'
-   */
-  transitionDuration: require('prop-types').oneOfType([require('prop-types').number, require('prop-types').shape({
-    enter: require('prop-types').number,
-    exit: require('prop-types').number
-  }), require('prop-types').oneOf(['auto'])])
-};
-
-
-var rtlOrigin = {
-  vertical: 'top',
-  horizontal: 'right'
-};
-
-var ltrOrigin = {
-  vertical: 'top',
-  horizontal: 'left'
-};
-
-var styles = exports.styles = {
-  root: {
-    // specZ: The maximum height of a simple menu should be one or more rows less than the view
-    // height. This ensures a tappable area outside of the simple menu with which to dismiss
-    // the menu.
-    maxHeight: 'calc(100vh - 96px)',
-    // Add iOS momentum scrolling.
-    WebkitOverflowScrolling: 'touch',
-    // So we see the menu when it's empty.
-    // It's most likely on issue on userland.
-    minWidth: 16,
-    minHeight: 16
-  }
-};
-
-var Menu = function (_React$Component) {
-  (0, _inherits3.default)(Menu, _React$Component);
+var Menu = function (_Component) {
+  _inherits(Menu, _Component);
 
   function Menu() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    (0, _classCallCheck3.default)(this, Menu);
+    _classCallCheck(this, Menu);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Menu.__proto__ || (0, _getPrototypeOf2.default)(Menu)).call.apply(_ref, [this].concat(args))), _this), _this.getContentAnchorEl = function () {
-      if (!_this.menuList || !_this.menuList.selectedItem) {
-        // $FlowFixMe
-        return (0, _reactDom.findDOMNode)(_this.menuList).firstChild;
-      }
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Menu.__proto__ || Object.getPrototypeOf(Menu)).call.apply(_ref, [this].concat(args))), _this), _this.menuList = undefined, _this.handleEnter = function (element) {
+      var list = (0, _reactDom.findDOMNode)(_this.menuList);
 
-      return (0, _reactDom.findDOMNode)(_this.menuList.selectedItem);
-    }, _this.menuList = undefined, _this.focus = function () {
       if (_this.menuList && _this.menuList.selectedItem) {
-        // $FlowFixMe
-        (0, _reactDom.findDOMNode)(_this.menuList.selectedItem).focus();
-        return;
+        (0, _reactDom.findDOMNode)(_this.menuList.selectedItem).focus(); // eslint-disable-line react/no-find-dom-node
+      } else if (list) {
+        list.firstChild.focus();
       }
 
-      var menuList = (0, _reactDom.findDOMNode)(_this.menuList);
-      if (menuList && menuList.firstChild) {
-        // $FlowFixMe
-        menuList.firstChild.focus();
-      }
-    }, _this.handleEnter = function (element) {
-      var theme = _this.props.theme;
-
-
-      var menuList = (0, _reactDom.findDOMNode)(_this.menuList);
-
-      // Focus so the scroll computation of the Popover works as expected.
-      _this.focus();
-
-      // Let's ignore that piece of logic if users are already overriding the width
-      // of the menu.
-      // $FlowFixMe
-      if (menuList && element.clientHeight < menuList.clientHeight && !menuList.style.width) {
+      if (list && element.clientHeight < list.clientHeight) {
         var size = (0, _scrollbarSize2.default)() + 'px';
-        // $FlowFixMe
-        menuList.style[theme.direction === 'rtl' ? 'paddingLeft' : 'paddingRight'] = size;
-        // $FlowFixMe
-        menuList.style.width = 'calc(100% + ' + size + ')';
+        list.style.paddingRight = size;
+        list.style.width = 'calc(100% + ' + size + ')';
       }
 
       if (_this.props.onEnter) {
@@ -238,76 +84,136 @@ var Menu = function (_React$Component) {
     }, _this.handleListKeyDown = function (event, key) {
       if (key === 'tab') {
         event.preventDefault();
-
-        if (_this.props.onRequestClose) {
-          _this.props.onRequestClose(event);
-        }
+        return _this.props.onRequestClose();
       }
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+
+      return false;
+    }, _this.getContentAnchorEl = function () {
+      if (!_this.menuList || !_this.menuList.selectedItem) {
+        return (0, _reactDom.findDOMNode)(_this.menuList).firstChild;
+      }
+
+      return (0, _reactDom.findDOMNode)(_this.menuList.selectedItem);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  (0, _createClass3.default)(Menu, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      if (this.props.open) {
-        this.focus();
-      }
-    }
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate(prevProps) {
-      if (!prevProps.open && this.props.open) {
-        // Needs to refocus as when a menu is rendered into another Modal,
-        // the first modal might change the focus to prevent any leak.
-        this.focus();
-      }
-    }
-  }, {
+  _createClass(Menu, [{
     key: 'render',
     value: function render() {
       var _this2 = this;
 
       var _props = this.props,
+          anchorEl = _props.anchorEl,
           children = _props.children,
-          classes = _props.classes,
           className = _props.className,
-          MenuListProps = _props.MenuListProps,
+          open = _props.open,
           onEnter = _props.onEnter,
-          PopoverClasses = _props.PopoverClasses,
-          theme = _props.theme,
-          other = (0, _objectWithoutProperties3.default)(_props, ['children', 'classes', 'className', 'MenuListProps', 'onEnter', 'PopoverClasses', 'theme']);
+          onEntering = _props.onEntering,
+          onEntered = _props.onEntered,
+          onExit = _props.onExit,
+          onExiting = _props.onExiting,
+          onExited = _props.onExited,
+          onRequestClose = _props.onRequestClose,
+          transitionDuration = _props.transitionDuration,
+          other = _objectWithoutProperties(_props, ['anchorEl', 'children', 'className', 'open', 'onEnter', 'onEntering', 'onEntered', 'onExit', 'onExiting', 'onExited', 'onRequestClose', 'transitionDuration']);
 
+      var classes = this.context.styleManager.render(styleSheet);
 
       return _react2.default.createElement(
         _Popover2.default,
-        (0, _extends3.default)({
+        {
+          anchorEl: anchorEl,
           getContentAnchorEl: this.getContentAnchorEl,
-          className: (0, _classnames2.default)(classes.root, className),
-          classes: PopoverClasses,
+          className: classes.popover,
+          open: open,
+          enteredClassName: classes.entered,
           onEnter: this.handleEnter,
-          anchorOrigin: theme.direction === 'rtl' ? rtlOrigin : ltrOrigin,
-          transformOrigin: theme.direction === 'rtl' ? rtlOrigin : ltrOrigin
-        }, other),
+          onEntering: onEntering,
+          onEntered: onEntered,
+          onExiting: onExiting,
+          onExit: onExit,
+          onExited: onExited,
+          onRequestClose: onRequestClose,
+          transitionDuration: transitionDuration
+        },
         _react2.default.createElement(
           _MenuList2.default,
-          (0, _extends3.default)({
+          _extends({
+            'data-mui-test': 'Menu',
             role: 'menu',
+            ref: function ref(c) {
+              _this2.menuList = c;
+            },
+            className: className,
             onKeyDown: this.handleListKeyDown
-          }, MenuListProps, {
-            ref: function ref(node) {
-              _this2.menuList = node;
-            }
-          }),
+          }, other),
           children
         )
       );
     }
   }]);
-  return Menu;
-}(_react2.default.Component);
 
+  return Menu;
+}(_react.Component);
+
+Menu.propTypes = {
+  /**
+   * This is the DOM element that will be
+   * used to set the position of the menu.
+   */
+  anchorEl: _react.PropTypes.object,
+  /**
+   * Menu contents, should be menu items.
+   */
+  children: _react.PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
+  className: _react.PropTypes.string,
+  /**
+   * Callback fired before the Menu is entering.
+   */
+  onEnter: _react.PropTypes.func,
+  /**
+   * Callback fired when the Menu is entering.
+   */
+  onEntering: _react.PropTypes.func,
+  /**
+   * Callback fired when the Menu has entered.
+   */
+  onEntered: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback fired before the Menu is exiting.
+   */
+  onExit: _react.PropTypes.func,
+  /**
+   * Callback fired when the Menu is exiting.
+   */
+  onExiting: _react.PropTypes.func,
+  /**
+   * Callback fired when the Menu has exited.
+   */
+  onExited: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
+  /**
+   * Callback function fired when the menu is requested to be closed.
+   *
+   * @param {event} event The event that triggered the close request
+   */
+  onRequestClose: _react.PropTypes.func,
+  /**
+   * If `true`, the menu is visible.
+   */
+  open: _react.PropTypes.bool,
+  /**
+   * The length of the transition in `ms`, or 'auto'
+   */
+  transitionDuration: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string])
+};
 Menu.defaultProps = {
   open: false,
   transitionDuration: 'auto'
 };
-exports.default = (0, _withStyles2.default)(styles, { withTheme: true, name: 'MuiMenu' })(Menu);
+Menu.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};
+exports.default = Menu;

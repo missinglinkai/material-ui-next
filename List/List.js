@@ -3,183 +3,97 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _assign = require('object-assign');
 
-var _extends3 = _interopRequireDefault(_extends2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+exports.default = List;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
+var _jssThemeReactor = require('jss-theme-reactor');
 
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var babelPluginFlowReactPropTypes_proptype_ElementType = require('react').babelPluginFlowReactPropTypes_proptype_ElementType || require('prop-types').any;
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
 
-var styles = exports.styles = function styles(theme) {
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('List', function () {
   return {
     root: {
       flex: '1 1 auto',
+      overflow: 'auto',
       listStyle: 'none',
       margin: 0,
-      padding: 0,
-      position: 'relative'
+      padding: 0
     },
     padding: {
-      paddingTop: theme.spacing.unit,
-      paddingBottom: theme.spacing.unit
-    },
-    dense: {
-      paddingTop: theme.spacing.unit / 2,
-      paddingBottom: theme.spacing.unit / 2
+      paddingTop: 8,
+      paddingBottom: 8
     },
     subheader: {
       paddingTop: 0
     }
   };
-};
+});
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
+/**
+ * A simple list component.
+ */
+function List(props, context) {
+  var _classNames;
+
+  var classNameProp = props.className,
+      ComponentProp = props.component,
+      padding = props.padding,
+      children = props.children,
+      subheader = props.subheader,
+      rootRef = props.rootRef,
+      other = _objectWithoutProperties(props, ['className', 'component', 'padding', 'children', 'subheader', 'rootRef']);
+
+  var classes = context.styleManager.render(styleSheet);
+  var className = (0, _classnames2.default)(classes.root, (_classNames = {}, _defineProperty(_classNames, classes.padding, padding), _defineProperty(_classNames, classes.subheader, subheader), _classNames), classNameProp);
+
+  return _react2.default.createElement(
+    ComponentProp,
+    _extends({ ref: rootRef, className: className }, other),
+    subheader,
+    children
+  );
+}
+
+List.propTypes = {
+  children: _react.PropTypes.node,
   /**
-   * The content of the component.
+   * The CSS class name of the root element.
    */
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-
+  className: _react.PropTypes.string,
   /**
-   * Useful to extend the style applied to components.
+   * The element or component used for the root node.
    */
-  classes: require('prop-types').object,
-
+  component: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.func]),
+  padding: _react.PropTypes.bool,
   /**
    * @ignore
    */
-  className: require('prop-types').string,
-
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType),
-
-  /**
-   * If `true`, compact vertical padding designed for keyboard and mouse input will be used for
-   * the list and list items. The property is available to descendant components as the
-   * `dense` context.
-   */
-  dense: require('prop-types').bool,
-
-  /**
-   * If `true`, vertical padding will be removed from the list.
-   */
-  disablePadding: require('prop-types').bool,
-
-  /**
-   * Use that property to pass a ref callback to the root component.
-   */
-  rootRef: require('prop-types').func,
-
-  /**
-   * The content of the component, normally `ListItem`.
-   */
-  subheader: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)
+  rootRef: _react.PropTypes.func,
+  subheader: _react.PropTypes.node
 };
-
-var List = function (_React$Component) {
-  (0, _inherits3.default)(List, _React$Component);
-
-  function List() {
-    (0, _classCallCheck3.default)(this, List);
-    return (0, _possibleConstructorReturn3.default)(this, (List.__proto__ || (0, _getPrototypeOf2.default)(List)).apply(this, arguments));
-  }
-
-  (0, _createClass3.default)(List, [{
-    key: 'getChildContext',
-    value: function getChildContext() {
-      return {
-        dense: this.props.dense
-      };
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _classNames;
-
-      var _props = this.props,
-          classes = _props.classes,
-          classNameProp = _props.className,
-          ComponentProp = _props.component,
-          disablePadding = _props.disablePadding,
-          children = _props.children,
-          dense = _props.dense,
-          subheader = _props.subheader,
-          rootRef = _props.rootRef,
-          other = (0, _objectWithoutProperties3.default)(_props, ['classes', 'className', 'component', 'disablePadding', 'children', 'dense', 'subheader', 'rootRef']);
-
-      var className = (0, _classnames2.default)(classes.root, (_classNames = {}, (0, _defineProperty3.default)(_classNames, classes.dense, dense && !disablePadding), (0, _defineProperty3.default)(_classNames, classes.padding, !disablePadding), (0, _defineProperty3.default)(_classNames, classes.subheader, subheader), _classNames), classNameProp);
-
-      return _react2.default.createElement(
-        ComponentProp,
-        (0, _extends3.default)({ className: className }, other, { ref: rootRef }),
-        subheader,
-        children
-      );
-    }
-  }]);
-  return List;
-}(_react2.default.Component);
 
 List.defaultProps = {
-  component: 'ul',
-  dense: false,
-  disablePadding: false
+  component: 'div',
+  padding: true
 };
 
-
-List.childContextTypes = {
-  dense: _propTypes2.default.bool
+List.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
 };
-
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiList' })(List);

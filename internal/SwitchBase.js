@@ -3,249 +3,119 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _assign = require('object-assign');
 
-var _extends3 = _interopRequireDefault(_extends2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
-exports.default = createSwitch;
+exports.createSwitch = createSwitch;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
-
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
 
 var _IconButton = require('../IconButton');
 
 var _IconButton2 = _interopRequireDefault(_IconButton);
 
-var _CheckBoxOutlineBlank = require('../svg-icons/CheckBoxOutlineBlank');
+var _checkBoxOutlineBlank = require('../svg-icons/check-box-outline-blank');
 
-var _CheckBoxOutlineBlank2 = _interopRequireDefault(_CheckBoxOutlineBlank);
+var _checkBoxOutlineBlank2 = _interopRequireDefault(_checkBoxOutlineBlank);
 
-var _CheckBox = require('../svg-icons/CheckBox');
+var _checkBox = require('../svg-icons/check-box');
 
-var _CheckBox2 = _interopRequireDefault(_CheckBox);
-
-var _Icon = require('../Icon');
-
-var _Icon2 = _interopRequireDefault(_Icon);
+var _checkBox2 = _interopRequireDefault(_checkBox);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Element = require('react').babelPluginFlowReactPropTypes_proptype_Element || require('prop-types').any;
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-var styles = exports.styles = {
-  root: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    transition: 'none'
-  },
-  input: {
-    cursor: 'inherit',
-    position: 'absolute',
-    opacity: 0,
-    width: '100%',
-    height: '100%',
-    top: 0,
-    left: 0,
-    margin: 0,
-    padding: 0
-  },
-  default: {},
-  checked: {},
-  disabled: {}
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * If `true`, the component is checked.
-   */
-  checked: require('prop-types').oneOfType([require('prop-types').bool, require('prop-types').string]),
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-  /**
-   * The CSS class name of the root element when checked.
-   */
-  checkedClassName: require('prop-types').string,
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
 
-  /**
-   * The icon to display when the component is checked.
-   * If a string is provided, it will be used as a font ligature.
-   */
-  checkedIcon: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
-
-  /**
-   * @ignore
-   */
-  defaultChecked: require('prop-types').bool,
-
-  /**
-   * If `true`, the switch will be disabled.
-   */
-  disabled: require('prop-types').bool,
-
-  /**
-   * The CSS class name of the root element when disabled.
-   */
-  disabledClassName: require('prop-types').string,
-
-  /**
-   * If `true`, the ripple effect will be disabled.
-   */
-  disableRipple: require('prop-types').bool,
-
-  /**
-   * The icon to display when the component is unchecked.
-   * If a string is provided, it will be used as a font ligature.
-   */
-  icon: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-
-  /**
-   * If `true`, the component appears indeterminate.
-   */
-  indeterminate: require('prop-types').bool,
-
-  /**
-   * The icon to display when the component is indeterminate.
-   * If a string is provided, it will be used as a font ligature.
-   */
-  indeterminateIcon: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-
-  /**
-   * Properties applied to the `input` element.
-   */
-  inputProps: require('prop-types').object,
-
-  /**
-   * Use that property to pass a ref callback to the native input component.
-   */
-  inputRef: require('prop-types').func,
-
-  /*
-   * @ignore
-   */
-  name: require('prop-types').string,
-
-  /**
-   * Callback fired when the state is changed.
-   *
-   * @param {object} event The event source of the callback
-   * @param {boolean} checked The `checked` value of the switch
-   */
-  onChange: require('prop-types').func,
-
-  /**
-   * @ignore
-   */
-  tabIndex: require('prop-types').oneOfType([require('prop-types').number, require('prop-types').string]),
-
-  /**
-   * The value of the component.
-   */
-  value: require('prop-types').string
-};
-
-// NB: If changed, please update Checkbox, Switch and Radio
-// so that the API documentation is updated.
-
-var babelPluginFlowReactPropTypes_proptype_Options = {
-  defaultIcon: typeof babelPluginFlowReactPropTypes_proptype_Element === 'function' ? babelPluginFlowReactPropTypes_proptype_Element.isRequired ? babelPluginFlowReactPropTypes_proptype_Element.isRequired : babelPluginFlowReactPropTypes_proptype_Element : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Element).isRequired,
-  defaultCheckedIcon: typeof babelPluginFlowReactPropTypes_proptype_Element === 'function' ? babelPluginFlowReactPropTypes_proptype_Element.isRequired ? babelPluginFlowReactPropTypes_proptype_Element.isRequired : babelPluginFlowReactPropTypes_proptype_Element : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Element).isRequired,
-  inputType: require('prop-types').string
-};
-
-var _ref2 = _react2.default.createElement(_CheckBoxOutlineBlank2.default, null);
-
-var _ref3 = _react2.default.createElement(_CheckBox2.default, null);
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('SwitchBase', function () {
+  return {
+    root: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      transition: 'none'
+    },
+    input: {
+      cursor: 'inherit',
+      position: 'absolute',
+      opacity: 0,
+      width: '100%',
+      height: '100%',
+      top: 0,
+      left: 0,
+      margin: 0,
+      padding: 0
+    }
+  };
+});
 
 function createSwitch() {
+  var _class, _temp2;
+
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
       _ref$defaultIcon = _ref.defaultIcon,
-      defaultIcon = _ref$defaultIcon === undefined ? _ref2 : _ref$defaultIcon,
+      defaultIcon = _ref$defaultIcon === undefined ? _react2.default.createElement(_checkBoxOutlineBlank2.default, { 'aria-hidden': 'true' }) : _ref$defaultIcon,
       _ref$defaultCheckedIc = _ref.defaultCheckedIcon,
-      defaultCheckedIcon = _ref$defaultCheckedIc === undefined ? _ref3 : _ref$defaultCheckedIc,
+      defaultCheckedIcon = _ref$defaultCheckedIc === undefined ? _react2.default.createElement(_checkBox2.default, { 'aria-hidden': 'true' }) : _ref$defaultCheckedIc,
       _ref$inputType = _ref.inputType,
-      inputType = _ref$inputType === undefined ? 'checkbox' : _ref$inputType;
+      inputType = _ref$inputType === undefined ? 'checkbox' : _ref$inputType,
+      switchStyleSheet = _ref.styleSheet;
 
-  /**
-   * @ignore - internal component.
-   */
-  var SwitchBase = function (_React$Component) {
-    (0, _inherits3.default)(SwitchBase, _React$Component);
+  return _temp2 = _class = function (_Component) {
+    _inherits(SwitchBase, _Component);
 
     function SwitchBase() {
-      var _ref4;
+      var _ref2;
 
       var _temp, _this, _ret;
 
-      (0, _classCallCheck3.default)(this, SwitchBase);
+      _classCallCheck(this, SwitchBase);
 
       for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
 
-      return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref4 = SwitchBase.__proto__ || (0, _getPrototypeOf2.default)(SwitchBase)).call.apply(_ref4, [this].concat(args))), _this), _this.state = {}, _this.input = null, _this.button = null, _this.isControlled = null, _this.handleInputChange = function (event) {
-        var checked = event.target.checked;
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref2 = SwitchBase.__proto__ || Object.getPrototypeOf(SwitchBase)).call.apply(_ref2, [this].concat(args))), _this), _this.state = {}, _this.input = undefined, _this.button = undefined, _this.isControlled = undefined, _this.focus = function () {
+        return _this.input.focus();
+      }, _this.handleInputChange = function (event) {
+        var newChecked = void 0;
 
-        if (!_this.isControlled) {
-          _this.setState({ checked: checked });
+        if (_this.isControlled) {
+          newChecked = !_this.props.checked;
+        } else {
+          newChecked = !_this.state.checked;
+          if (_this.input && _this.input.checked !== newChecked) {
+            _this.input.checked = newChecked;
+          }
+          _this.setState({ checked: !_this.state.checked });
         }
 
         if (_this.props.onChange) {
-          _this.props.onChange(event, checked);
+          _this.props.onChange(event, newChecked);
         }
-      }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+      }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
-    (0, _createClass3.default)(SwitchBase, [{
+    _createClass(SwitchBase, [{
       key: 'componentWillMount',
       value: function componentWillMount() {
         var props = this.props;
@@ -255,9 +125,7 @@ function createSwitch() {
 
         if (!this.isControlled) {
           // not controlled, use internal state
-          this.setState({
-            checked: props.defaultChecked !== undefined ? props.defaultChecked : false
-          });
+          this.setState({ checked: props.defaultChecked !== undefined ? props.defaultChecked : false });
         }
       }
     }, {
@@ -268,49 +136,54 @@ function createSwitch() {
 
         var _props = this.props,
             checkedProp = _props.checked,
-            classes = _props.classes,
             classNameProp = _props.className,
             checkedClassName = _props.checkedClassName,
             checkedIcon = _props.checkedIcon,
             disabled = _props.disabled,
             disabledClassName = _props.disabledClassName,
             iconProp = _props.icon,
-            inputProps = _props.inputProps,
-            inputRef = _props.inputRef,
             name = _props.name,
             onChange = _props.onChange,
+            ripple = _props.ripple,
             tabIndex = _props.tabIndex,
             value = _props.value,
-            other = (0, _objectWithoutProperties3.default)(_props, ['checked', 'classes', 'className', 'checkedClassName', 'checkedIcon', 'disabled', 'disabledClassName', 'icon', 'inputProps', 'inputRef', 'name', 'onChange', 'tabIndex', 'value']);
-
+            other = _objectWithoutProperties(_props, ['checked', 'className', 'checkedClassName', 'checkedIcon', 'disabled', 'disabledClassName', 'icon', 'name', 'onChange', 'ripple', 'tabIndex', 'value']);
 
         var checked = this.isControlled ? checkedProp : this.state.checked;
-        var className = (0, _classnames2.default)(classes.root, classes.default, classNameProp, (_classNames = {}, (0, _defineProperty3.default)(_classNames, (0, _classnames2.default)(classes.checked, checkedClassName), checked), (0, _defineProperty3.default)(_classNames, (0, _classnames2.default)(classes.disabled, disabledClassName), disabled), _classNames));
+        var classes = this.context.styleManager.render(styleSheet);
+        var switchClasses = switchStyleSheet ? this.context.styleManager.render(switchStyleSheet) : {};
+
+        var className = (0, _classnames2.default)(classes.root, switchClasses.default, classNameProp, (_classNames = {}, _defineProperty(_classNames, (0, _classnames2.default)(switchClasses.checked, checkedClassName), checked), _defineProperty(_classNames, (0, _classnames2.default)(switchClasses.disabled, disabledClassName), disabled), _classNames));
 
         var icon = checked ? checkedIcon : iconProp;
 
         if (typeof icon === 'string') {
           icon = _react2.default.createElement(
-            _Icon2.default,
-            null,
+            'span',
+            { className: 'material-icons', 'aria-hidden': 'true' },
             icon
           );
         }
 
         return _react2.default.createElement(
           _IconButton2.default,
-          (0, _extends3.default)({
+          _extends({
+            'data-mui-test': 'SwitchBase',
             component: 'span',
+            buttonRef: function buttonRef(c) {
+              _this2.button = c;
+            },
             className: className,
             disabled: disabled,
+            ripple: ripple,
             tabIndex: null,
-            role: undefined,
-            rootRef: function rootRef(node) {
-              _this2.button = node;
-            }
+            role: undefined
           }, other),
           icon,
-          _react2.default.createElement('input', (0, _extends3.default)({
+          _react2.default.createElement('input', {
+            ref: function ref(c) {
+              _this2.input = c;
+            },
             type: inputType,
             name: name,
             checked: this.isControlled ? checkedProp : undefined,
@@ -319,26 +192,63 @@ function createSwitch() {
             disabled: disabled,
             tabIndex: tabIndex,
             value: value
-          }, inputProps, {
-            ref: function ref(node) {
-              _this2.input = node;
-              if (inputRef) {
-                inputRef(node);
-              }
-            }
-          }))
+          })
         );
       }
     }]);
+
     return SwitchBase;
-  }(_react2.default.Component);
-
-  SwitchBase.defaultProps = {
-    checkedIcon: defaultCheckedIcon,
-    disableRipple: false,
-    icon: defaultIcon
-  };
-
-
-  return (0, _withStyles2.default)(styles, { name: 'MuiSwitchBase' })(SwitchBase);
+  }(_react.Component), _class.propTypes = {
+    /**
+     * SwitchBase is checked if true.
+     */
+    checked: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.string]),
+    /**
+     * The CSS class name of the root element when checked.
+     */
+    checkedClassName: _react.PropTypes.string,
+    checkedIcon: _react.PropTypes.node,
+    /**
+     * The CSS class name of the root element.
+     */
+    className: _react.PropTypes.string,
+    /**
+     * @ignore
+     */
+    defaultChecked: _react.PropTypes.bool,
+    /**
+     * If `true`, the switch will be disabled.
+     */
+    disabled: _react.PropTypes.bool,
+    /**
+     * The CSS class name of the root element when disabled.
+     */
+    disabledClassName: _react.PropTypes.string,
+    icon: _react.PropTypes.node,
+    /*
+     * @ignore
+     */
+    name: _react.PropTypes.string,
+    /**
+     * Callback function that is fired when the switch is changed.
+     *
+     * @param {object} event `change` event
+     * @param {boolean} checked The `checked` value of the switch
+     */
+    onChange: _react.PropTypes.func,
+    /**
+     * If false, the ripple effect will be disabled.
+     */
+    ripple: _react.PropTypes.bool,
+    /**
+     * @ignore
+     */
+    tabIndex: _react.PropTypes.string,
+    value: _react.PropTypes.string
+  }, _class.defaultProps = {
+    icon: defaultIcon,
+    checkedIcon: defaultCheckedIcon
+  }, _class.contextTypes = {
+    styleManager: _react.PropTypes.object.isRequired
+  }, _temp2;
 }

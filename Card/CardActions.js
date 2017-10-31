@@ -3,97 +3,76 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+var _assign = require('object-assign');
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _ref;
+exports.default = CardActions;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
-
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
 
 var _reactHelpers = require('../utils/reactHelpers');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
 
-var styles = exports.styles = {
-  root: {
-    height: 52,
-    display: 'flex',
-    alignItems: 'center',
-    padding: '2px 4px'
-  },
-  actionSpacing: {
-    margin: '0 4px'
-  }
-};
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('CardActions', function () {
+  return {
+    cardActions: {
+      height: 52,
+      display: 'flex',
+      alignItems: 'center',
+      padding: '2px 4px'
+    },
+    actionSpacing: {
+      margin: '0 4px'
+    }
+  };
+});
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * The content of the component.
-   */
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
-
-  /**
-   * If `true`, the card actions do not have additional margin.
-   */
-  disableActionSpacing: require('prop-types').bool
-};
-
-
-function CardActions(props) {
-  var disableActionSpacing = props.disableActionSpacing,
+function CardActions(props, context) {
+  var actionSpacing = props.actionSpacing,
       children = props.children,
-      classes = props.classes,
-      className = props.className,
-      other = (0, _objectWithoutProperties3.default)(props, ['disableActionSpacing', 'children', 'classes', 'className']);
+      classNameProp = props.className,
+      other = _objectWithoutProperties(props, ['actionSpacing', 'children', 'className']);
 
+  var classes = context.styleManager.render(styleSheet);
+  var className = (0, _classnames2.default)(classes.cardActions, classNameProp);
 
   return _react2.default.createElement(
     'div',
-    (0, _extends3.default)({ className: (0, _classnames2.default)(classes.root, className) }, other),
-    disableActionSpacing ? children : (0, _reactHelpers.cloneChildrenWithClassName)(children, classes.actionSpacing)
+    _extends({ className: className }, other),
+    actionSpacing ? (0, _reactHelpers.cloneChildrenWithClassName)(children, classes.actionSpacing) : children
   );
 }
 
-CardActions.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
-  classes: require('prop-types').object.isRequired,
-  disableActionSpacing: require('prop-types').bool.isRequired,
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)
-}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'disableActionSpacing', require('prop-types').bool), _ref) : {};
-CardActions.defaultProps = {
-  disableActionSpacing: false
+CardActions.propTypes = {
+  actionSpacing: _react.PropTypes.bool,
+  /**
+   * The content of the component.
+   */
+  children: _react.PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
+  className: _react.PropTypes.string
 };
 
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiCardActions' })(CardActions);
+CardActions.defaultProps = {
+  actionSpacing: true
+};
+
+CardActions.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};

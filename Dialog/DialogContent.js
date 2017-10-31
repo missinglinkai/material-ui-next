@@ -3,86 +3,67 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+var _assign = require('object-assign');
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _ref;
+exports.default = DialogContent;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
 
-var styles = exports.styles = function styles(theme) {
-  var spacing = theme.spacing.unit * 3;
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('DialogContent', function () {
+  var gutter = 24;
   return {
     root: {
       flex: '1 1 auto',
       overflowY: 'auto',
-      padding: '0 ' + spacing + 'px ' + spacing + 'px ' + spacing + 'px',
+      padding: '0 ' + gutter + 'px ' + gutter + 'px ' + gutter + 'px',
       '&:first-child': {
-        paddingTop: spacing
+        paddingTop: gutter
       }
     }
   };
-};
+});
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * The content of the component.
-   */
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string
-};
-
-
-function DialogContent(props) {
-  var classes = props.classes,
-      children = props.children,
+function DialogContent(props, context) {
+  var children = props.children,
       className = props.className,
-      other = (0, _objectWithoutProperties3.default)(props, ['classes', 'children', 'className']);
+      other = _objectWithoutProperties(props, ['children', 'className']);
 
+  var classes = context.styleManager.render(styleSheet);
 
   return _react2.default.createElement(
     'div',
-    (0, _extends3.default)({ className: (0, _classnames2.default)(classes.root, className) }, other),
+    _extends({ className: (0, _classnames2.default)(classes.root, className) }, other),
     children
   );
 }
 
-DialogContent.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
-  classes: require('prop-types').object.isRequired,
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)
-}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), _ref) : {};
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiDialogContent' })(DialogContent);
+DialogContent.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: _react.PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
+  className: _react.PropTypes.string
+};
+
+DialogContent.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};

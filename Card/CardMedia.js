@@ -3,123 +3,53 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+var _assign = require('object-assign');
 
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _ref;
+exports.default = CardMedia;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _jssThemeReactor = require('jss-theme-reactor');
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _warning = require('warning');
-
-var _warning2 = _interopRequireDefault(_warning);
-
-var _withStyles = require('../styles/withStyles');
-
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_ElementType = require('react').babelPluginFlowReactPropTypes_proptype_ElementType || require('prop-types').any;
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
 
-var styles = exports.styles = {
-  root: {
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center'
-  },
-  rootMedia: {
-    width: '100%'
-  }
-};
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('CardMedia', function () {
+  return {
+    cardMedia: {
+      position: 'relative'
+    }
+  };
+});
 
-var mediaComponents = ['video', 'audio', 'picture', 'iframe', 'img'];
+function CardMedia(props, context) {
+  var classNameProp = props.className,
+      other = _objectWithoutProperties(props, ['className']);
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
+  var classes = context.styleManager.render(styleSheet);
+  var className = (0, _classnames2.default)(classes.cardMedia, classNameProp);
 
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
-
-  /**
-   * Image to be displayed as a background image.
-   * Either `image` or `src` prop must be specified.
-   * Note that caller must specify height otherwise the image will not be visible.
-   */
-  image: require('prop-types').string,
-
-  /**
-   * An alias for `image` property.
-   * Available only with media components.
-   * Media components: `video`, `audio`, `picture`, `iframe`, `img`.
-   */
-  src: require('prop-types').string,
-
-  /**
-   * @ignore
-   */
-  style: require('prop-types').object,
-
-  /**
-   * Component for rendering image.
-   */
-  component: typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType)
-};
-
-
-function CardMedia(props) {
-  var _classNames;
-
-  var classes = props.classes,
-      className = props.className,
-      image = props.image,
-      style = props.style,
-      src = props.src,
-      ComponentProp = props.component,
-      other = (0, _objectWithoutProperties3.default)(props, ['classes', 'className', 'image', 'style', 'src', 'component']);
-
-
-  process.env.NODE_ENV !== "production" ? (0, _warning2.default)(Boolean(image || src), 'Material-UI: either `image` or `src` property must be specified.') : void 0;
-
-  var isMediaComponent = mediaComponents.indexOf(ComponentProp) !== -1;
-  var composedStyle = !isMediaComponent && image ? (0, _extends3.default)({ backgroundImage: 'url(' + image + ')' }, style) : style;
-  var composedClassName = (0, _classnames2.default)((_classNames = {}, (0, _defineProperty3.default)(_classNames, classes.root, !isMediaComponent), (0, _defineProperty3.default)(_classNames, classes.rootMedia, isMediaComponent), _classNames), className);
-
-  return _react2.default.createElement(ComponentProp, (0, _extends3.default)({
-    className: composedClassName,
-    style: composedStyle,
-    src: isMediaComponent ? image || src : undefined
-  }, other));
+  return _react2.default.createElement('div', _extends({ className: className }, other));
 }
 
-CardMedia.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
-  classes: require('prop-types').object.isRequired,
-  component: typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType.isRequired ? babelPluginFlowReactPropTypes_proptype_ElementType.isRequired : babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType).isRequired
-}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'image', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'src', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'style', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'component', typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType)), _ref) : {};
-CardMedia.defaultProps = {
-  component: 'div'
+CardMedia.propTypes = {
+  /**
+   * The CSS class name of the root element.
+   */
+  className: _react.PropTypes.string
 };
 
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiCardMedia' })(CardMedia);
+CardMedia.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};

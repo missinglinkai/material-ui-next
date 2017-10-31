@@ -3,43 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = undefined;
+exports.styleSheet = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _assign = require('object-assign');
 
-var _extends3 = _interopRequireDefault(_extends2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+exports.default = Chip;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _jssThemeReactor = require('jss-theme-reactor');
 
 var _classnames = require('classnames');
 
@@ -49,62 +25,53 @@ var _keycode = require('keycode');
 
 var _keycode2 = _interopRequireDefault(_keycode);
 
-var _withStyles = require('../styles/withStyles');
+var _cancel = require('../svg-icons/cancel');
 
-var _withStyles2 = _interopRequireDefault(_withStyles);
-
-var _Cancel = require('../svg-icons/Cancel');
-
-var _Cancel2 = _interopRequireDefault(_Cancel);
+var _cancel2 = _interopRequireDefault(_cancel);
 
 var _colorManipulator = require('../styles/colorManipulator');
 
-var _Avatar = require('../Avatar/Avatar');
-
-var _Avatar2 = _interopRequireDefault(_Avatar);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var babelPluginFlowReactPropTypes_proptype_Element = require('react').babelPluginFlowReactPropTypes_proptype_Element || require('prop-types').any;
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
 
-var styles = exports.styles = function styles(theme) {
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Chip', function (theme) {
+  var palette = theme.palette,
+      shadows = theme.shadows,
+      transitions = theme.transitions;
+
   var height = 32;
-  var backgroundColor = (0, _colorManipulator.emphasize)(theme.palette.background.default, 0.12);
-  var deleteIconColor = (0, _colorManipulator.fade)(theme.palette.text.primary, 0.26);
-
+  var backgroundColor = (0, _colorManipulator.emphasize)(palette.background.default, 0.12);
+  var deleteIconColor = (0, _colorManipulator.fade)(palette.text.primary, 0.26);
   return {
     root: {
-      fontFamily: theme.typography.fontFamily,
+      fontFamily: 'inherit', // Override `button` default system font
       fontSize: 13,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       height: height,
-      color: theme.palette.getContrastText(backgroundColor),
+      color: palette.getContrastText(backgroundColor),
       backgroundColor: backgroundColor,
       borderRadius: height / 2,
       whiteSpace: 'nowrap',
       width: 'fit-content',
-      transition: theme.transitions.create(),
-      // label will inherit this from root, then `clickable` class overrides this for both
-      cursor: 'default',
+      transition: transitions.create(),
+      cursor: 'default', // label will inherit this from root, then `clickable` class overrides this for both
       outline: 'none', // No outline on focused element in Chrome (as triggered by tabIndex prop)
       border: 'none', // Remove `button` border
-      padding: 0 // Remove `button` padding
-    },
+      padding: 0 },
     clickable: {
-      // Remove grey highlight
-      WebkitTapHighlightColor: theme.palette.common.transparent,
-      cursor: 'pointer',
       '&:hover, &:focus': {
         backgroundColor: (0, _colorManipulator.emphasize)(backgroundColor, 0.08)
       },
       '&:active': {
-        boxShadow: theme.shadows[1],
+        boxShadow: shadows[1],
         backgroundColor: (0, _colorManipulator.emphasize)(backgroundColor, 0.12)
-      }
+      },
+      cursor: 'pointer'
     },
     deletable: {
       '&:focus': {
@@ -122,8 +89,6 @@ var styles = exports.styles = function styles(theme) {
       height: 19
     },
     label: {
-      display: 'flex',
-      alignItems: 'center',
       paddingLeft: 12,
       paddingRight: 12,
       userSelect: 'none',
@@ -131,188 +96,151 @@ var styles = exports.styles = function styles(theme) {
       cursor: 'inherit'
     },
     deleteIcon: {
-      // Remove grey highlight
-      WebkitTapHighlightColor: theme.palette.common.transparent,
       color: deleteIconColor,
-      cursor: 'pointer',
-      height: 'auto',
-      margin: '0 4px 0 -8px',
       '&:hover': {
         color: (0, _colorManipulator.fade)(deleteIconColor, 0.4)
-      }
+      },
+      cursor: 'pointer',
+      margin: '0 4px 0 -8px'
     }
   };
-};
-
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * Avatar element.
-   */
-  avatar: typeof babelPluginFlowReactPropTypes_proptype_Element === 'function' ? babelPluginFlowReactPropTypes_proptype_Element : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Element),
-
-  /**
-   * Useful to extend the style applied to components.
-   */
-  classes: require('prop-types').object,
-
-  /**
-   * @ignore
-   */
-  className: require('prop-types').string,
-
-  /**
-   * Custom delete icon. Will be shown only if `onRequestDelete` is set.
-   */
-  deleteIcon: typeof babelPluginFlowReactPropTypes_proptype_Element === 'function' ? babelPluginFlowReactPropTypes_proptype_Element : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Element),
-
-  /**
-   * The content of the label.
-   */
-  label: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-
-  /**
-   * @ignore
-   */
-  onClick: require('prop-types').func,
-
-  /**
-   * @ignore
-   */
-  onKeyDown: require('prop-types').func,
-
-  /**
-   * Callback function fired when the delete icon is clicked.
-   * If set, the delete icon will be shown.
-   */
-  onRequestDelete: require('prop-types').func,
-
-  /**
-   * @ignore
-   */
-  tabIndex: require('prop-types').oneOfType([require('prop-types').number, require('prop-types').string])
-};
+});
 
 /**
  * Chips represent complex entities in small blocks, such as a contact.
+ *
+ * ```jsx
+ * <Chip avatar={<Avatar>} label="Label text" />
+ * ```
  */
-var Chip = function (_React$Component) {
-  (0, _inherits3.default)(Chip, _React$Component);
+function Chip(props, context) {
+  var avatarProp = props.avatar,
+      classNameProp = props.className,
+      deleteIconClassNameProp = props.deleteIconClassName,
+      label = props.label,
+      labelClassNameProp = props.labelClassName,
+      onClick = props.onClick,
+      onKeyDown = props.onKeyDown,
+      onRequestDelete = props.onRequestDelete,
+      tabIndexProp = props.tabIndex,
+      other = _objectWithoutProperties(props, ['avatar', 'className', 'deleteIconClassName', 'label', 'labelClassName', 'onClick', 'onKeyDown', 'onRequestDelete', 'tabIndex']);
 
-  function Chip() {
-    var _ref;
+  var chipRef = void 0;
 
-    var _temp, _this, _ret;
+  var handleDeleteIconClick = function handleDeleteIconClick(event) {
+    // Stop the event from bubbling up to the `Chip`
+    event.stopPropagation();
+    onRequestDelete(event);
+  };
 
-    (0, _classCallCheck3.default)(this, Chip);
+  var handleKeyDown = function handleKeyDown(event) {
+    var key = (0, _keycode2.default)(event);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
+    if (onClick && (key === 'space' || key === 'enter')) {
+      event.preventDefault();
+      onClick(event);
+    } else if (onRequestDelete && key === 'backspace') {
+      event.preventDefault();
+      onRequestDelete(event);
+    } else if (key === 'esc') {
+      event.preventDefault();
+      chipRef.blur();
     }
+    onKeyDown(event);
+  };
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Chip.__proto__ || (0, _getPrototypeOf2.default)(Chip)).call.apply(_ref, [this].concat(args))), _this), _this.chipRef = null, _this.handleDeleteIconClick = function (event) {
-      // Stop the event from bubbling up to the `Chip`
-      event.stopPropagation();
-      var onRequestDelete = _this.props.onRequestDelete;
+  var classes = context.styleManager.render(styleSheet);
+  var className = (0, _classnames2.default)(classes.root, _defineProperty({}, classes.clickable, onClick), _defineProperty({}, classes.deletable, onRequestDelete), classNameProp);
+  var labelClassName = (0, _classnames2.default)(classes.label, labelClassNameProp);
 
-      if (onRequestDelete) {
-        onRequestDelete(event);
-      }
-    }, _this.handleKeyDown = function (event) {
-      var _this$props = _this.props,
-          onClick = _this$props.onClick,
-          onRequestDelete = _this$props.onRequestDelete,
-          onKeyDown = _this$props.onKeyDown;
-
-      var key = (0, _keycode2.default)(event);
-
-      if (onClick && (key === 'space' || key === 'enter')) {
-        event.preventDefault();
-        onClick(event);
-      } else if (onRequestDelete && key === 'backspace') {
-        event.preventDefault();
-        onRequestDelete(event);
-      } else if (key === 'esc') {
-        event.preventDefault();
-        if (_this.chipRef) {
-          _this.chipRef.blur();
-        }
-      }
-
-      if (onKeyDown) {
-        onKeyDown(event);
-      }
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+  var deleteIcon = null;
+  if (onRequestDelete) {
+    var deleteIconClassName = (0, _classnames2.default)(classes.deleteIcon, deleteIconClassNameProp);
+    deleteIcon = _react2.default.createElement(_cancel2.default, { className: deleteIconClassName, onClick: handleDeleteIconClick });
   }
 
-  (0, _createClass3.default)(Chip, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
+  var avatar = null;
+  if (avatarProp && (0, _react.isValidElement)(avatarProp)) {
+    var avatarClassName = (0, _classnames2.default)(classes.avatar, avatarProp.props.className);
+    var avatarChildrenClassName = (0, _classnames2.default)(classes.avatarChildren, avatarProp.props.childrenClassName);
 
-      var _props = this.props,
-          avatarProp = _props.avatar,
-          classes = _props.classes,
-          classNameProp = _props.className,
-          label = _props.label,
-          onClick = _props.onClick,
-          onKeyDown = _props.onKeyDown,
-          onRequestDelete = _props.onRequestDelete,
-          deleteIconProp = _props.deleteIcon,
-          tabIndexProp = _props.tabIndex,
-          other = (0, _objectWithoutProperties3.default)(_props, ['avatar', 'classes', 'className', 'label', 'onClick', 'onKeyDown', 'onRequestDelete', 'deleteIcon', 'tabIndex']);
+    avatar = (0, _react.cloneElement)(avatarProp, {
+      className: avatarClassName,
+      childrenClassName: avatarChildrenClassName
+    });
+  }
 
+  var tabIndex = onClick || onRequestDelete ? tabIndexProp : -1;
 
-      var className = (0, _classnames2.default)(classes.root, (0, _defineProperty3.default)({}, classes.clickable, onClick), (0, _defineProperty3.default)({}, classes.deletable, onRequestDelete), classNameProp);
-
-      var deleteIcon = null;
-      if (onRequestDelete && deleteIconProp && _react2.default.isValidElement(deleteIconProp)) {
-        deleteIcon = _react2.default.cloneElement(deleteIconProp, {
-          onClick: this.handleDeleteIconClick,
-          className: (0, _classnames2.default)(classes.deleteIcon, deleteIconProp.props.className)
-        });
-      } else if (onRequestDelete) {
-        deleteIcon = _react2.default.createElement(_Cancel2.default, { className: classes.deleteIcon, onClick: this.handleDeleteIconClick });
+  return _react2.default.createElement(
+    'button',
+    _extends({
+      className: className,
+      onClick: onClick,
+      tabIndex: tabIndex,
+      onKeyDown: handleKeyDown,
+      ref: function ref(c) {
+        chipRef = c;
       }
+    }, other),
+    avatar,
+    _react2.default.createElement(
+      'span',
+      { className: labelClassName },
+      label
+    ),
+    deleteIcon
+  );
+}
 
-      var avatar = null;
-      if (avatarProp && _react2.default.isValidElement(avatarProp)) {
-        // $FlowFixMe - this looks strictly correct, not sure why it errors.
-        avatar = _react2.default.cloneElement(avatarProp, {
-          className: (0, _classnames2.default)(classes.avatar, avatarProp.props.className),
-          childrenClassName: (0, _classnames2.default)(classes.avatarChildren, avatarProp.props.childrenClassName)
-        });
-      }
+Chip.propTypes = {
+  /**
+   * Avatar element.
+   */
+  avatar: _react.PropTypes.node,
+  /**
+   * CSS `className` of the root element.
+   */
+  className: _react.PropTypes.string,
+  /**
+   * CSS `className` of the delete icon element.
+   */
+  deleteIconClassName: _react.PropTypes.string,
+  /**
+   * The label text.
+   */
+  label: _react.PropTypes.string,
+  /**
+   * CSS `className` of the label.
+   */
+  labelClassName: _react.PropTypes.string,
+  /**
+   * @ignore
+   * Callback function fired when the `Chip` element is clicked.
+   * If set, the chip will by styled for hover focus and active states.
+   * @param {object} event `onClick` event targeting the root element.
+   */
+  onClick: _react.PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: _react.PropTypes.func,
+  /**
+   * Callback function fired when the delete icon is clicked.
+   * If set, the delete icon will be shown.
+   * @param {object} event `onClick` event targeting the delete icon element.
+   */
+  onRequestDelete: _react.PropTypes.func,
+  /**
+   * @ignore
+   */
+  tabIndex: _react.PropTypes.number
+};
 
-      var tabIndex = tabIndexProp;
+Chip.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};
 
-      if (!tabIndex) {
-        tabIndex = onClick || onRequestDelete ? 0 : -1;
-      }
-
-      return _react2.default.createElement(
-        'div',
-        (0, _extends3.default)({
-          role: 'button',
-          className: className,
-          tabIndex: tabIndex,
-          onClick: onClick,
-          onKeyDown: this.handleKeyDown
-        }, other, {
-          ref: function ref(node) {
-            _this2.chipRef = node;
-          }
-        }),
-        avatar,
-        _react2.default.createElement(
-          'span',
-          { className: classes.label },
-          label
-        ),
-        deleteIcon
-      );
-    }
-  }]);
-  return Chip;
-}(_react2.default.Component);
-
-exports.default = (0, _withStyles2.default)(styles, { name: 'MuiChip' })(Chip);
+Chip.defaultProps = {
+  onKeyDown: function onKeyDown() {}
+};

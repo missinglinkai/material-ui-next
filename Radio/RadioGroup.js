@@ -3,38 +3,23 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.styleSheet = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _assign = require('object-assign');
 
-var _extends3 = _interopRequireDefault(_extends2);
+var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _jssThemeReactor = require('jss-theme-reactor');
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
 
 var _FormGroup = require('../Form/FormGroup');
 
@@ -44,65 +29,45 @@ var _helpers = require('../utils/helpers');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
-// @inheritedComponent FormGroup
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
-var babelPluginFlowReactPropTypes_proptype_Props = {
-  /**
-   * The content of the component.
-   */
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  /**
-   * The name used to reference the value of the control.
-   */
-  name: require('prop-types').string,
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-  /**
-   * @ignore
-   */
-  onBlur: require('prop-types').func,
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
 
-  /**
-   * Callback fired when a radio button is selected.
-   *
-   * @param {object} event The event source of the callback
-   * @param {string} value The `value` of the selected radio button
-   */
-  onChange: require('prop-types').func,
+var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('RadioGroup', function () {
+  return {
+    root: {
+      flex: '1 1 auto',
+      margin: 0,
+      padding: 0
+    }
+  };
+});
 
-  /**
-   * @ignore
-   */
-  onKeyDown: require('prop-types').func,
-
-  /**
-   * Value of the selected radio button.
-   */
-  value: require('prop-types').string
-};
-
-var RadioGroup = function (_React$Component) {
-  (0, _inherits3.default)(RadioGroup, _React$Component);
+var RadioGroup = function (_Component) {
+  _inherits(RadioGroup, _Component);
 
   function RadioGroup() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    (0, _classCallCheck3.default)(this, RadioGroup);
+    _classCallCheck(this, RadioGroup);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = RadioGroup.__proto__ || (0, _getPrototypeOf2.default)(RadioGroup)).call.apply(_ref, [this].concat(args))), _this), _this.radios = [], _this.focus = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RadioGroup.__proto__ || Object.getPrototypeOf(RadioGroup)).call.apply(_ref, [this].concat(args))), _this), _this.radios = undefined, _this.focus = function () {
       if (!_this.radios || !_this.radios.length) {
         return;
       }
 
       var focusRadios = _this.radios.filter(function (n) {
-        return !n.disabled;
+        return !n.props.disabled;
       });
 
       if (!focusRadios.length) {
@@ -110,7 +75,7 @@ var RadioGroup = function (_React$Component) {
       }
 
       var selectedRadio = (0, _helpers.find)(focusRadios, function (n) {
-        return n.checked;
+        return n.props.checked;
       });
 
       if (selectedRadio) {
@@ -123,56 +88,65 @@ var RadioGroup = function (_React$Component) {
       if (checked && _this.props.onChange) {
         _this.props.onChange(event, event.target.value);
       }
-    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  (0, _createClass3.default)(RadioGroup, [{
+  _createClass(RadioGroup, [{
     key: 'render',
     value: function render() {
       var _this2 = this;
 
       var _props = this.props,
           children = _props.children,
+          classNameProp = _props.className,
           name = _props.name,
-          value = _props.value,
+          selectedValue = _props.selectedValue,
           onChange = _props.onChange,
-          other = (0, _objectWithoutProperties3.default)(_props, ['children', 'name', 'value', 'onChange']);
+          other = _objectWithoutProperties(_props, ['children', 'className', 'name', 'selectedValue', 'onChange']);
 
+      var classes = this.context.styleManager.render(styleSheet);
 
       this.radios = [];
 
       return _react2.default.createElement(
         _FormGroup2.default,
-        (0, _extends3.default)({ role: 'radiogroup' }, other),
-        _react2.default.Children.map(children, function (child, index) {
-          if (!_react2.default.isValidElement(child)) {
-            return null;
-          }
-
-          return _react2.default.cloneElement(child, {
+        _extends({
+          className: (0, _classnames2.default)(classes.root, classNameProp),
+          'data-mui-test': 'RadioGroup',
+          role: 'radiogroup'
+        }, other),
+        _react.Children.map(children, function (child, index) {
+          var selected = selectedValue === child.props.value;
+          return (0, _react.cloneElement)(child, {
             key: index,
             name: name,
-            inputRef: function inputRef(node) {
-              if (node) {
-                _this2.radios.push(node);
-              }
+            ref: function ref(c) {
+              _this2.radios.push(c);
             },
-            checked: value === child.props.value,
+            checked: selected,
             onChange: _this2.handleRadioChange
           });
         })
       );
     }
   }]);
-  return RadioGroup;
-}(_react2.default.Component);
 
-RadioGroup.propTypes = process.env.NODE_ENV !== "production" ? {
-  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
-  name: require('prop-types').string,
-  onBlur: require('prop-types').func,
-  onChange: require('prop-types').func,
-  onKeyDown: require('prop-types').func,
-  value: require('prop-types').string
-} : {};
+  return RadioGroup;
+}(_react.Component);
+
+RadioGroup.propTypes = {
+  children: _react.PropTypes.node,
+  /**
+   * The CSS class name of the root element.
+   */
+  className: _react.PropTypes.string,
+  name: _react.PropTypes.string,
+  onBlur: _react.PropTypes.func,
+  onChange: _react.PropTypes.func,
+  onKeyDown: _react.PropTypes.func,
+  selectedValue: _react.PropTypes.string
+};
+RadioGroup.contextTypes = {
+  styleManager: _react.PropTypes.object.isRequired
+};
 exports.default = RadioGroup;

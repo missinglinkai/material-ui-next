@@ -13,6 +13,8 @@ exports.default = Text;
 
 var _react = require('react');
 
+var _propTypes = require('prop_types');
+
 var _react2 = _interopRequireDefault(_react);
 
 var _jssThemeReactor = require('jss-theme-reactor');
@@ -91,19 +93,19 @@ function Text(props, context) {
 }
 
 Text.propTypes = {
-  align: _react.PropTypes.oneOf(['center']),
-  children: _react.PropTypes.node,
+  align: _propTypes.oneOf(['center']),
+  children: _propTypes.node,
   /**
    * The CSS class name of the root element.
    */
-  className: _react.PropTypes.string,
-  colorInherit: _react.PropTypes.bool,
-  component: _react.PropTypes.string,
-  gutterBottom: _react.PropTypes.bool,
-  noWrap: _react.PropTypes.bool,
-  paragraph: _react.PropTypes.bool,
-  secondary: _react.PropTypes.bool,
-  type: _react.PropTypes.oneOf(['display4', 'display3', 'display2', 'display1', 'headline', 'title', 'subheading', 'body2', 'body1', 'caption', 'button'])
+  className: _propTypes.string,
+  colorInherit: _propTypes.bool,
+  component: _propTypes.string,
+  gutterBottom: _propTypes.bool,
+  noWrap: _propTypes.bool,
+  paragraph: _propTypes.bool,
+  secondary: _propTypes.bool,
+  type: _propTypes.oneOf(['display4', 'display3', 'display2', 'display1', 'headline', 'title', 'subheading', 'body2', 'body1', 'caption', 'button'])
 };
 
 Text.defaultProps = {
@@ -117,5 +119,5 @@ Text.defaultProps = {
 };
 
 Text.contextTypes = {
-  styleManager: _react.PropTypes.object.isRequired
+  styleManager: _propTypes.object.isRequired
 };

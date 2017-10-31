@@ -13,6 +13,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
+var _propTypes = require('prop_types');
+
 var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = require('react-dom');
@@ -342,71 +344,71 @@ Modal.propTypes = {
   /**
    * Set to false to disable the backdrop, or true to enable it.
    */
-  backdrop: _react.PropTypes.bool,
-  backdropClassName: _react.PropTypes.string,
+  backdrop: _propTypes.bool,
+  backdropClassName: _propTypes.string,
   /**
    * Pass a component class to use as the backdrop.
    */
-  backdropComponent: _react.PropTypes.func,
-  backdropTransitionDuration: _react.PropTypes.number,
-  backdropVisible: _react.PropTypes.bool,
+  backdropComponent: _propTypes.func,
+  backdropTransitionDuration: _propTypes.number,
+  backdropVisible: _propTypes.bool,
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */
-  children: _react.PropTypes.element,
+  children: _propTypes.element,
   /**
    * The CSS class name of the root element.
    */
-  className: _react.PropTypes.string,
+  className: _propTypes.string,
   /**
    * If `true`, clicking the backdrop will fire the `onRequestClose` callback.
    */
-  hideOnBackdropClick: _react.PropTypes.bool,
+  hideOnBackdropClick: _propTypes.bool,
   /**
    * If `true`, hitting escape will fire the `onRequestClose` callback.
    */
-  hideOnEscapeKeyUp: _react.PropTypes.bool,
+  hideOnEscapeKeyUp: _propTypes.bool,
   /**
    * @ignore
    */
-  modalManager: _react.PropTypes.object,
+  modalManager: _propTypes.object,
   /**
    * Callback fires when the backdrop is clicked on.
    */
-  onBackdropClick: _react.PropTypes.func,
+  onBackdropClick: _propTypes.func,
   /**
    * Callback fired before the modal is entering.
    */
-  onEnter: _react.PropTypes.func,
+  onEnter: _propTypes.func,
   /**
    * Callback fired when the modal is entering.
    */
-  onEntering: _react.PropTypes.func,
+  onEntering: _propTypes.func,
   /**
    * Callback fired when the modal has entered.
    */
-  onEntered: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
+  onEntered: _propTypes.func, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fires when the escape key is pressed and the modal is in focus.
    */
-  onEscapeKeyUp: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
+  onEscapeKeyUp: _propTypes.func, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired before the modal is exiting.
    */
-  onExit: _react.PropTypes.func,
+  onExit: _propTypes.func,
   /**
    * Callback fired when the modal is exiting.
    */
-  onExiting: _react.PropTypes.func,
+  onExiting: _propTypes.func,
   /**
    * Callback fired when the modal has exited.
    */
-  onExited: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
+  onExited: _propTypes.func, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired when the modal requests to be closed.
    */
-  onRequestClose: _react.PropTypes.func,
-  show: _react.PropTypes.bool
+  onRequestClose: _propTypes.func,
+  show: _propTypes.bool
 };
 Modal.defaultProps = {
   backdrop: true,
@@ -419,7 +421,7 @@ Modal.defaultProps = {
   show: false
 };
 Modal.contextTypes = {
-  styleManager: _react.PropTypes.object.isRequired
+  styleManager: _propTypes.object.isRequired
 };
 
 var _initialiseProps = function _initialiseProps() {

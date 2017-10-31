@@ -9,6 +9,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
+var _propTypes = require('prop_types');
+
 var _jss = require('jss');
 
 var _styleManager = require('jss-theme-reactor/styleManager');
@@ -111,12 +113,12 @@ var MuiThemeProvider = function (_Component) {
 }(_react.Component);
 
 MuiThemeProvider.propTypes = {
-  children: _react.PropTypes.node.isRequired,
-  styleManager: _react.PropTypes.object,
-  theme: _react.PropTypes.object
+  children: _propTypes.node.isRequired,
+  styleManager: _propTypes.object,
+  theme: _propTypes.object
 };
 MuiThemeProvider.childContextTypes = {
-  styleManager: _react.PropTypes.object.isRequired,
-  theme: _react.PropTypes.object.isRequired
+  styleManager: _propTypes.object.isRequired,
+  theme: _propTypes.object.isRequired
 };
 exports.default = MuiThemeProvider;

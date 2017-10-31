@@ -15,6 +15,8 @@ exports.createSwitch = createSwitch;
 
 var _react = require('react');
 
+var _propTypes = require('prop_types');
+
 var _react2 = _interopRequireDefault(_react);
 
 var _jssThemeReactor = require('jss-theme-reactor');
@@ -202,53 +204,53 @@ function createSwitch() {
     /**
      * SwitchBase is checked if true.
      */
-    checked: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.string]),
+    checked: _propTypes.oneOfType([_propTypes.bool, _propTypes.string]),
     /**
      * The CSS class name of the root element when checked.
      */
-    checkedClassName: _react.PropTypes.string,
-    checkedIcon: _react.PropTypes.node,
+    checkedClassName: _propTypes.string,
+    checkedIcon: _propTypes.node,
     /**
      * The CSS class name of the root element.
      */
-    className: _react.PropTypes.string,
+    className: _propTypes.string,
     /**
      * @ignore
      */
-    defaultChecked: _react.PropTypes.bool,
+    defaultChecked: _propTypes.bool,
     /**
      * If `true`, the switch will be disabled.
      */
-    disabled: _react.PropTypes.bool,
+    disabled: _propTypes.bool,
     /**
      * The CSS class name of the root element when disabled.
      */
-    disabledClassName: _react.PropTypes.string,
-    icon: _react.PropTypes.node,
+    disabledClassName: _propTypes.string,
+    icon: _propTypes.node,
     /*
      * @ignore
      */
-    name: _react.PropTypes.string,
+    name: _propTypes.string,
     /**
      * Callback function that is fired when the switch is changed.
      *
      * @param {object} event `change` event
      * @param {boolean} checked The `checked` value of the switch
      */
-    onChange: _react.PropTypes.func,
+    onChange: _propTypes.func,
     /**
      * If false, the ripple effect will be disabled.
      */
-    ripple: _react.PropTypes.bool,
+    ripple: _propTypes.bool,
     /**
      * @ignore
      */
-    tabIndex: _react.PropTypes.string,
-    value: _react.PropTypes.string
+    tabIndex: _propTypes.string,
+    value: _propTypes.string
   }, _class.defaultProps = {
     icon: defaultIcon,
     checkedIcon: defaultCheckedIcon
   }, _class.contextTypes = {
-    styleManager: _react.PropTypes.object.isRequired
+    styleManager: _propTypes.object.isRequired
   }, _temp2;
 }

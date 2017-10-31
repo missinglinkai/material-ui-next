@@ -12,6 +12,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
+var _propTypes = require('prop_types');
+
 var _react2 = _interopRequireDefault(_react);
 
 var _Transition = require('../internal/Transition');
@@ -88,42 +90,42 @@ var Fade = function (_Component) {
 }(_react.Component);
 
 Fade.propTypes = {
-  children: _react.PropTypes.node,
+  children: _propTypes.node,
   /**
    * Set to true to transition in.
    */
-  in: _react.PropTypes.bool,
+  in: _propTypes.bool,
   /**
    * Callback fired before the component is entering.
    */
-  onEnter: _react.PropTypes.func,
+  onEnter: _propTypes.func,
   /**
    * Callback fired when the component is entering.
    */
-  onEntering: _react.PropTypes.func,
+  onEntering: _propTypes.func,
   /**
    * Callback fired when the component has entered.
    */
-  onEntered: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
+  onEntered: _propTypes.func, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired before the component is exiting.
    */
-  onExit: _react.PropTypes.func,
+  onExit: _propTypes.func,
   /**
    * Callback fired when the component is exiting.
    */
-  onExiting: _react.PropTypes.func,
+  onExiting: _propTypes.func,
   /**
    * Callback fired when the component has exited.
    */
-  onExited: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
-  transitionDuration: _react.PropTypes.number
+  onExited: _propTypes.func, // eslint-disable-line react/sort-prop-types
+  transitionDuration: _propTypes.number
 };
 Fade.defaultProps = {
   in: false,
   transitionDuration: 300
 };
 Fade.contextTypes = {
-  theme: _react.PropTypes.object.isRequired
+  theme: _propTypes.object.isRequired
 };
 exports.default = Fade;

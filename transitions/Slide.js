@@ -12,6 +12,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
+var _propTypes = require('prop_types');
+
 var _react2 = _interopRequireDefault(_react);
 
 var _Transition = require('../internal/Transition');
@@ -114,47 +116,47 @@ Slide.propTypes = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */
-  children: _react.PropTypes.node,
+  children: _propTypes.node,
   /**
    * The CSS class name of the root element.
    */
-  className: _react.PropTypes.string,
-  direction: _react.PropTypes.oneOf(['left', 'right', 'up', 'down']),
+  className: _propTypes.string,
+  direction: _propTypes.oneOf(['left', 'right', 'up', 'down']),
   /**
    * Set to slide in by a fixed number of pixels or %.
    */
-  offset: _react.PropTypes.string,
+  offset: _propTypes.string,
   /**
    * Callback fired before the component is entering.
    */
-  onEnter: _react.PropTypes.func,
+  onEnter: _propTypes.func,
   /**
    * Callback fired when the component is entering.
    */
-  onEntering: _react.PropTypes.func,
+  onEntering: _propTypes.func,
   /**
    * Callback fired when the component has entered.
    */
-  onEntered: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
+  onEntered: _propTypes.func, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired before the component is exiting.
    */
-  onExit: _react.PropTypes.func,
+  onExit: _propTypes.func,
   /**
    * Callback fired when the component is exiting.
    */
-  onExiting: _react.PropTypes.func,
+  onExiting: _propTypes.func,
   /**
    * Callback fired when the component has exited.
    */
-  onExited: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
-  transitionDuration: _react.PropTypes.number
+  onExited: _propTypes.func, // eslint-disable-line react/sort-prop-types
+  transitionDuration: _propTypes.number
 };
 Slide.defaultProps = {
   direction: 'down',
   transitionDuration: 300
 };
 Slide.contextTypes = {
-  theme: _react.PropTypes.object.isRequired
+  theme: _propTypes.object.isRequired
 };
 exports.default = Slide;

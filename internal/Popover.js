@@ -13,6 +13,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
+var _propTypes = require('prop_types');
+
 var _react2 = _interopRequireDefault(_react);
 
 var _jssThemeReactor = require('jss-theme-reactor');
@@ -365,7 +367,7 @@ Popover.propTypes = {
    * This is the DOM element that will be used
    * to set the position of the popover.
    */
-  anchorEl: _react.PropTypes.object,
+  anchorEl: _propTypes.object,
   /**
    * This is the point on the anchor where the popover's
    * `targetOrigin` will attach to.
@@ -377,71 +379,71 @@ Popover.propTypes = {
   /**
    * The content of the component.
    */
-  children: _react.PropTypes.node,
+  children: _propTypes.node,
   /**
    * The CSS class name of the root element.
    */
-  className: _react.PropTypes.string,
+  className: _propTypes.string,
   /**
    * CSS class or classes applied when the component is entered
    */
-  enteredClassName: _react.PropTypes.string,
+  enteredClassName: _propTypes.string,
   /**
    * CSS class or classes applied while the component is entering
    */
-  enteringClassName: _react.PropTypes.string,
+  enteringClassName: _propTypes.string,
   /**
    * CSS class or classes applied when the component is exited
    */
-  exitedClassName: _react.PropTypes.string,
+  exitedClassName: _propTypes.string,
   /**
    * CSS class or classes applied while the component is exiting
    */
-  exitingClassName: _react.PropTypes.string,
+  exitingClassName: _propTypes.string,
   /**
    * @ignore
    */
-  getContentAnchorEl: _react.PropTypes.func,
+  getContentAnchorEl: _propTypes.func,
   /**
    * If `true`, the Popover will be rendered as a modal with
    * scroll locking, focus trapping and a clickaway layer beneath
    */
-  modal: _react.PropTypes.bool,
+  modal: _propTypes.bool,
   /**
    * Callback fired before the component is entering
    */
-  onEnter: _react.PropTypes.func,
+  onEnter: _propTypes.func,
   /**
    * Callback fired when the component is entering
    */
-  onEntering: _react.PropTypes.func,
+  onEntering: _propTypes.func,
   /**
    * Callback fired when the component has entered
    */
-  onEntered: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
+  onEntered: _propTypes.func, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired before the component is exiting
    */
-  onExit: _react.PropTypes.func,
+  onExit: _propTypes.func,
   /**
    * Callback fired when the component is exiting
    */
-  onExiting: _react.PropTypes.func,
+  onExiting: _propTypes.func,
   /**
    * Callback fired when the component has exited
    */
-  onExited: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
+  onExited: _propTypes.func, // eslint-disable-line react/sort-prop-types
   /**
    * Callback function fired when the popover is requested to be closed.
    *
    * @param {event} event The event that triggered the close request
    */
-  onRequestClose: _react.PropTypes.func,
+  onRequestClose: _propTypes.func,
   /**
    * If `true`, the popover is visible.
    */
-  open: _react.PropTypes.bool,
-  role: _react.PropTypes.string,
+  open: _propTypes.bool,
+  role: _propTypes.string,
   /**
    * This is the point on the popover which
    * will attach to the anchor's origin.
@@ -454,8 +456,8 @@ Popover.propTypes = {
   /**
    * Set to 'auto' to automatically calculate transition time based on height
    */
-  transitionDuration: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]),
-  zDepth: _react.PropTypes.number
+  transitionDuration: _propTypes.oneOfType([_propTypes.number, _propTypes.string]),
+  zDepth: _propTypes.number
 };
 Popover.defaultProps = {
   anchorOrigin: {
@@ -472,6 +474,6 @@ Popover.defaultProps = {
   zDepth: 8
 };
 Popover.contextTypes = {
-  styleManager: _react.PropTypes.object.isRequired
+  styleManager: _propTypes.object.isRequired
 };
 exports.default = Popover;

@@ -10,7 +10,7 @@ var _extends = _assign || function (target) { for (var i = 1; i < arguments.leng
 
 var _react = require('react');
 
-var _propTypes = require('prop_types');
+var _propTypes = require('prop-types');
 
 var _createHelper = require('recompose/createHelper');
 

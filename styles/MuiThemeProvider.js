@@ -9,7 +9,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
-var _propTypes = require('prop_types');
+var _propTypes = require('prop-types');
 
 var _jss = require('jss');
 

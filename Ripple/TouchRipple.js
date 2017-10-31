@@ -13,8 +13,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
-var _propTypes = require('prop-types');
-
 var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = require('react-dom');
@@ -206,14 +204,14 @@ var TouchRipple = function (_Component) {
 }(_react.Component);
 
 TouchRipple.propTypes = {
-  center: _propTypes.bool,
+  center: _react.PropTypes.bool,
   /**
    * The CSS class name of the root element.
    */
-  className: _propTypes.string
+  className: _react.PropTypes.string
 };
 TouchRipple.contextTypes = {
-  theme: _propTypes.object.isRequired,
-  styleManager: _propTypes.object.isRequired
+  theme: _react.PropTypes.object.isRequired,
+  styleManager: _react.PropTypes.object.isRequired
 };
 exports.default = TouchRipple;

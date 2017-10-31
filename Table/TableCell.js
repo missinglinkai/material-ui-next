@@ -13,8 +13,6 @@ exports.default = TableCell;
 
 var _react = require('react');
 
-var _propTypes = require('prop-types');
-
 var _react2 = _interopRequireDefault(_react);
 
 var _jssThemeReactor = require('jss-theme-reactor');
@@ -101,27 +99,27 @@ TableCell.propTypes = {
   /**
    * If `true`, the cell padding will be adjusted to better accomodate a checkbox.
    */
-  checkbox: _propTypes.bool,
+  checkbox: _react.PropTypes.bool,
   /**
    * The table cell contents.
    */
-  children: _propTypes.node,
+  children: _react.PropTypes.node,
   /**
    * The CSS class name of the root element.
    */
-  className: _propTypes.string,
+  className: _react.PropTypes.string,
   /**
    * If set to true, will use more compact cell padding to accomodate more content.
    */
-  compact: _propTypes.bool,
+  compact: _react.PropTypes.bool,
   /**
    * If set to true, will align content to the right hand side.
    */
-  numeric: _propTypes.bool,
+  numeric: _react.PropTypes.bool,
   /**
    * If set to false, will disable left/right cell padding.
    */
-  padding: _propTypes.bool
+  padding: _react.PropTypes.bool
 };
 
 TableCell.defaultProps = {
@@ -132,6 +130,6 @@ TableCell.defaultProps = {
 };
 
 TableCell.contextTypes = {
-  table: _propTypes.object,
-  styleManager: _propTypes.object.isRequired
+  table: _react.PropTypes.object,
+  styleManager: _react.PropTypes.object.isRequired
 };

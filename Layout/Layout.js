@@ -11,8 +11,6 @@ var _assign = require('object-assign');
 
 var _react = require('react');
 
-var _propTypes = require('prop-types');
-
 var _react2 = _interopRequireDefault(_react);
 
 var _jssThemeReactor = require('jss-theme-reactor');
@@ -187,31 +185,31 @@ function Layout(props, context) {
   );
 }
 
-var gridPropType = _propTypes.oneOf(GRID_SIZES);
+var gridPropType = _react.PropTypes.oneOf(GRID_SIZES);
 
 Layout.propTypes = {
   /**
    * The content of the component.
    */
-  children: _propTypes.node,
+  children: _react.PropTypes.node,
   /**
    * The CSS class name of the root element.
    */
-  className: _propTypes.string,
+  className: _react.PropTypes.string,
   /**
    * The element or component used for the root node.
    */
-  component: _propTypes.oneOfType([_propTypes.string, _propTypes.func]),
+  component: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.func]),
   /**
    * It true, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
    */
-  container: _propTypes.bool,
+  container: _react.PropTypes.bool,
   /**
    * It true, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
    */
-  item: _propTypes.bool,
+  item: _react.PropTypes.bool,
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for all the screen sizes with the lowest priority.
@@ -241,30 +239,30 @@ Layout.propTypes = {
    * Defines the `align-items` style property.
    * It's applied for all the screen sizes.
    */
-  align: _propTypes.oneOf([// eslint-disable-line react/sort-prop-types
+  align: _react.PropTypes.oneOf([// eslint-disable-line react/sort-prop-types
   'flex-start', 'center', 'flex-end', 'stretch']),
   /**
    * Defines the `flex-direction` style property.
    * It's applied for all the screen sizes.
    */
-  direction: _propTypes.oneOf([// eslint-disable-line react/sort-prop-types
+  direction: _react.PropTypes.oneOf([// eslint-disable-line react/sort-prop-types
   'row', 'row-reverse', 'column', 'column-reverse']),
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
    */
-  gutter: _propTypes.oneOf(GUTTERS), // eslint-disable-line react/sort-prop-types
+  gutter: _react.PropTypes.oneOf(GUTTERS), // eslint-disable-line react/sort-prop-types
   /**
    * Defines the `justify-content` style property.
    * It's applied for all the screen sizes.
    */
-  justify: _propTypes.oneOf([// eslint-disable-line react/sort-prop-types
+  justify: _react.PropTypes.oneOf([// eslint-disable-line react/sort-prop-types
   'flex-start', 'center', 'flex-end', 'space-between', 'space-around']),
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all the screen sizes.
    */
-  wrap: _propTypes.oneOf([// eslint-disable-line react/sort-prop-types
+  wrap: _react.PropTypes.oneOf([// eslint-disable-line react/sort-prop-types
   'nowrap', 'wrap', 'wrap-reverse'])
 };
 
@@ -280,7 +278,7 @@ Layout.defaultProps = {
 };
 
 Layout.contextTypes = {
-  styleManager: _propTypes.object.isRequired
+  styleManager: _react.PropTypes.object.isRequired
 };
 
 exports.default = Layout;

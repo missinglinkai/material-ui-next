@@ -13,8 +13,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
-var _propTypes = require('prop-types');
-
 var _react2 = _interopRequireDefault(_react);
 
 var _jssThemeReactor = require('jss-theme-reactor');
@@ -207,61 +205,61 @@ Button.propTypes = {
   /**
    * If `true`, the button will use the theme's accent color.
    */
-  accent: _propTypes.bool,
+  accent: _react.PropTypes.bool,
   /**
    * The content of the button.
    */
-  children: _propTypes.node,
+  children: _react.PropTypes.node,
   /**
    * The CSS class name of the root element.
    */
-  className: _propTypes.string,
+  className: _react.PropTypes.string,
   /**
    * Uses a smaller minWidth, ideal for things like card actions.
    */
-  compact: _propTypes.bool,
+  compact: _react.PropTypes.bool,
   /**
    * The element or component used for the root node.
    */
-  component: _propTypes.oneOfType([_propTypes.string, _propTypes.func]),
+  component: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.func]),
   /**
    * If true, will use the theme's contrast color.
    */
-  contrast: _propTypes.bool,
+  contrast: _react.PropTypes.bool,
   /**
    * If `true`, the button will be disabled.
    */
-  disabled: _propTypes.bool,
+  disabled: _react.PropTypes.bool,
   /**
    * If `true`, well use floating action button styling.
    */
-  fab: _propTypes.bool,
+  fab: _react.PropTypes.bool,
   /**
    * If `true`, the button will have a keyboard focus ripple.
    * Ripple must also be true.
    */
-  focusRipple: _propTypes.bool,
+  focusRipple: _react.PropTypes.bool,
   /**
    * The URL to link to when the button is clicked.
    * If set, an `a` element will be used as the root node.
    */
-  href: _propTypes.string,
+  href: _react.PropTypes.string,
   /**
    * If `true`, the button will use the theme's primary color.
    */
-  primary: _propTypes.bool,
+  primary: _react.PropTypes.bool,
   /**
    * If `true`, the button will use raised styling.
    */
-  raised: _propTypes.bool,
+  raised: _react.PropTypes.bool,
   /**
    * If `true`, the button will have a ripple.
    */
-  ripple: _propTypes.bool,
+  ripple: _react.PropTypes.bool,
   /**
    * @ignore
    */
-  type: _propTypes.string
+  type: _react.PropTypes.string
 };
 Button.defaultProps = {
   accent: false,
@@ -277,6 +275,6 @@ Button.defaultProps = {
   type: 'button'
 };
 Button.contextTypes = {
-  styleManager: _propTypes.object.isRequired
+  styleManager: _react.PropTypes.object.isRequired
 };
 exports.default = Button;

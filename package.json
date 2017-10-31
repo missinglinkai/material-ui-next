@@ -21,14 +21,13 @@
   "homepage": "http://material-ui.com/",
   "peerDependencies": {
     "react": "^15.0.0",
-    "react-dom": "^15.0.0",
-    "prop-types": "^15.6.0"
+    "react-dom": "^15.0.0"
   },
   "dependencies": {
     "classnames": "^2.2.5",
     "dom-helpers": "^3.2.0",
     "jss-preset-default": "^1.2.1",
-    "jss-theme-reactor": "https://github.com/missinglinkai/jss-theme-reactor",
+    "jss-theme-reactor": "^0.9.0",
     "keycode": "^2.1.8",
     "lodash": "^4.17.4",
     "object-assign": "^4.1.0",

@@ -13,8 +13,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
-var _propTypes = require('prop-types');
-
 var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = require('react-dom');
@@ -335,59 +333,59 @@ Transition.propTypes = {
   /**
    * The content of the component.
    */
-  children: _propTypes.node,
+  children: _react.PropTypes.node,
   /**
    * The CSS class name of the root element.
    */
-  className: _propTypes.string,
+  className: _react.PropTypes.string,
   /**
    * CSS class or classes applied when the component is entered
    */
-  enteredClassName: _propTypes.string,
+  enteredClassName: _react.PropTypes.string,
   /**
    * CSS class or classes applied while the component is entering
    */
-  enteringClassName: _propTypes.string,
+  enteringClassName: _react.PropTypes.string,
   /**
    * CSS class or classes applied when the component is exited
    */
-  exitedClassName: _propTypes.string,
+  exitedClassName: _react.PropTypes.string,
   /**
    * CSS class or classes applied while the component is exiting
    */
-  exitingClassName: _propTypes.string,
+  exitingClassName: _react.PropTypes.string,
   /**
    * Show the component; triggers the enter or exit animation
    */
-  in: _propTypes.bool,
+  in: _react.PropTypes.bool,
   /**
    * Callback fired before the "entering" classes are applied
    */
-  onEnter: _propTypes.func,
+  onEnter: _react.PropTypes.func,
   /**
    * Callback fired after the "entering" classes are applied
    */
-  onEntering: _propTypes.func,
+  onEntering: _react.PropTypes.func,
   /**
    * Callback fired after the "enter" classes are applied
    */
-  onEntered: _propTypes.func, // eslint-disable-line react/sort-prop-types
+  onEntered: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
   /**
    * Callback fired before the "exiting" classes are applied
    */
-  onExit: _propTypes.func,
+  onExit: _react.PropTypes.func,
   /**
    * Callback fired after the "exiting" classes are applied
    */
-  onExiting: _propTypes.func,
+  onExiting: _react.PropTypes.func,
   /**
    * Callback fired after the "exited" classes are applied
    */
-  onExited: _propTypes.func, // eslint-disable-line react/sort-prop-types
+  onExited: _react.PropTypes.func, // eslint-disable-line react/sort-prop-types
   /**
    * @ignore
    */
-  onRequestTimeout: _propTypes.func,
+  onRequestTimeout: _react.PropTypes.func,
   /**
    * A Timeout for the animation, in milliseconds, to ensure that a node doesn't
    * transition indefinately if the browser transitionEnd events are
@@ -396,16 +394,16 @@ Transition.propTypes = {
    * By default this is set to a high number (5 seconds) as a failsafe. You should consider
    * setting this to the duration of your animation (or a bit above it).
    */
-  timeout: _propTypes.number,
+  timeout: _react.PropTypes.number,
   /**
    * Run the enter animation when the component mounts, if it is initially
    * shown
    */
-  transitionAppear: _propTypes.bool,
+  transitionAppear: _react.PropTypes.bool,
   /**
    * Unmount the component (remove it from the DOM) when it is not shown
    */
-  unmountOnExit: _propTypes.bool
+  unmountOnExit: _react.PropTypes.bool
 };
 Transition.defaultProps = {
   in: false,

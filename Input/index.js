@@ -3,19 +3,32 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.InputLabel = exports.Input = exports.default = undefined;
 
-var _Input2 = require('./Input');
+var _Input = require('./Input');
 
-var _Input3 = _interopRequireDefault(_Input2);
+Object.defineProperty(exports, 'default', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Input).default;
+  }
+});
 
-var _InputLabel2 = require('./InputLabel');
+var _InputAdornment = require('./InputAdornment');
 
-var _InputLabel3 = _interopRequireDefault(_InputLabel2);
+Object.defineProperty(exports, 'InputAdornment', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_InputAdornment).default;
+  }
+});
+
+var _InputLabel = require('./InputLabel');
+
+Object.defineProperty(exports, 'InputLabel', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_InputLabel).default;
+  }
+});
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Input3.default; /* eslint-disable flowtype/require-valid-file-annotation */
-
-exports.Input = _Input3.default;
-exports.InputLabel = _InputLabel3.default;

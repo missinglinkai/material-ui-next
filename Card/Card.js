@@ -3,23 +3,22 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styleSheet = undefined;
 
-var _assign = require('object-assign');
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
 
-var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-exports.default = Card;
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _jssThemeReactor = require('jss-theme-reactor');
-
-var _classnames = require('classnames');
-
-var _classnames2 = _interopRequireDefault(_classnames);
 
 var _Paper = require('../Paper');
 
@@ -27,39 +26,35 @@ var _Paper2 = _interopRequireDefault(_Paper);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
+// @inheritedComponent Paper
 
-var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Card', function () {
-  return {
-    card: {
-      overflow: 'hidden'
-    }
-  };
-});
-
-function Card(props, context) {
-  var classNameProp = props.className,
-      raised = props.raised,
-      other = _objectWithoutProperties(props, ['className', 'raised']);
-
-  var classes = context.styleManager.render(styleSheet);
-  var className = (0, _classnames2.default)(classes.card, classNameProp);
-
-  return _react2.default.createElement(_Paper2.default, _extends({ className: className, zDepth: raised ? 8 : 2 }, other));
-}
-
-Card.propTypes = {
+var babelPluginFlowReactPropTypes_proptype_Props = {
   /**
-   * The CSS class name of the root element.
+   * @ignore
    */
-  className: _react.PropTypes.string,
-  raised: _react.PropTypes.bool
+  className: require('prop-types').string,
+
+  /**
+   * If `true`, the card will use raised styling.
+   */
+  raised: require('prop-types').bool
 };
 
+
+function Card(props) {
+  var raised = props.raised,
+      other = (0, _objectWithoutProperties3.default)(props, ['raised']);
+
+
+  return _react2.default.createElement(_Paper2.default, (0, _extends3.default)({ elevation: raised ? 8 : 2 }, other));
+}
+
+Card.propTypes = process.env.NODE_ENV !== "production" ? (0, _defineProperty3.default)({
+  raised: require('prop-types').bool.isRequired,
+  className: require('prop-types').string
+}, 'raised', require('prop-types').bool) : {};
 Card.defaultProps = {
   raised: false
 };
 
-Card.contextTypes = {
-  styleManager: _react.PropTypes.object.isRequired
-};
+exports.default = Card;

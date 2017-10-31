@@ -3,120 +3,193 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.MUI_SHEET_ORDER = undefined;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _react = require('react');
 
-var _jss = require('jss');
+var _react2 = _interopRequireDefault(_react);
 
-var _styleManager = require('jss-theme-reactor/styleManager');
+var _propTypes = require('prop-types');
 
-var _jssPresetDefault = require('jss-preset-default');
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _jssPresetDefault2 = _interopRequireDefault(_jssPresetDefault);
+var _brcast = require('brcast');
 
-var _theme = require('./theme');
+var _brcast2 = _interopRequireDefault(_brcast);
+
+var _themeListener = require('./themeListener');
+
+var _themeListener2 = _interopRequireDefault(_themeListener);
+
+var _exactProp = require('../utils/exactProp');
+
+var _exactProp2 = _interopRequireDefault(_exactProp);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+/**
+ * This component takes a `theme` property.
+ * It makes the `theme` available down the React tree thanks to React context.
+ * This component should preferably be used at **the root of your component tree**.
+ */
+var MuiThemeProvider = function (_React$Component) {
+  (0, _inherits3.default)(MuiThemeProvider, _React$Component);
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+  function MuiThemeProvider(props, context) {
+    (0, _classCallCheck3.default)(this, MuiThemeProvider);
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
+    // Get the outer theme from the context, can be null
+    var _this = (0, _possibleConstructorReturn3.default)(this, (MuiThemeProvider.__proto__ || (0, _getPrototypeOf2.default)(MuiThemeProvider)).call(this, props, context));
 
-
-var MUI_SHEET_ORDER = exports.MUI_SHEET_ORDER = ['Layout', 'Collapse', 'Fade', 'Slide', 'Backdrop', 'Modal', 'Ripple', 'TouchRipple', 'ButtonBase', 'FormLabel', 'FormGroup', 'Text', 'Paper', 'Divider', 'Popover', 'Button', 'IconButton', 'SvgIcon', 'SwitchBase', 'Switch', 'Checkbox', 'Radio', 'RadioGroup', 'SwitchLabel', 'Dialog', 'DialogActions', 'DialogContent', 'DialogContentText', 'DialogTitle', 'TabIndicator', 'Tab', 'Tabs', 'BottomNavigationButton', 'BottomNavigation', 'CircularProgress', 'LinearProgress', 'AppBar', 'Drawer', 'ListItem', 'ListItemText', 'ListItemSecondaryAction', 'ListSubheader', 'List', 'Menu', 'MenuItem', 'Avatar', 'CardContent', 'CardMedia', 'CardActions', 'CardHeader', 'Card', 'TextFieldLabel', 'TextFieldInput', 'TextField', 'Table', 'TableHead', 'TableRow', 'TableCell', 'TableBody', 'TableSortLabel', 'Toolbar'];
-
-var MuiThemeProvider = function (_Component) {
-  _inherits(MuiThemeProvider, _Component);
-
-  function MuiThemeProvider() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, MuiThemeProvider);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MuiThemeProvider.__proto__ || Object.getPrototypeOf(MuiThemeProvider)).call.apply(_ref, [this].concat(args))), _this), _this.theme = undefined, _this.styleManager = undefined, _temp), _possibleConstructorReturn(_this, _ret);
+    _this.broadcast = (0, _brcast2.default)();
+    _this.unsubscribeId = null;
+    _this.outerTheme = null;
+    _this.outerTheme = _themeListener2.default.initial(context);
+    // Propagate the theme so it can be accessed by the children
+    _this.broadcast.setState(_this.mergeOuterLocalTheme(_this.props.theme));
+    return _this;
   }
 
-  _createClass(MuiThemeProvider, [{
+  (0, _createClass3.default)(MuiThemeProvider, [{
     key: 'getChildContext',
     value: function getChildContext() {
-      var theme = this.theme,
-          styleManager = this.styleManager;
+      var _ref;
 
-      return {
-        theme: theme,
-        styleManager: styleManager
-      };
+      return _ref = {}, (0, _defineProperty3.default)(_ref, _themeListener.CHANNEL, this.broadcast), (0, _defineProperty3.default)(_ref, 'muiThemeProviderOptions', {
+        sheetsManager: this.props.sheetsManager,
+        disableStylesGeneration: this.props.disableStylesGeneration
+      }), _ref;
     }
   }, {
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      var _MuiThemeProvider$cre = MuiThemeProvider.createDefaultContext(this.props),
-          theme = _MuiThemeProvider$cre.theme,
-          styleManager = _MuiThemeProvider$cre.styleManager;
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
 
-      this.theme = theme;
-      this.styleManager = styleManager;
+      // Subscribe on the outer theme, if present
+      this.unsubscribeId = _themeListener2.default.subscribe(this.context, function (outerTheme) {
+        _this2.outerTheme = outerTheme;
+        // Forward the parent theme update to the children
+        _this2.broadcast.setState(_this2.mergeOuterLocalTheme(_this2.props.theme));
+      });
     }
   }, {
-    key: 'componentWillUpdate',
-    value: function componentWillUpdate(nextProps) {
-      if (this.styleManager !== nextProps.styleManager) {
-        var _MuiThemeProvider$cre2 = MuiThemeProvider.createDefaultContext(nextProps),
-            theme = _MuiThemeProvider$cre2.theme,
-            styleManager = _MuiThemeProvider$cre2.styleManager;
-
-        this.theme = theme;
-        this.styleManager = styleManager;
-      } else if (this.theme && nextProps.theme && nextProps.theme !== this.theme) {
-        this.theme = nextProps.theme;
-        this.styleManager.updateTheme(this.theme);
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      // Propagate a local theme update
+      if (this.props.theme !== nextProps.theme) {
+        this.broadcast.setState(this.mergeOuterLocalTheme(nextProps.theme));
       }
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      if (this.unsubscribeId !== null) {
+        _themeListener2.default.unsubscribe(this.context, this.unsubscribeId);
+      }
+    }
+    // We are not using the React state in order to avoid unnecessary rerender.
+
+  }, {
+    key: 'mergeOuterLocalTheme',
+
+
+    // Simple merge between the outer theme and the local theme
+    value: function mergeOuterLocalTheme(localTheme) {
+      // To support composition of theme.
+      if (typeof localTheme === 'function') {
+        return localTheme(this.outerTheme);
+      }
+
+      if (!this.outerTheme) {
+        return localTheme;
+      }
+
+      return (0, _extends3.default)({}, this.outerTheme, localTheme);
     }
   }, {
     key: 'render',
     value: function render() {
       return this.props.children;
     }
-  }], [{
-    key: 'createDefaultContext',
-    value: function createDefaultContext() {
-      var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-      var theme = props.theme || (0, _theme.createMuiTheme)();
-      var styleManager = props.styleManager || (0, _styleManager.createStyleManager)({
-        theme: theme,
-        jss: (0, _jss.create)((0, _jssPresetDefault2.default)())
-      });
-
-      if (!styleManager.sheetOrder) {
-        styleManager.setSheetOrder(MUI_SHEET_ORDER);
-      }
-
-      return { theme: theme, styleManager: styleManager };
-    }
   }]);
-
   return MuiThemeProvider;
-}(_react.Component);
+}(_react2.default.Component);
 
-MuiThemeProvider.propTypes = {
-  children: _react.PropTypes.node.isRequired,
-  styleManager: _react.PropTypes.object,
-  theme: _react.PropTypes.object
+MuiThemeProvider.defaultProps = {
+  disableStylesGeneration: false,
+  sheetsManager: null
 };
-MuiThemeProvider.childContextTypes = {
-  styleManager: _react.PropTypes.object.isRequired,
-  theme: _react.PropTypes.object.isRequired
-};
-exports.default = MuiThemeProvider;
+
+
+MuiThemeProvider.propTypes = process.env.NODE_ENV !== "production" ? {
+  /**
+   * You can only provide a single element.
+   */
+  children: _propTypes2.default.element.isRequired,
+  /**
+   * You can disable the generation of the styles with this option.
+   * It can be useful when traversing the React tree outside of the HTML
+   * rendering step on the server.
+   * Let's say you are using react-apollo to extract all
+   * the queries made by the interface server side.
+   * You can significantly speed up the traversal with this property.
+   */
+  disableStylesGeneration: _propTypes2.default.bool,
+  /**
+   * The sheetsManager is used to deduplicate style sheet injection in the page.
+   * It's deduplicating using the (theme, styles) couple.
+   * On the server, you should provide a new instance for each request.
+   */
+  sheetsManager: _propTypes2.default.object,
+  /**
+   * A theme object.
+   */
+  theme: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.func]).isRequired
+} : {};
+
+MuiThemeProvider.childContextTypes = (0, _extends3.default)({}, _themeListener2.default.contextTypes, {
+  muiThemeProviderOptions: _propTypes2.default.object
+});
+
+MuiThemeProvider.contextTypes = _themeListener2.default.contextTypes;
+
+// Add a wrapper component to generate some helper messages in the development
+// environment.
+// eslint-disable-next-line import/no-mutable-exports
+var MuiThemeProviderWrapper = MuiThemeProvider;
+
+if (process.env.NODE_ENV !== 'production') {
+  MuiThemeProviderWrapper = function MuiThemeProviderWrapper(props) {
+    return _react2.default.createElement(MuiThemeProvider, props);
+  };
+  MuiThemeProviderWrapper.propTypes = (0, _exactProp2.default)(MuiThemeProvider.propTypes, 'MuiThemeProvider');
+}
+
+exports.default = MuiThemeProviderWrapper;

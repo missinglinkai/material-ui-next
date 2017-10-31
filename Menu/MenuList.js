@@ -4,11 +4,37 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _assign = require('object-assign');
+var _extends2 = require('babel-runtime/helpers/extends');
 
-var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends3 = _interopRequireDefault(_extends2);
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _react = require('react');
 
@@ -34,33 +60,50 @@ var _ownerDocument2 = _interopRequireDefault(_ownerDocument);
 
 var _List = require('../List');
 
+var _List2 = _interopRequireDefault(_List);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
+// @inheritedComponent List
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+var babelPluginFlowReactPropTypes_proptype_Props = {
+  /**
+   * MenuList contents, normally `MenuItem`s.
+   */
+  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+  /**
+   * @ignore
+   */
+  className: require('prop-types').string,
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+  /**
+   * @ignore
+   */
+  onBlur: require('prop-types').func,
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
+  /**
+   * @ignore
+   */
+  onKeyDown: require('prop-types').func
+};
 
-var MenuList = function (_Component) {
-  _inherits(MenuList, _Component);
+var MenuList = function (_React$Component) {
+  (0, _inherits3.default)(MenuList, _React$Component);
 
   function MenuList() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, MenuList);
+    (0, _classCallCheck3.default)(this, MenuList);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MenuList.__proto__ || Object.getPrototypeOf(MenuList)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = MenuList.__proto__ || (0, _getPrototypeOf2.default)(MenuList)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       currentTabIndex: undefined
     }, _this.list = undefined, _this.selectedItem = undefined, _this.blurTimer = undefined, _this.handleBlur = function (event) {
       _this.blurTimer = setTimeout(function () {
@@ -83,8 +126,10 @@ var MenuList = function (_Component) {
 
       if ((key === 'up' || key === 'down') && (!currentFocus || currentFocus && !(0, _contains2.default)(list, currentFocus))) {
         if (_this.selectedItem) {
-          (0, _reactDom.findDOMNode)(_this.selectedItem).focus(); // eslint-disable-line react/no-find-dom-node
+          // $FlowFixMe
+          (0, _reactDom.findDOMNode)(_this.selectedItem).focus();
         } else {
+          // $FlowFixMe
           list.firstChild.focus();
         }
       } else if (key === 'down') {
@@ -105,17 +150,19 @@ var MenuList = function (_Component) {
     }, _this.handleItemFocus = function (event) {
       var list = (0, _reactDom.findDOMNode)(_this.list);
       if (list) {
+        // $FlowFixMe
         for (var i = 0; i < list.children.length; i += 1) {
+          // $FlowFixMe
           if (list.children[i] === event.currentTarget) {
             _this.setTabIndex(i);
             break;
           }
         }
       }
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
-  _createClass(MenuList, [{
+  (0, _createClass3.default)(MenuList, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.resetTabIndex();
@@ -124,6 +171,11 @@ var MenuList = function (_Component) {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       clearTimeout(this.blurTimer);
+    }
+  }, {
+    key: 'setTabIndex',
+    value: function setTabIndex(index) {
+      this.setState({ currentTabIndex: index });
     }
   }, {
     key: 'focus',
@@ -136,8 +188,10 @@ var MenuList = function (_Component) {
       }
 
       if (currentTabIndex && currentTabIndex >= 0) {
+        // $FlowFixMe
         list.children[currentTabIndex].focus();
       } else {
+        // $FlowFixMe
         list.firstChild.focus();
       }
     }
@@ -146,7 +200,8 @@ var MenuList = function (_Component) {
     value: function resetTabIndex() {
       var list = (0, _reactDom.findDOMNode)(this.list);
       var currentFocus = (0, _activeElement2.default)((0, _ownerDocument2.default)(list));
-      var items = [].concat(_toConsumableArray(list.children));
+      // $FlowFixMe
+      var items = [].concat((0, _toConsumableArray3.default)(list.children));
       var currentFocusIndex = items.indexOf(currentFocus);
 
       if (currentFocusIndex !== -1) {
@@ -160,11 +215,6 @@ var MenuList = function (_Component) {
       return this.setTabIndex(0);
     }
   }, {
-    key: 'setTabIndex',
-    value: function setTabIndex(n) {
-      this.setState({ currentTabIndex: n });
-    }
-  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -174,25 +224,29 @@ var MenuList = function (_Component) {
           className = _props.className,
           onBlur = _props.onBlur,
           onKeyDown = _props.onKeyDown,
-          other = _objectWithoutProperties(_props, ['children', 'className', 'onBlur', 'onKeyDown']);
+          other = (0, _objectWithoutProperties3.default)(_props, ['children', 'className', 'onBlur', 'onKeyDown']);
+
 
       return _react2.default.createElement(
-        _List.List,
-        _extends({
-          'data-mui-test': 'MenuList',
+        _List2.default,
+        (0, _extends3.default)({
           role: 'menu',
-          rootRef: function rootRef(c) {
-            _this2.list = c;
+          rootRef: function rootRef(node) {
+            _this2.list = node;
           },
           className: className,
           onKeyDown: this.handleKeyDown,
           onBlur: this.handleBlur
         }, other),
         _react2.default.Children.map(children, function (child, index) {
+          if (!_react2.default.isValidElement(child)) {
+            return null;
+          }
+
           return _react2.default.cloneElement(child, {
-            tabIndex: index === _this2.state.currentTabIndex ? '0' : '-1',
-            ref: child.props.selected ? function (c) {
-              _this2.selectedItem = c;
+            tabIndex: index === _this2.state.currentTabIndex ? 0 : -1,
+            ref: child.props.selected ? function (node) {
+              _this2.selectedItem = node;
             } : undefined,
             onFocus: _this2.handleItemFocus
           });
@@ -200,26 +254,13 @@ var MenuList = function (_Component) {
       );
     }
   }]);
-
   return MenuList;
-}(_react.Component);
+}(_react2.default.Component);
 
-MenuList.propTypes = {
-  /**
-   * MenuList contents, should be menu items.
-   */
-  children: _react.PropTypes.node,
-  /**
-   * The CSS class name of the root element.
-   */
-  className: _react.PropTypes.string,
-  /**
-   * @ignore
-   */
-  onBlur: _react.PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: _react.PropTypes.func
-};
+MenuList.propTypes = process.env.NODE_ENV !== "production" ? {
+  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
+  className: require('prop-types').string,
+  onBlur: require('prop-types').func,
+  onKeyDown: require('prop-types').func
+} : {};
 exports.default = MenuList;

@@ -3,74 +3,77 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styleSheet = undefined;
+exports.styles = undefined;
 
-var _assign = require('object-assign');
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
 
-var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _ref;
+// @inheritedComponent ButtonBase
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _jssThemeReactor = require('jss-theme-reactor');
-
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _ButtonBase = require('../internal/ButtonBase');
+var _withStyles = require('../styles/withStyles');
+
+var _withStyles2 = _interopRequireDefault(_withStyles);
+
+var _colorManipulator = require('../styles/colorManipulator');
+
+var _ButtonBase = require('../ButtonBase');
 
 var _ButtonBase2 = _interopRequireDefault(_ButtonBase);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+var babelPluginFlowReactPropTypes_proptype_ElementType = require('react').babelPluginFlowReactPropTypes_proptype_ElementType || require('prop-types').any;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
-
-var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Button', function (theme) {
-  var typography = theme.typography,
-      palette = theme.palette,
-      transitions = theme.transitions,
-      shadows = theme.shadows;
-
-
+var styles = exports.styles = function styles(theme) {
   return {
-    root: {
-      fontSize: typography.fontSize,
-      fontWeight: typography.fontWeightMedium,
-      fontFamily: typography.fontFamily,
-      textTransform: 'uppercase',
-      display: 'inline-flex',
-      alignItems: 'center',
-      justifyContent: 'center',
+    root: (0, _extends3.default)({}, theme.typography.button, {
+      lineHeight: '1.4em', // Improve readability for multiline button.
+      boxSizing: 'border-box',
       minWidth: 88,
-      height: 36,
-      padding: '0px 16px',
+      minHeight: 36,
+      padding: theme.spacing.unit + 'px ' + theme.spacing.unit * 2 + 'px',
       borderRadius: 2,
-      color: palette.text.primary,
-      backgroundColor: 'transparent',
-      transition: transitions.multi(['background-color', 'box-shadow'], '250ms'),
+      color: theme.palette.text.primary,
+      transition: theme.transitions.create(['background-color', 'box-shadow'], {
+        duration: theme.transitions.duration.short
+      }),
       '&:hover': {
         textDecoration: 'none',
-        backgroundColor: palette.text.divider,
+        // Reset on mouse devices
+        backgroundColor: (0, _colorManipulator.fade)(theme.palette.text.primary, 0.12),
+        '@media (hover: none)': {
+          backgroundColor: 'transparent'
+        },
         '&$disabled': {
           backgroundColor: 'transparent'
         }
       }
-    },
-    compact: {
-      padding: '0 8px',
-      minWidth: 64
+    }),
+    dense: {
+      padding: theme.spacing.unit - 1 + 'px ' + theme.spacing.unit + 'px',
+      minWidth: 64,
+      minHeight: 32,
+      fontSize: theme.typography.fontSize - 1
     },
     label: {
       width: '100%',
@@ -78,56 +81,96 @@ var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Bu
       alignItems: 'inherit',
       justifyContent: 'inherit'
     },
-    primary: {
-      color: palette.primary[500]
+    flatPrimary: {
+      color: theme.palette.primary[500],
+      '&:hover': {
+        backgroundColor: (0, _colorManipulator.fade)(theme.palette.primary[500], 0.12),
+        // Reset on mouse devices
+        '@media (hover: none)': {
+          backgroundColor: 'transparent'
+        }
+      }
     },
-    accent: {
-      color: palette.accent.A200
+    flatAccent: {
+      color: theme.palette.secondary.A200,
+      '&:hover': {
+        backgroundColor: (0, _colorManipulator.fade)(theme.palette.secondary.A200, 0.12),
+        // Reset on mouse devices
+        '@media (hover: none)': {
+          backgroundColor: 'transparent'
+        }
+      }
     },
-    contrast: {
-      color: palette.getContrastText(palette.primary[500])
+    flatContrast: {
+      color: theme.palette.getContrastText(theme.palette.primary[500]),
+      '&:hover': {
+        backgroundColor: (0, _colorManipulator.fade)(theme.palette.getContrastText(theme.palette.primary[500]), 0.12),
+        // Reset on mouse devices
+        '@media (hover: none)': {
+          backgroundColor: 'transparent'
+        }
+      }
+    },
+    colorInherit: {
+      color: 'inherit'
     },
     raised: {
-      color: palette.getContrastText(palette.grey[300]),
-      backgroundColor: palette.grey[300],
-      boxShadow: shadows[2],
+      color: theme.palette.getContrastText(theme.palette.grey[300]),
+      backgroundColor: theme.palette.grey[300],
+      boxShadow: theme.shadows[2],
       '&$keyboardFocused': {
-        boxShadow: shadows[6]
+        boxShadow: theme.shadows[6]
       },
       '&:active': {
-        boxShadow: shadows[8]
+        boxShadow: theme.shadows[8]
       },
       '&$disabled': {
-        boxShadow: shadows[0],
-        backgroundColor: palette.text.divider
+        boxShadow: theme.shadows[0],
+        backgroundColor: theme.palette.text.divider
       },
       '&:hover': {
-        backgroundColor: palette.grey.A100,
+        backgroundColor: theme.palette.grey.A100,
+        // Reset on mouse devices
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.grey[300]
+        },
         '&$disabled': {
-          backgroundColor: palette.text.divider
+          backgroundColor: theme.palette.text.divider,
+          // Reset on mouse devices
+          '@media (hover: none)': {
+            backgroundColor: theme.palette.grey[300]
+          }
         }
       }
     },
     keyboardFocused: {},
     raisedPrimary: {
-      color: palette.getContrastText(palette.primary[500]),
-      backgroundColor: palette.primary[500],
+      color: theme.palette.getContrastText(theme.palette.primary[500]),
+      backgroundColor: theme.palette.primary[500],
       '&:hover': {
-        backgroundColor: palette.primary[700]
+        backgroundColor: theme.palette.primary[700],
+        // Reset on mouse devices
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.primary[500]
+        }
       }
     },
     raisedAccent: {
-      color: palette.getContrastText(palette.accent.A200),
-      backgroundColor: palette.accent.A200,
+      color: theme.palette.getContrastText(theme.palette.secondary.A200),
+      backgroundColor: theme.palette.secondary.A200,
       '&:hover': {
-        backgroundColor: palette.accent.A400
+        backgroundColor: theme.palette.secondary.A400,
+        // Reset on mouse devices
+        '@media (hover: none)': {
+          backgroundColor: theme.palette.secondary.A200
+        }
       }
     },
     raisedContrast: {
-      color: palette.getContrastText(palette.primary[500])
+      color: theme.palette.getContrastText(theme.palette.primary[500])
     },
     disabled: {
-      color: palette.action.disabled
+      color: theme.palette.action.disabled
     },
     fab: {
       borderRadius: '50%',
@@ -135,146 +178,143 @@ var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Bu
       minWidth: 0,
       width: 56,
       height: 56,
-      boxShadow: shadows[6],
+      boxShadow: theme.shadows[6],
       '&:active': {
-        boxShadow: shadows[12]
+        boxShadow: theme.shadows[12]
       }
     }
   };
-});
+};
 
-/**
- * Buttons communicate the action that will occur when the user
- * touches them.
- *
- * ```jsx
- * <Button>Hello World</Button>
- * ```
- */
+var babelPluginFlowReactPropTypes_proptype_Color = require('prop-types').oneOf(['default', 'inherit', 'primary', 'accent', 'contrast']);
 
-var Button = function (_Component) {
-  _inherits(Button, _Component);
-
-  function Button() {
-    _classCallCheck(this, Button);
-
-    return _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).apply(this, arguments));
-  }
-
-  _createClass(Button, [{
-    key: 'render',
-    value: function render() {
-      var _classNames;
-
-      var _props = this.props,
-          accent = _props.accent,
-          children = _props.children,
-          classNameProp = _props.className,
-          compact = _props.compact,
-          contrast = _props.contrast,
-          disabled = _props.disabled,
-          fab = _props.fab,
-          primary = _props.primary,
-          raised = _props.raised,
-          other = _objectWithoutProperties(_props, ['accent', 'children', 'className', 'compact', 'contrast', 'disabled', 'fab', 'primary', 'raised']);
-
-      var classes = this.context.styleManager.render(styleSheet);
-      var flat = !raised && !fab;
-      var className = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, classes.root, true), _defineProperty(_classNames, classes.raised, raised || fab), _defineProperty(_classNames, classes.fab, fab), _defineProperty(_classNames, classes.primary, flat && primary), _defineProperty(_classNames, classes.accent, flat && accent), _defineProperty(_classNames, classes.contrast, flat && contrast), _defineProperty(_classNames, classes.raisedPrimary, !flat && primary), _defineProperty(_classNames, classes.raisedAccent, !flat && accent), _defineProperty(_classNames, classes.raisedContrast, !flat && contrast), _defineProperty(_classNames, classes.compact, compact), _defineProperty(_classNames, classes.disabled, disabled), _classNames), classNameProp);
-
-      return _react2.default.createElement(
-        _ButtonBase2.default,
-        _extends({
-          className: className,
-          disabled: disabled,
-          keyboardFocusedClassName: classes.keyboardFocused
-        }, other),
-        _react2.default.createElement(
-          'span',
-          { className: classes.label },
-          children
-        )
-      );
-    }
-  }]);
-
-  return Button;
-}(_react.Component);
-
-Button.propTypes = {
-  /**
-   * If `true`, the button will use the theme's accent color.
-   */
-  accent: _react.PropTypes.bool,
+var babelPluginFlowReactPropTypes_proptype_Props = {
   /**
    * The content of the button.
    */
-  children: _react.PropTypes.node,
+  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node.isRequired ? babelPluginFlowReactPropTypes_proptype_Node.isRequired : babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node).isRequired,
+
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
    */
-  className: _react.PropTypes.string,
-  /**
-   * Uses a smaller minWidth, ideal for things like card actions.
-   */
-  compact: _react.PropTypes.bool,
-  /**
-   * The element or component used for the root node.
-   */
-  component: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.func]),
-  /**
-   * If true, will use the theme's contrast color.
-   */
-  contrast: _react.PropTypes.bool,
-  /**
-   * If `true`, the button will be disabled.
-   */
-  disabled: _react.PropTypes.bool,
-  /**
-   * If `true`, well use floating action button styling.
-   */
-  fab: _react.PropTypes.bool,
-  /**
-   * If `true`, the button will have a keyboard focus ripple.
-   * Ripple must also be true.
-   */
-  focusRipple: _react.PropTypes.bool,
-  /**
-   * The URL to link to when the button is clicked.
-   * If set, an `a` element will be used as the root node.
-   */
-  href: _react.PropTypes.string,
-  /**
-   * If `true`, the button will use the theme's primary color.
-   */
-  primary: _react.PropTypes.bool,
-  /**
-   * If `true`, the button will use raised styling.
-   */
-  raised: _react.PropTypes.bool,
-  /**
-   * If `true`, the button will have a ripple.
-   */
-  ripple: _react.PropTypes.bool,
+  classes: require('prop-types').object,
+
   /**
    * @ignore
    */
-  type: _react.PropTypes.string
+  className: require('prop-types').string,
+
+  /**
+   * The color of the component. It's using the theme palette when that makes sense.
+   */
+  color: require('prop-types').oneOf(['default', 'inherit', 'primary', 'accent', 'contrast']),
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   * The default value is a `button`.
+   */
+  component: typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType),
+
+  /**
+   * Uses a smaller minWidth, ideal for things like card actions.
+   */
+  dense: require('prop-types').bool,
+
+  /**
+   * If `true`, the button will be disabled.
+   */
+  disabled: require('prop-types').bool,
+
+  /**
+   * If `true`, the  keyboard focus ripple will be disabled.
+   * `disableRipple` must also be true.
+   */
+  disableFocusRipple: require('prop-types').bool,
+
+  /**
+   * If `true`, the ripple effect will be disabled.
+   */
+  disableRipple: require('prop-types').bool,
+
+  /**
+   * If `true`, will use floating action button styling.
+   */
+  fab: require('prop-types').bool,
+
+  /**
+   * The URL to link to when the button is clicked.
+   * If defined, an `a` element will be used as the root node.
+   */
+  href: require('prop-types').string,
+
+  /**
+   * If `true`, the button will use raised styling.
+   */
+  raised: require('prop-types').bool,
+
+  /**
+   * @ignore
+   */
+  type: require('prop-types').string
 };
+
+
+function Button(props) {
+  var _classNames;
+
+  var children = props.children,
+      classes = props.classes,
+      classNameProp = props.className,
+      color = props.color,
+      dense = props.dense,
+      disabled = props.disabled,
+      disableFocusRipple = props.disableFocusRipple,
+      fab = props.fab,
+      raised = props.raised,
+      other = (0, _objectWithoutProperties3.default)(props, ['children', 'classes', 'className', 'color', 'dense', 'disabled', 'disableFocusRipple', 'fab', 'raised']);
+
+
+  var flat = !raised && !fab;
+  var className = (0, _classnames2.default)((_classNames = {}, (0, _defineProperty3.default)(_classNames, classes.root, true), (0, _defineProperty3.default)(_classNames, classes.raised, raised || fab), (0, _defineProperty3.default)(_classNames, classes.fab, fab), (0, _defineProperty3.default)(_classNames, classes.colorInherit, color === 'inherit'), (0, _defineProperty3.default)(_classNames, classes.flatPrimary, flat && color === 'primary'), (0, _defineProperty3.default)(_classNames, classes.flatAccent, flat && color === 'accent'), (0, _defineProperty3.default)(_classNames, classes.flatContrast, flat && color === 'contrast'), (0, _defineProperty3.default)(_classNames, classes.raisedPrimary, !flat && color === 'primary'), (0, _defineProperty3.default)(_classNames, classes.raisedAccent, !flat && color === 'accent'), (0, _defineProperty3.default)(_classNames, classes.raisedContrast, !flat && color === 'contrast'), (0, _defineProperty3.default)(_classNames, classes.dense, dense), (0, _defineProperty3.default)(_classNames, classes.disabled, disabled), _classNames), classNameProp);
+
+  return _react2.default.createElement(
+    _ButtonBase2.default,
+    (0, _extends3.default)({
+      className: className,
+      disabled: disabled,
+      focusRipple: !disableFocusRipple,
+      keyboardFocusedClassName: classes.keyboardFocused
+    }, other),
+    _react2.default.createElement(
+      'span',
+      { className: classes.label },
+      children
+    )
+  );
+}
+
+Button.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
+  classes: require('prop-types').object.isRequired,
+  color: require('prop-types').oneOf(['default', 'inherit', 'primary', 'accent', 'contrast']).isRequired,
+  dense: require('prop-types').bool.isRequired,
+  disabled: require('prop-types').bool.isRequired,
+  fab: require('prop-types').bool.isRequired,
+  disableFocusRipple: require('prop-types').bool.isRequired,
+  raised: require('prop-types').bool.isRequired,
+  disableRipple: require('prop-types').bool.isRequired,
+  type: require('prop-types').string.isRequired,
+  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node.isRequired ? babelPluginFlowReactPropTypes_proptype_Node.isRequired : babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node).isRequired
+}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'color', require('prop-types').oneOf(['default', 'inherit', 'primary', 'accent', 'contrast'])), (0, _defineProperty3.default)(_ref, 'component', typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType)), (0, _defineProperty3.default)(_ref, 'dense', require('prop-types').bool), (0, _defineProperty3.default)(_ref, 'disabled', require('prop-types').bool), (0, _defineProperty3.default)(_ref, 'disableFocusRipple', require('prop-types').bool), (0, _defineProperty3.default)(_ref, 'disableRipple', require('prop-types').bool), (0, _defineProperty3.default)(_ref, 'fab', require('prop-types').bool), (0, _defineProperty3.default)(_ref, 'href', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'raised', require('prop-types').bool), (0, _defineProperty3.default)(_ref, 'type', require('prop-types').string), _ref) : {};
 Button.defaultProps = {
-  accent: false,
-  component: 'button',
-  compact: false,
-  contrast: false,
+  color: 'default',
+  dense: false,
   disabled: false,
   fab: false,
-  focusRipple: true,
-  primary: false,
+  disableFocusRipple: false,
   raised: false,
-  ripple: true,
+  disableRipple: false,
   type: 'button'
 };
-Button.contextTypes = {
-  styleManager: _react.PropTypes.object.isRequired
-};
-exports.default = Button;
+
+exports.default = (0, _withStyles2.default)(styles, { name: 'MuiButton' })(Button);

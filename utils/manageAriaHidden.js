@@ -18,7 +18,6 @@ var isHidable = function isHidable(_ref) {
 
 var siblings = function siblings(container, mount, cb) {
   mount = [].concat(mount); // eslint-disable-line no-param-reassign
-
   [].forEach.call(container.children, function (node) {
     if (mount.indexOf(node) === -1 && isHidable(node)) {
       cb(node);

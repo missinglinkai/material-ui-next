@@ -3,158 +3,295 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styleSheet = undefined;
+exports.styles = undefined;
 
-var _assign = require('object-assign');
+var _extends2 = require('babel-runtime/helpers/extends');
 
-var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends3 = _interopRequireDefault(_extends2);
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _jssThemeReactor = require('jss-theme-reactor');
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
+var _withStyles = require('../styles/withStyles');
+
+var _withStyles2 = _interopRequireDefault(_withStyles);
+
+var _Input = require('../Input/Input');
+
+var _reactHelpers = require('../utils/reactHelpers');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var babelPluginFlowReactPropTypes_proptype_ElementType = require('react').babelPluginFlowReactPropTypes_proptype_ElementType || require('prop-types').any;
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
-
-var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('FormControl', function () {
+var styles = exports.styles = function styles(theme) {
   return {
     root: {
-      display: 'flex',
+      display: 'inline-flex',
       flexDirection: 'column',
-      position: 'relative'
+      position: 'relative',
+      // Reset fieldset default style
+      minWidth: 0,
+      padding: 0,
+      margin: 0,
+      border: 0
     },
-    row: {
-      flexDirection: 'row'
+    marginNormal: {
+      marginTop: theme.spacing.unit * 2,
+      marginBottom: theme.spacing.unit
+    },
+    marginDense: {
+      marginTop: theme.spacing.unit,
+      marginBottom: theme.spacing.unit / 2
+    },
+    fullWidth: {
+      width: '100%'
     }
   };
-});
+};
+
+var babelPluginFlowReactPropTypes_proptype_Margin = require('prop-types').oneOf(['none', 'dense', 'normal']);
+
+var babelPluginFlowReactPropTypes_proptype_Props = {
+  /**
+   * The contents of the form control.
+   */
+  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
+
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: require('prop-types').object,
+
+  /**
+   * @ignore
+   */
+  className: require('prop-types').string,
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType),
+
+  /**
+   * If `true`, the label, input and helper text should be displayed in a disabled state.
+   */
+  disabled: require('prop-types').bool,
+
+  /**
+   * If `true`, the label should be displayed in an error state.
+   */
+  error: require('prop-types').bool,
+
+  /**
+   * If `true`, the component, as well as its children,
+   * will take up the full width of its container.
+   */
+  fullWidth: require('prop-types').bool,
+
+  /**
+   * @ignore
+   */
+  onBlur: require('prop-types').func,
+
+  /**
+   * @ignore
+   */
+  onFocus: require('prop-types').func,
+
+  /**
+   * If `true`, the label will indicate that the input is required.
+   */
+  required: require('prop-types').bool,
+
+  /**
+   * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
+   */
+  margin: require('prop-types').oneOf(['none', 'dense', 'normal'])
+};
 
 /**
- * FormControl - provides context such as dirty/focused/error/required for form inputs
+ * Provides context such as dirty/focused/error/required for form inputs.
+ * Relying on the context provides high flexibilty and ensures that the state always stay
+ * consitent across the children of the `FormControl`.
+ * This context is used by the following components:
+ *  - FormLabel
+ *  - FormHelperText
+ *  - Input
+ *  - InputLabel
  */
+var FormControl = function (_React$Component) {
+  (0, _inherits3.default)(FormControl, _React$Component);
 
-var FormControl = function (_Component) {
-  _inherits(FormControl, _Component);
+  function FormControl(props, context) {
+    (0, _classCallCheck3.default)(this, FormControl);
 
-  function FormControl() {
-    var _ref;
+    // We need to iterate through the children and find the Input in order
+    // to fully support server side rendering.
+    var _this = (0, _possibleConstructorReturn3.default)(this, (FormControl.__proto__ || (0, _getPrototypeOf2.default)(FormControl)).call(this, props, context));
 
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, FormControl);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = FormControl.__proto__ || Object.getPrototypeOf(FormControl)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+    _this.state = {
+      adornedStart: false,
       dirty: false,
       focused: false
-    }, _this.handleFocus = function () {
+    };
+
+    _this.handleFocus = function (event) {
+      if (_this.props.onFocus) {
+        _this.props.onFocus(event);
+      }
       if (!_this.state.focused) {
         _this.setState({ focused: true });
       }
-    }, _this.handleBlur = function () {
+    };
+
+    _this.handleBlur = function (event) {
+      if (_this.props.onBlur) {
+        _this.props.onBlur(event);
+      }
       if (_this.state.focused) {
         _this.setState({ focused: false });
       }
-    }, _this.handleDirty = function () {
+    };
+
+    _this.handleDirty = function () {
       if (!_this.state.dirty) {
         _this.setState({ dirty: true });
       }
-    }, _this.handleClean = function () {
+    };
+
+    _this.handleClean = function () {
       if (_this.state.dirty) {
         _this.setState({ dirty: false });
       }
-    }, _temp), _possibleConstructorReturn(_this, _ret);
+    };
+
+    var children = _this.props.children;
+
+    if (children) {
+      _react2.default.Children.forEach(children, function (child) {
+        if ((0, _reactHelpers.isMuiElement)(child, ['Input', 'Select']) && (0, _Input.isDirty)(child.props, true)) {
+          _this.state.dirty = true;
+        }
+        if ((0, _reactHelpers.isMuiElement)(child, ['Input']) && (0, _Input.isAdornedStart)(child.props)) {
+          _this.state.adornedStart = true;
+        }
+      });
+    }
+    return _this;
   }
 
-  _createClass(FormControl, [{
+  (0, _createClass3.default)(FormControl, [{
     key: 'getChildContext',
     value: function getChildContext() {
       var _props = this.props,
+          disabled = _props.disabled,
           error = _props.error,
-          required = _props.required;
+          required = _props.required,
+          margin = _props.margin;
       var _state = this.state,
+          adornedStart = _state.adornedStart,
           dirty = _state.dirty,
           focused = _state.focused;
 
 
       return {
         muiFormControl: {
+          adornedStart: adornedStart,
           dirty: dirty,
+          disabled: disabled,
           error: error,
           focused: focused,
+          margin: margin,
           required: required,
           onDirty: this.handleDirty,
-          onClean: this.handleClean
+          onClean: this.handleClean,
+          onFocus: this.handleFocus,
+          onBlur: this.handleBlur
         }
       };
     }
   }, {
     key: 'render',
     value: function render() {
+      var _classNames;
+
       var _props2 = this.props,
           children = _props2.children,
+          classes = _props2.classes,
           className = _props2.className,
+          ComponentProp = _props2.component,
+          disabled = _props2.disabled,
           error = _props2.error,
-          other = _objectWithoutProperties(_props2, ['children', 'className', 'error']);
+          fullWidth = _props2.fullWidth,
+          margin = _props2.margin,
+          other = (0, _objectWithoutProperties3.default)(_props2, ['children', 'classes', 'className', 'component', 'disabled', 'error', 'fullWidth', 'margin']);
 
-      var classes = this.context.styleManager.render(styleSheet);
 
       return _react2.default.createElement(
-        'div',
-        _extends({
+        ComponentProp,
+        (0, _extends3.default)({
+          className: (0, _classnames2.default)(classes.root, (_classNames = {}, (0, _defineProperty3.default)(_classNames, classes.marginNormal, margin === 'normal'), (0, _defineProperty3.default)(_classNames, classes.marginDense, margin === 'dense'), (0, _defineProperty3.default)(_classNames, classes.fullWidth, fullWidth), _classNames), className)
+        }, other, {
           onFocus: this.handleFocus,
-          onBlur: this.handleBlur,
-          className: (0, _classnames2.default)(classes.root, className)
-        }, other),
+          onBlur: this.handleBlur
+        }),
         children
       );
     }
   }]);
-
   return FormControl;
-}(_react.Component);
+}(_react2.default.Component);
 
-FormControl.propTypes = {
-  /**
-   * The contents of the `FormControl`.
-   */
-  children: _react.PropTypes.node,
-  /**
-   * The CSS class name of the root element.
-   */
-  className: _react.PropTypes.string,
-  /**
-   * Whether the label should be displayed in an error state.
-   */
-  error: _react.PropTypes.bool,
-  required: _react.PropTypes.bool
-};
 FormControl.defaultProps = {
+  component: 'div',
+  disabled: false,
   error: false,
+  fullWidth: false,
+  margin: 'none',
   required: false
 };
-FormControl.contextTypes = {
-  styleManager: _react.PropTypes.object.isRequired
-};
 FormControl.childContextTypes = {
-  muiFormControl: _react.PropTypes.object.isRequired
+  muiFormControl: _propTypes2.default.object.isRequired
 };
-exports.default = FormControl;
+exports.default = (0, _withStyles2.default)(styles, { name: 'MuiFormControl' })(FormControl);

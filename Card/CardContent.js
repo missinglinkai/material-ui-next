@@ -3,56 +3,70 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styleSheet = undefined;
+exports.styles = undefined;
 
-var _assign = require('object-assign');
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
 
-var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-exports.default = CardContent;
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _ref;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _jssThemeReactor = require('jss-theme-reactor');
-
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
+var _withStyles = require('../styles/withStyles');
+
+var _withStyles2 = _interopRequireDefault(_withStyles);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
-
-var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('CardContent', function () {
+var styles = exports.styles = function styles(theme) {
   return {
-    cardContent: {
-      padding: 16,
+    root: {
+      padding: theme.spacing.unit * 2,
       '&:last-child': {
-        paddingBottom: 24
+        paddingBottom: theme.spacing.unit * 3
       }
     }
   };
-});
+};
 
-function CardContent(props, context) {
-  var classNameProp = props.className,
-      other = _objectWithoutProperties(props, ['className']);
+var babelPluginFlowReactPropTypes_proptype_Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: require('prop-types').object,
 
-  var classes = context.styleManager.render(styleSheet);
-  var className = (0, _classnames2.default)(classes.cardContent, classNameProp);
+  /**
+   * @ignore
+   */
+  className: require('prop-types').string
+};
 
-  return _react2.default.createElement('div', _extends({ className: className }, other));
+
+function CardContent(props) {
+  var classes = props.classes,
+      className = props.className,
+      other = (0, _objectWithoutProperties3.default)(props, ['classes', 'className']);
+
+
+  return _react2.default.createElement('div', (0, _extends3.default)({ className: (0, _classnames2.default)(classes.root, className) }, other));
 }
 
-CardContent.propTypes = {
-  /**
-   * The CSS class name of the root element.
-   */
-  className: _react.PropTypes.string
-};
-
-CardContent.contextTypes = {
-  styleManager: _react.PropTypes.object.isRequired
-};
+CardContent.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
+  classes: require('prop-types').object.isRequired
+}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), _ref) : {};
+exports.default = (0, _withStyles2.default)(styles, { name: 'MuiCardContent' })(CardContent);

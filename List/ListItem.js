@@ -3,63 +3,90 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styleSheet = undefined;
+exports.styles = undefined;
 
-var _assign = require('object-assign');
+var _extends2 = require('babel-runtime/helpers/extends');
 
-var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends3 = _interopRequireDefault(_extends2);
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _jssThemeReactor = require('jss-theme-reactor');
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _ButtonBase = require('../internal/ButtonBase');
+var _withStyles = require('../styles/withStyles');
+
+var _withStyles2 = _interopRequireDefault(_withStyles);
+
+var _ButtonBase = require('../ButtonBase');
 
 var _ButtonBase2 = _interopRequireDefault(_ButtonBase);
 
+var _reactHelpers = require('../utils/reactHelpers');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+var babelPluginFlowReactPropTypes_proptype_ElementType = require('react').babelPluginFlowReactPropTypes_proptype_ElementType || require('prop-types').any;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
-
-var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('ListItem', function (theme) {
+var styles = exports.styles = function styles(theme) {
   return {
-    listItem: {
+    root: {
       display: 'flex',
-      flex: '1 1 auto', // grow primary portion so that secondary is right-aligned
+      justifyContent: 'initial',
       alignItems: 'center',
       position: 'relative',
       textDecoration: 'none'
     },
-    listItemContainer: {
-      display: 'flex',
-      alignItems: 'center'
+    container: {
+      position: 'relative'
     },
     keyboardFocused: {
       background: theme.palette.text.divider
     },
     default: {
-      paddingTop: 19,
-      paddingBottom: 19
+      paddingTop: 12,
+      paddingBottom: 12
     },
     dense: {
-      paddingTop: 8,
-      paddingBottom: 8
+      paddingTop: theme.spacing.unit,
+      paddingBottom: theme.spacing.unit
     },
     disabled: {
       opacity: 0.5
@@ -68,22 +95,97 @@ var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Li
       borderBottom: '1px solid ' + theme.palette.text.lightDivider
     },
     gutters: {
-      paddingLeft: 16,
-      paddingRight: 16
+      paddingLeft: theme.spacing.unit * 2,
+      paddingRight: theme.spacing.unit * 2
+    },
+    button: {
+      transition: theme.transitions.create('background-color', {
+        duration: theme.transitions.duration.shortest
+      }),
+      '&:hover': {
+        textDecoration: 'none',
+        backgroundColor: theme.palette.text.divider,
+        // Reset on mouse devices
+        '@media (hover: none)': {
+          backgroundColor: 'transparent'
+        },
+        '&$disabled': {
+          backgroundColor: 'transparent'
+        }
+      }
+    },
+    secondaryAction: {
+      // Add some space to avoid collision as `ListItemSecondaryAction`
+      // is absolutely positionned.
+      paddingRight: theme.spacing.unit * 4
     }
   };
-});
+};
 
-var ListItem = function (_Component) {
-  _inherits(ListItem, _Component);
+var babelPluginFlowReactPropTypes_proptype_Props = {
+  /**
+   * If `true`, the ListItem will be a button.
+   */
+  button: require('prop-types').bool,
+
+  /**
+   * The content of the component.
+   */
+  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
+
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: require('prop-types').object,
+
+  /**
+   * @ignore
+   */
+  className: require('prop-types').string,
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType),
+
+  /**
+   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+   */
+  dense: require('prop-types').bool,
+
+  /**
+   * @ignore
+   */
+  disabled: require('prop-types').bool,
+
+  /**
+   * If `true`, the left and right padding is removed.
+   */
+  disableGutters: require('prop-types').bool,
+
+  /**
+   * If `true`, a 1px light border is added to the bottom of the list item.
+   */
+  divider: require('prop-types').bool
+};
+
+var ListItem = function (_React$Component) {
+  (0, _inherits3.default)(ListItem, _React$Component);
 
   function ListItem() {
-    _classCallCheck(this, ListItem);
-
-    return _possibleConstructorReturn(this, (ListItem.__proto__ || Object.getPrototypeOf(ListItem)).apply(this, arguments));
+    (0, _classCallCheck3.default)(this, ListItem);
+    return (0, _possibleConstructorReturn3.default)(this, (ListItem.__proto__ || (0, _getPrototypeOf2.default)(ListItem)).apply(this, arguments));
   }
 
-  _createClass(ListItem, [{
+  (0, _createClass3.default)(ListItem, [{
+    key: 'getChildContext',
+    value: function getChildContext() {
+      return {
+        dense: this.props.dense || this.context.dense || false
+      };
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _classNames;
@@ -91,70 +193,73 @@ var ListItem = function (_Component) {
       var _props = this.props,
           button = _props.button,
           childrenProp = _props.children,
+          classes = _props.classes,
           classNameProp = _props.className,
           componentProp = _props.component,
           dense = _props.dense,
           disabled = _props.disabled,
           divider = _props.divider,
-          gutters = _props.gutters,
-          other = _objectWithoutProperties(_props, ['button', 'children', 'className', 'component', 'dense', 'disabled', 'divider', 'gutters']);
+          disableGutters = _props.disableGutters,
+          other = (0, _objectWithoutProperties3.default)(_props, ['button', 'children', 'classes', 'className', 'component', 'dense', 'disabled', 'divider', 'disableGutters']);
 
-      var classes = this.context.styleManager.render(styleSheet);
-      var className = (0, _classnames2.default)(classes.listItem, (_classNames = {}, _defineProperty(_classNames, classes.gutters, gutters), _defineProperty(_classNames, classes.divider, divider), _defineProperty(_classNames, classes.disabled, disabled), _defineProperty(_classNames, dense ? classes.dense : classes.default, true), _classNames), classNameProp);
+      var isDense = dense || this.context.dense || false;
+      var children = _react2.default.Children.toArray(childrenProp);
 
-      var listItemProps = _extends({ className: className, disabled: disabled }, other);
-      var component = componentProp;
+      var hasAvatar = children.some(function (value) {
+        return (0, _reactHelpers.isMuiElement)(value, ['ListItemAvatar']);
+      });
+      var hasSecondaryAction = children.length && (0, _reactHelpers.isMuiElement)(children[children.length - 1], ['ListItemSecondaryAction']);
+
+      var className = (0, _classnames2.default)(classes.root, (_classNames = {}, (0, _defineProperty3.default)(_classNames, classes.gutters, !disableGutters), (0, _defineProperty3.default)(_classNames, classes.divider, divider), (0, _defineProperty3.default)(_classNames, classes.disabled, disabled), (0, _defineProperty3.default)(_classNames, classes.button, button), (0, _defineProperty3.default)(_classNames, classes.secondaryAction, hasSecondaryAction), (0, _defineProperty3.default)(_classNames, isDense || hasAvatar ? classes.dense : classes.default, true), _classNames), classNameProp);
+
+      var listItemProps = (0, _extends3.default)({ className: className, disabled: disabled }, other);
+      var ComponentMain = componentProp;
 
       if (button) {
-        component = _ButtonBase2.default;
-        listItemProps.component = 'div';
+        ComponentMain = _ButtonBase2.default;
+        listItemProps.component = componentProp || 'li';
         listItemProps.keyboardFocusedClassName = classes.keyboardFocused;
       }
 
-      var children = _react2.default.Children.toArray(childrenProp);
-
-      if (children.length && children[children.length - 1].type && children[children.length - 1].type.muiName === 'ListItemSecondaryAction') {
-        var secondaryAction = children.pop();
+      if (hasSecondaryAction) {
         return _react2.default.createElement(
           'div',
-          { className: classes.listItemContainer },
-          _react2.default.createElement(component, listItemProps, children),
-          secondaryAction
+          { className: classes.container },
+          _react2.default.createElement(
+            ComponentMain,
+            listItemProps,
+            children
+          ),
+          children.pop()
         );
       }
 
-      return _react2.default.createElement(component, listItemProps, children);
+      return _react2.default.createElement(
+        ComponentMain,
+        listItemProps,
+        children
+      );
     }
   }]);
-
   return ListItem;
-}(_react.Component);
+}(_react2.default.Component);
 
-ListItem.propTypes = {
-  button: _react.PropTypes.bool,
-  children: _react.PropTypes.node,
-  /**
-   * The CSS class name of the root element.
-   */
-  className: _react.PropTypes.string,
-  component: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.func]),
-  dense: _react.PropTypes.bool,
-  /**
-   * @ignore
-   */
-  disabled: _react.PropTypes.bool,
-  divider: _react.PropTypes.bool,
-  gutters: _react.PropTypes.bool
-};
 ListItem.defaultProps = {
   button: false,
-  component: 'div',
+  component: 'li',
   dense: false,
   disabled: false,
-  divider: false,
-  gutters: true
+  disableGutters: false,
+  divider: false
 };
+
+
 ListItem.contextTypes = {
-  styleManager: _react.PropTypes.object.isRequired
+  dense: _propTypes2.default.bool
 };
-exports.default = ListItem;
+
+ListItem.childContextTypes = {
+  dense: _propTypes2.default.bool
+};
+
+exports.default = (0, _withStyles2.default)(styles, { name: 'MuiListItem' })(ListItem);

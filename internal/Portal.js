@@ -4,7 +4,25 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _react = require('react');
 
@@ -12,40 +30,63 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = require('react-dom');
 
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _inDOM = require('dom-helpers/util/inDOM');
+
+var _inDOM2 = _interopRequireDefault(_inDOM);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+var babelPluginFlowReactPropTypes_proptype_Props = {
+  /**
+   * The content to portal in order to escape the parent DOM node.
+   */
+  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
+  /**
+   * If `true` the children will be mounted into the DOM.
+   */
+  open: require('prop-types').bool
+};
 
-var Portal = function (_Component) {
-  _inherits(Portal, _Component);
+/**
+ * @ignore - internal component.
+ */
+var Portal = function (_React$Component) {
+  (0, _inherits3.default)(Portal, _React$Component);
 
   function Portal() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, Portal);
+    (0, _classCallCheck3.default)(this, Portal);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Portal.__proto__ || Object.getPrototypeOf(Portal)).call.apply(_ref, [this].concat(args))), _this), _this.layer = null, _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Portal.__proto__ || (0, _getPrototypeOf2.default)(Portal)).call.apply(_ref, [this].concat(args))), _this), _this.layer = null, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
   }
 
-  _createClass(Portal, [{
+  (0, _createClass3.default)(Portal, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      this.renderLayer();
+      // Support react@15.x, will be removed at some point
+      if (!_reactDom2.default.createPortal) {
+        this.renderLayer();
+      }
     }
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
-      this.renderLayer();
+      // Support react@15.x, will be removed at some point
+      if (!_reactDom2.default.createPortal) {
+        this.renderLayer();
+      }
     }
   }, {
     key: 'componentWillUnmount',
@@ -55,6 +96,14 @@ var Portal = function (_Component) {
   }, {
     key: 'getLayer',
     value: function getLayer() {
+      if (!this.layer) {
+        this.layer = document.createElement('div');
+        this.layer.setAttribute('data-mui-portal', 'true');
+        if (document.body && this.layer) {
+          document.body.appendChild(this.layer);
+        }
+      }
+
       return this.layer;
     }
   }, {
@@ -63,8 +112,15 @@ var Portal = function (_Component) {
       if (!this.layer) {
         return;
       }
-      (0, _reactDom.unmountComponentAtNode)(this.layer);
-      document.body.removeChild(this.layer);
+
+      // Support react@15.x, will be removed at some point
+      if (!_reactDom2.default.createPortal) {
+        _reactDom2.default.unmountComponentAtNode(this.layer);
+      }
+
+      if (document.body) {
+        document.body.removeChild(this.layer);
+      }
       this.layer = null;
     }
   }, {
@@ -76,21 +132,12 @@ var Portal = function (_Component) {
 
 
       if (open) {
-        if (!this.layer) {
-          this.layer = document.createElement('div');
-          this.layer.setAttribute('data-mui-portal', 'true');
-          document.body.appendChild(this.layer);
-        }
-
-        /**
-         * By calling this method in componentDidMount() and
-         * componentDidUpdate(), you're effectively creating a "wormhole" that
-         * funnels React's hierarchical updates through to a DOM node on an
-         * entirely different part of the page.
-         */
-
+        // By calling this method in componentDidMount() and
+        // componentDidUpdate(), you're effectively creating a "wormhole" that
+        // funnels React's hierarchical updates through to a DOM node on an
+        // entirely different part of the page.
         var layerElement = _react2.default.Children.only(children);
-        (0, _reactDom.unstable_renderSubtreeIntoContainer)(this, layerElement, this.layer);
+        _reactDom2.default.unstable_renderSubtreeIntoContainer(this, layerElement, this.getLayer());
       } else {
         this.unrenderLayer();
       }
@@ -98,22 +145,36 @@ var Portal = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _props2 = this.props,
+          children = _props2.children,
+          open = _props2.open;
+
+      // Support react@15.x, will be removed at some point
+
+      if (!_reactDom2.default.createPortal) {
+        return null;
+      }
+
+      // Can't be rendered server-side.
+      if (_inDOM2.default) {
+        if (open) {
+          return _reactDom2.default.createPortal(children, this.getLayer());
+        }
+
+        this.unrenderLayer();
+      }
+
       return null;
     }
   }]);
-
   return Portal;
-}(_react.Component);
+}(_react2.default.Component);
 
-Portal.propTypes = {
-  /**
-   * The content of the component.
-   */
-  children: _react.PropTypes.node,
-  container: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.func]),
-  open: _react.PropTypes.bool
-};
 Portal.defaultProps = {
   open: false
 };
+Portal.propTypes = process.env.NODE_ENV !== "production" ? {
+  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
+  open: require('prop-types').bool
+} : {};
 exports.default = Portal;

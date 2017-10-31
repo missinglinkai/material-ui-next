@@ -3,81 +3,94 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styleSheet = undefined;
+exports.styles = undefined;
 
-var _assign = require('object-assign');
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
 
-var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-exports.default = Toolbar;
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _ref; //  weak
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _jssThemeReactor = require('jss-theme-reactor');
-
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
+var _withStyles = require('../styles/withStyles');
+
+var _withStyles2 = _interopRequireDefault(_withStyles);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; } //  weak
-
-var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Toolbar', function (theme) {
-  return _defineProperty({
-    root: {
+var styles = exports.styles = function styles(theme) {
+  return {
+    root: (0, _extends3.default)({
       position: 'relative',
       display: 'flex',
-      alignItems: 'center',
-      height: 56
-    },
+      alignItems: 'center'
+    }, theme.mixins.toolbar),
     gutters: theme.mixins.gutters({})
-  }, theme.breakpoints.up('sm'), {
-    root: {
-      height: 64
-    }
-  });
-});
+  };
+};
 
-function Toolbar(props, context) {
+var babelPluginFlowReactPropTypes_proptype_Props = {
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: require('prop-types').object,
+
+  /**
+   * Toolbar children, usually a mixture of `IconButton`, `Button` and `Typography`.
+   */
+  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
+
+  /**
+   * @ignore
+   */
+  className: require('prop-types').string,
+
+  /**
+   * If `true`, disables gutter padding.
+   */
+  disableGutters: require('prop-types').bool
+};
+
+
+function Toolbar(props) {
   var children = props.children,
+      classes = props.classes,
       classNameProp = props.className,
-      gutters = props.gutters,
-      other = _objectWithoutProperties(props, ['children', 'className', 'gutters']);
+      disableGutters = props.disableGutters,
+      other = (0, _objectWithoutProperties3.default)(props, ['children', 'classes', 'className', 'disableGutters']);
 
-  var classes = context.styleManager.render(styleSheet);
-  var className = (0, _classnames2.default)(classes.root, _defineProperty({}, classes.gutters, gutters), classNameProp);
+
+  var className = (0, _classnames2.default)(classes.root, (0, _defineProperty3.default)({}, classes.gutters, !disableGutters), classNameProp);
 
   return _react2.default.createElement(
     'div',
-    _extends({ className: className }, other),
+    (0, _extends3.default)({ className: className }, other),
     children
   );
 }
 
-Toolbar.propTypes = {
-  /**
-   * Can be a `ToolbarGroup` to render a group of related items.
-   */
-  children: _react.PropTypes.node,
-  /**
-   * The CSS class name of the root element.
-   */
-  className: _react.PropTypes.string,
-  /**
-   * If set to true, enables gutter padding.
-   */
-  gutters: _react.PropTypes.bool
-};
-
+Toolbar.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
+  classes: require('prop-types').object.isRequired
+}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'children', typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'disableGutters', require('prop-types').bool), _ref) : {};
 Toolbar.defaultProps = {
-  gutters: true
+  disableGutters: false
 };
 
-Toolbar.contextTypes = {
-  styleManager: _react.PropTypes.object.isRequired
-};
+exports.default = (0, _withStyles2.default)(styles, { name: 'MuiToolbar' })(Toolbar);

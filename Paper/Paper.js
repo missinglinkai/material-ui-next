@@ -3,94 +3,117 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styleSheet = undefined;
+exports.styles = undefined;
 
-var _assign = require('object-assign');
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
 
-var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //  weak
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-exports.default = Paper;
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _ref;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _jssThemeReactor = require('jss-theme-reactor');
-
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
+var _warning = require('warning');
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _withStyles = require('../styles/withStyles');
+
+var _withStyles2 = _interopRequireDefault(_withStyles);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var babelPluginFlowReactPropTypes_proptype_ElementType = require('react').babelPluginFlowReactPropTypes_proptype_ElementType || require('prop-types').any;
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Paper', function (theme) {
-  var palette = theme.palette;
-
+var styles = exports.styles = function styles(theme) {
   var shadows = {};
 
   theme.shadows.forEach(function (shadow, index) {
-    shadows['dp' + index] = {
+    shadows['shadow' + index] = {
       boxShadow: shadow
     };
   });
 
-  return _extends({
-    paper: {
-      backgroundColor: palette.background.paper
+  return (0, _extends3.default)({
+    root: {
+      backgroundColor: theme.palette.background.paper
     },
     rounded: {
-      borderRadius: '2px'
+      borderRadius: 2
     }
   }, shadows);
-});
+};
 
-/**
- * A piece of material paper.
- *
- * ```js
- * import Paper from 'material-ui/Paper';
- *
- * const Component = () => <Paper zDepth={8}>Hello World</Paper>;
- * ```
- */
-function Paper(props, context) {
-  var classNameProp = props.className,
-      rounded = props.rounded,
-      zDepth = props.zDepth,
-      other = _objectWithoutProperties(props, ['className', 'rounded', 'zDepth']);
-
-  var classes = context.styleManager.render(styleSheet);
-
-  var classNameZDepth = 'dp' + (zDepth >= 0 ? zDepth : 0);
-  var className = (0, _classnames2.default)(classes.paper, classes[classNameZDepth], _defineProperty({}, classes.rounded, rounded), classNameProp);
-
-  return _react2.default.createElement('div', _extends({ className: className }, other));
-}
-
-Paper.propTypes = {
+var babelPluginFlowReactPropTypes_proptype_Props = {
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
    */
-  className: _react.PropTypes.string,
+  classes: require('prop-types').object,
+
   /**
-   * Set to false to disable rounded corners.
+   * @ignore
    */
-  rounded: _react.PropTypes.bool,
+  className: require('prop-types').string,
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType),
+
   /**
    * Shadow depth, corresponds to `dp` in the spec.
+   * It's accepting values between 0 and 24 inclusive.
    */
-  zDepth: _react.PropTypes.number
+  elevation: require('prop-types').number,
+
+  /**
+   * If `true`, rounded corners are disabled.
+   */
+  square: require('prop-types').bool
 };
 
+
+function Paper(props) {
+  var classes = props.classes,
+      classNameProp = props.className,
+      ComponentProp = props.component,
+      square = props.square,
+      elevation = props.elevation,
+      other = (0, _objectWithoutProperties3.default)(props, ['classes', 'className', 'component', 'square', 'elevation']);
+
+
+  process.env.NODE_ENV !== "production" ? (0, _warning2.default)(elevation >= 0 && elevation < 25, 'Material-UI: this elevation `' + elevation + '` is not implemented.') : void 0;
+
+  var className = (0, _classnames2.default)(classes.root, classes['shadow' + (elevation >= 0 ? elevation : 0)], (0, _defineProperty3.default)({}, classes.rounded, !square), classNameProp);
+
+  return _react2.default.createElement(ComponentProp, (0, _extends3.default)({ className: className }, other));
+}
+
+Paper.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
+  classes: require('prop-types').object.isRequired,
+  component: typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType.isRequired ? babelPluginFlowReactPropTypes_proptype_ElementType.isRequired : babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType).isRequired,
+  elevation: require('prop-types').number.isRequired,
+  square: require('prop-types').bool.isRequired
+}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'component', typeof babelPluginFlowReactPropTypes_proptype_ElementType === 'function' ? babelPluginFlowReactPropTypes_proptype_ElementType : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_ElementType)), (0, _defineProperty3.default)(_ref, 'elevation', require('prop-types').number), (0, _defineProperty3.default)(_ref, 'square', require('prop-types').bool), _ref) : {};
 Paper.defaultProps = {
-  rounded: true,
-  zDepth: 2
+  component: 'div',
+  elevation: 2,
+  square: false
 };
 
-Paper.contextTypes = {
-  styleManager: _react.PropTypes.object.isRequired
-};
+exports.default = (0, _withStyles2.default)(styles, { name: 'MuiPaper' })(Paper);

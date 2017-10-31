@@ -3,39 +3,39 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styleSheet = undefined;
+exports.styles = undefined;
 
-var _assign = require('object-assign');
+var _extends2 = require('babel-runtime/helpers/extends');
 
-var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends3 = _interopRequireDefault(_extends2);
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _ref;
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _jssThemeReactor = require('jss-theme-reactor');
-
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _colors = require('../styles/colors');
+var _withStyles = require('../styles/withStyles');
+
+var _withStyles2 = _interopRequireDefault(_withStyles);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //  weak
-
-var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Backdrop', function (theme) {
+var styles = exports.styles = function styles(theme) {
   return {
     root: {
       zIndex: -1,
@@ -44,67 +44,68 @@ var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('Ba
       position: 'fixed',
       top: 0,
       left: 0,
-      backgroundColor: _colors.lightBlack,
+      // Remove grey highlight
+      WebkitTapHighlightColor: theme.palette.common.transparent,
+      backgroundColor: theme.palette.common.lightBlack,
       transition: theme.transitions.create('opacity'),
       willChange: 'opacity',
       opacity: 0
     },
     invisible: {
-      backgroundColor: 'rgba(0, 0, 0, 0)'
+      backgroundColor: theme.palette.common.transparent
     }
   };
-});
+};
 
-var Backdrop = function (_Component) {
-  _inherits(Backdrop, _Component);
-
-  function Backdrop() {
-    _classCallCheck(this, Backdrop);
-
-    return _possibleConstructorReturn(this, (Backdrop.__proto__ || Object.getPrototypeOf(Backdrop)).apply(this, arguments));
-  }
-
-  _createClass(Backdrop, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props,
-          children = _props.children,
-          className = _props.className,
-          visible = _props.visible,
-          other = _objectWithoutProperties(_props, ['children', 'className', 'visible']);
-
-      var classes = this.context.styleManager.render(styleSheet);
-      var backdropClass = (0, _classnames2.default)(classes.root, _defineProperty({}, classes.invisible, !visible), className);
-      return _react2.default.createElement(
-        'div',
-        _extends({
-          'data-mui-test': 'Backdrop',
-          className: backdropClass,
-          'aria-hidden': 'true'
-        }, other),
-        children
-      );
-    }
-  }]);
-
-  return Backdrop;
-}(_react.Component);
-
-Backdrop.propTypes = {
+var babelPluginFlowReactPropTypes_proptype_Props = {
   /**
    * Can be used, for instance, to render a letter inside the avatar.
    */
-  children: _react.PropTypes.node,
+  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
+
   /**
-   * The CSS class name of the root element.
+   * Useful to extend the style applied to components.
    */
-  className: _react.PropTypes.string,
-  visible: _react.PropTypes.bool
+  classes: require('prop-types').object,
+
+  /**
+   * @ignore
+   */
+  className: require('prop-types').string,
+
+  /**
+   * If `true`, the backdrop is invisible.
+   */
+  invisible: require('prop-types').bool
 };
+
+
+/**
+ * @ignore - internal component.
+ */
+function Backdrop(props) {
+  var children = props.children,
+      classes = props.classes,
+      className = props.className,
+      invisible = props.invisible,
+      other = (0, _objectWithoutProperties3.default)(props, ['children', 'classes', 'className', 'invisible']);
+
+
+  var backdropClass = (0, _classnames2.default)(classes.root, (0, _defineProperty3.default)({}, classes.invisible, invisible), className);
+
+  return _react2.default.createElement(
+    'div',
+    (0, _extends3.default)({ className: backdropClass, 'aria-hidden': 'true' }, other),
+    children
+  );
+}
+
+Backdrop.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
+  classes: require('prop-types').object.isRequired,
+  children: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)
+}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'invisible', require('prop-types').bool), _ref) : {};
 Backdrop.defaultProps = {
-  visible: true
+  invisible: false
 };
-Backdrop.contextTypes = {
-  styleManager: _react.PropTypes.object.isRequired
-};
-exports.default = Backdrop;
+
+exports.default = (0, _withStyles2.default)(styles, { name: 'MuiBackdrop' })(Backdrop);

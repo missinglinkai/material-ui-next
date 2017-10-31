@@ -3,117 +3,140 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styleSheet = undefined;
+exports.styles = undefined;
 
-var _assign = require('object-assign');
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
 
-var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-exports.default = CardHeader;
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _ref;
+// @inheritedComponent CardContent
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _jssThemeReactor = require('jss-theme-reactor');
-
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
+
+var _withStyles = require('../styles/withStyles');
+
+var _withStyles2 = _interopRequireDefault(_withStyles);
+
+var _Typography = require('../Typography');
+
+var _Typography2 = _interopRequireDefault(_Typography);
 
 var _CardContent = require('./CardContent');
 
 var _CardContent2 = _interopRequireDefault(_CardContent);
 
-var _Text = require('../Text');
-
-var _Text2 = _interopRequireDefault(_Text);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; } //  weak
+var babelPluginFlowReactPropTypes_proptype_Node = require('react').babelPluginFlowReactPropTypes_proptype_Node || require('prop-types').any;
 
-var styleSheet = exports.styleSheet = (0, _jssThemeReactor.createStyleSheet)('CardHeader', function () {
+var styles = exports.styles = function styles(theme) {
   return {
-    cardHeader: {
+    root: {
       display: 'flex',
       alignItems: 'center'
     },
     avatar: {
       flex: '0 0 auto',
-      marginRight: 16
+      marginRight: theme.spacing.unit * 2
     },
     content: {
       flex: '1 1 auto'
     },
-    contentSecondary: {
-      lineHeight: 1
-    }
+    title: {},
+    subheader: {}
   };
-});
+};
 
-function CardHeader(props, context) {
+var babelPluginFlowReactPropTypes_proptype_Props = {
+  /**
+   * The Avatar for the Card Header.
+   */
+  avatar: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
+
+  /**
+   * Useful to extend the style applied to components.
+   */
+  classes: require('prop-types').object,
+
+  /**
+   * @ignore
+   */
+  className: require('prop-types').string,
+
+  /**
+   * The content of the component.
+   */
+  subheader: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node),
+
+  /**
+   * The content of the Card Title.
+   */
+  title: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)
+};
+
+
+function CardHeader(props) {
   var avatar = props.avatar,
+      classes = props.classes,
       classNameProp = props.className,
-      subhead = props.subhead,
+      subheader = props.subheader,
       title = props.title,
-      other = _objectWithoutProperties(props, ['avatar', 'className', 'subhead', 'title']);
+      other = (0, _objectWithoutProperties3.default)(props, ['avatar', 'classes', 'className', 'subheader', 'title']);
 
-  var classes = context.styleManager.render(styleSheet);
-  var className = (0, _classnames2.default)(classes.cardHeader, classNameProp);
 
-  if (avatar) {
-    return _react2.default.createElement(
-      _CardContent2.default,
-      _extends({ className: className }, other),
-      _react2.default.createElement(
-        'div',
-        { className: classes.avatar },
-        avatar
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: classes.content },
-        _react2.default.createElement(
-          _Text2.default,
-          { type: 'body2', gutterBottom: true },
-          title
-        ),
-        _react2.default.createElement(
-          _Text2.default,
-          { type: 'body2', secondary: true, className: classes.contentSecondary },
-          subhead
-        )
-      )
-    );
-  }
+  var className = (0, _classnames2.default)(classes.root, classNameProp);
+
+  // Adjustments that depend on the presence of an avatar
+  var titleType = avatar ? 'body2' : 'headline';
+  var subheaderType = avatar ? 'body2' : 'body1';
 
   return _react2.default.createElement(
     _CardContent2.default,
-    _extends({ className: className }, other),
-    _react2.default.createElement(
-      _Text2.default,
-      { type: 'headline' },
-      title
+    (0, _extends3.default)({ className: className }, other),
+    avatar && _react2.default.createElement(
+      'div',
+      { className: classes.avatar },
+      avatar
     ),
     _react2.default.createElement(
-      _Text2.default,
-      { type: 'body1', secondary: true },
-      subhead
+      'div',
+      { className: classes.content },
+      _react2.default.createElement(
+        _Typography2.default,
+        { type: titleType, component: 'span', className: classes.title },
+        title
+      ),
+      _react2.default.createElement(
+        _Typography2.default,
+        {
+          type: subheaderType,
+          component: 'span',
+          color: 'secondary',
+          className: classes.subheader
+        },
+        subheader
+      )
     )
   );
 }
 
-CardHeader.propTypes = {
-  avatar: _react.PropTypes.node,
-  /**
-   * The CSS class name of the root element.
-   */
-  className: _react.PropTypes.string,
-  subhead: _react.PropTypes.string,
-  title: _react.PropTypes.string
-};
-
-CardHeader.contextTypes = {
-  styleManager: _react.PropTypes.object.isRequired
-};
+CardHeader.propTypes = process.env.NODE_ENV !== "production" ? (_ref = {
+  classes: require('prop-types').object.isRequired,
+  avatar: typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)
+}, (0, _defineProperty3.default)(_ref, 'classes', require('prop-types').object), (0, _defineProperty3.default)(_ref, 'className', require('prop-types').string), (0, _defineProperty3.default)(_ref, 'subheader', typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)), (0, _defineProperty3.default)(_ref, 'title', typeof babelPluginFlowReactPropTypes_proptype_Node === 'function' ? babelPluginFlowReactPropTypes_proptype_Node : require('prop-types').shape(babelPluginFlowReactPropTypes_proptype_Node)), _ref) : {};
+exports.default = (0, _withStyles2.default)(styles, { name: 'MuiCardHeader' })(CardHeader);
